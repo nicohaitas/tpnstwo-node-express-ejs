@@ -1,0 +1,168 @@
+<% for (var i = 0 ; i < data.nav1.length; i++) { -%>
+    <% var navigationLevel = data.nav1[i]; -%>
+    <% if ( (navigationLevel.categoryslug) === "happening-now" ) { -%>
+    <% } else { -%>
+            <section id="<%- navigationLevel.categoryslug %>">
+                <div class="container-content-section-title">
+                    <h1><a><%- navigationLevel.category %></a></h1>
+                    <div class="container-content-section-title-social-container">
+                        <p class="textr textb"><a title="Freind us on Facebook">Friend TPNStwo<%- navigationLevel.category %> <i class="icon icon-facebook"></i></a></p>
+                        <p class="textr textb"><a title="Follow us on Twitter">Follow @TPNStwo<%- navigationLevel.category %> <i class="icon icon-twitter"></i></a></p>
+                        <p class="textr textb"><a title="Add us on Google Plus">Add TPNStwo<%- navigationLevel.category %> <i class="icon icon-google-plus"></i></a></p>
+                    </div>
+                </div>
+                <main>
+                    <div class="content-area-lead-story">
+                        <article></article>
+                    </div>
+                    <div name="sportsscores" class="lead-story-left-column">
+                        <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                        <div class="content-area-category-title textb textup">
+                            Scoreboard
+                        </div>
+                        <div class="nicoslide">
+                            <div class="nicoslide-inner">
+                                <div class="nicoslide-each active">
+                                </div>
+                                <div class="nicoslide-each">
+                                </div>
+                                <div class="nicoslide-each">
+                                </div>
+                            </div>
+                            <div class="nicoslide-prev-btn nicoslide-btn-disabled"><i class="icon icon-arrow-left"></i><span class="hidden">Previous Scoreboard</span></div>
+                            <div class="nicoslide-next-btn"><i class="icon icon-arrow-right"></i><span class="hidden">Next Scoreboard</span></div>
+                        </div>
+                        <% } -%>
+                    </div>
+                    <div class="content-area-latest-articles">
+                        <div class="content-area-latest-articles-top-promo-area">
+                            <div class="content-area-latest-articles-top-promo-area-split"></div>
+                            <div class="content-area-latest-articles-top-promo-area-split"></div>
+                        </div>
+                        <div class="content-area-latest-articles-video">
+                            <div class="content-area-category-title textb textup">
+                                <a href="" title="">Video</a>
+                            </div>
+                            <div class="content-area-latest-articles-video-inner">
+                                <div class="nicoslide">
+                                    <div class="nicoslide-inner">
+                                        <div class="nicoslide-each active">
+                                        </div>
+                                        <div class="nicoslide-each">
+                                        </div>
+                                        <div class="nicoslide-each">
+                                        </div>
+                                        <div class="nicoslide-each">
+                                        </div>
+                                    </div>
+                                    <div class="nicoslide-prev-btn nicoslide-btn-disabled"><i class="icon icon-arrow-left"></i><span class="hidden">Previous Video Sports</span></div>
+                                    <div class="nicoslide-next-btn"><i class="icon icon-arrow-right"></i><span class="hidden">Next Video Sports</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-area-elsewhere-container">
+                            <div class="content-area-elsewhere-inner-container"></div>
+                            <div class="content-area-elsewhere-other-container">
+                                <div class="content-area-elsewhere-other-inner-container">
+                                    <div class="content-area-elsewhere-other-inner-container-horizontal-split">
+                                        <div class="content-area-category-title textb textup">
+                                            Sports 2.0
+                                        </div>
+                                        <article></article>
+                                    </div>
+                                </div>
+                                <div class="content-area-elsewhere-other-inner-container">
+                                    <div class="content-area-category-title textb textup">
+                                        More News
+                                    </div>
+                                    <ul class="content-area-elsewhere-other-inner-news">
+                                        <li>
+                                            <article></article>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="content-area-elsewhere-other-inner-container">
+                                    <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                                    <div class="content-area-category-title textb textup">
+                                        Sports Guide&#39;s
+                                    </div>
+                                    <div class="top-100-promo-area">
+                                        <a title="">
+                                            <img src="newspaper-images/football-top-100.png" alt="" />
+                                            <h1>The annual guide to the world&#39;s top 100 football players</h1>
+                                        </a>
+                                    </div>
+                                    <% } -%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </main>
+                <aside>
+                    <div name="sports-opinion" class="aside-module content-area-opinion">
+                        <div class="content-area-category-title textr textb textup">
+                            Opinion
+                        </div>
+                        <div class="content-area-opinion-cell">
+                            <article></article>
+                        </div>
+                        <div class="content-area-opinion-cell">
+                            <article></article>
+                        </div>
+                    </div>
+                    <div class="aside-module aside-promo-area-two-column">
+                        <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                        <div class="tpns-live-sports-radio">
+                            <div class="content-area-category-title textr textb textup">
+                                <i class="icon icon-radio-button-solid">LIVE</i>TPNS SPORTS FM 94.3
+                            </div>
+                            <div class="tpns-live-sports-radio-content">
+                                <div class="audio-wrapper">
+                                    <audio preload="none" controls style="width: 100%;">
+                                        <source src="http://sportfm.live24.gr/sportfm7712" type="audio/mp3">
+                                    </audio>
+                                </div>
+                                <div class="tpns-live-sports-radio-link">
+                                    <a href="http://www.sport-fm.gr/" target="_blank" title="TPNS SPORTS FM 94.3">
+                                        <span class="aside-promo-area-link-title textb">TPNS SPORTS FM 94.3</span>
+                                        <img src="newspaper-images/tpns-sports-fm-logo.svg" alt="TPNS SPORTS FM 94.3 logo" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } -%>
+                    </div>
+                    <div name="sports-news" class="aside-module content-area-tabbed-news-feed">
+                        <div class="content-area-category-title textr textb textup">
+                            Sports News
+                        </div>
+                        <div class="content-area-tabbed-news-feed-content">
+                            <div class="nicoslide">
+                                <div class="content-area-tabbed-news-feed-nav textb textup">
+                                    <ul>
+                                        <li name="latest-sports" class="current"><a>Latest</a></li>
+                                        <li name="trending-sports"><a>Trending</a></li>
+                                        <li name="editorschoice-sports"><a>Editor&#39;s Choice</a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="nicoslide-inner">
+                                    <div class="nicoslide-each active">
+                                        <div id="latest-sports"></div>
+                                    </div>
+                                    <div class="nicoslide-each">
+                                        <div id="trending-sports"></div>
+                                    </div>
+                                    <div class="nicoslide-each">
+                                        <div id="editorschoice-sports"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <div class="clearfix"></div>
+            </section>
+    <% } -%>
+<% } -%>

@@ -1,0 +1,435 @@
+<nav class="container-mainnav">
+    <div class="mainnav-button">
+        <a class="mainnav-controller textc" title="newspaper categories">
+            <span class="mainnav-controller-closed-mode"><i class="icon icon-menu"></i></span>
+            <span class="mainnav-controller-open-mode"><i class="icon icon-close"></i></span>
+        </a>
+    </div>
+    <div class="mainnav-sections">
+        <div class="mainnav-sections-left">
+            <ul class="primaryCategories">
+                <% for (var i = 0 ; i < data.nav1.length; i++) { -%>
+                    <li name="<%- data.nav1[i].categoryslug %>" class="mainnav-sections-category-nav">
+                        <h5><a href="<%- data.nav1[i].categoryslug %>" title="Takes you to the <%- data.nav1[i].category %> Category"><%- data.nav1[i].category %><span class="hover-go"><i class="icon icon-go"></i></span></a></h5>
+                    </li>
+                <% } -%>
+            </ul>
+            <ul>
+                <% for (var i = 0 ; i < data.nav2.length; i++) { -%>
+                    <li name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" class="mainnav-sections-category-nav">
+                        <h5><a href="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title="Takes you to the <%- data.nav2[i].category || data.nav2[i].microsite %> Category"><%- data.nav2[i].category || data.nav2[i].microsite %><span class="hover-go"><i class="icon icon-go"></i></span></a></h5>
+                    </li>
+                <% } -%>
+            </ul>
+        </div>
+        <div class="mainnav-sections-middle">
+            <% for (var i = 0 ; i < data.nav1.length; i++) { -%>
+                <% navigationLevel = data.nav1[i]; -%>
+                <% var navigationSubLevel = navigationLevel.subcategories; -%>
+                <section name="<%- navigationLevel.categoryslug %>" class="mainnav-sections-subcategory-container">
+                    <h3 class="mainnav-sections-subcategory-title"><a href="" title="<%- navigationLevel.category %>"><%- navigationLevel.category %><span class="hover-go"><i class="icon icon-go"></i></span></a></h3>
+                    <% if ( navigationLevel.hasOwnProperty("subcategories") ) { -%>
+                        <ul class="mainnav-sections-subcategory">
+                            <% for (j = 0; j < navigationSubLevel.length; j++) { -%>
+                                <li name="<%- navigationSubLevel[j].subcategoryslug %>" class="mainnav-sections-subcategory-item">
+                                    <a title=""><%- navigationSubLevel[j].subcategory %><span class="hover-go"><i class="icon icon-go"></i></span></a>
+                                </li>
+                            <% } -%>
+                        </ul>
+                        <% for (k = 0; k < navigationSubLevel.length; k++) { -%>
+                            <% var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; -%>
+                            <div name="<%- thisArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
+                            <% var ifStatementIterationLimit = 0; -%>
+                            <% for (l = 0; l < data.articles.length; l++) { -%>
+                                <% var thisArticleSlug = data.articles[l]; -%>
+                                <% if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { -%>
+                                    <% if (ifStatementIterationLimit < 12) { -%>
+                                        <article name="<%- thisArticleSlug.subcategoryslug %>">
+                                            <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
+                                                <div class="article-image <%- thisArticleSlug.imageorientation %>">
+                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisArticleSlug.kickerimage350 %>');">
+                                                        <img src="<%- thisArticleSlug.kickerimage350 %>" alt="Image for <%- thisArticleSlug.kicker %> article" />
+                                                    </div>
+                                                </div>
+                                                <h1><%- thisArticleSlug.kicker %></h1>
+                                            </a>
+                                        </article>
+                                        <% ifStatementIterationLimit ++; -%>
+                                    <% } -%>
+                                <% } -%>
+                            <% } -%>
+                            <% if ( thisArticleContainerSlug === "columnists" ) { -%>
+                                <% for (n = 0; n < data.columnists.length; n++) { -%>
+                                    <% var thisColumnist = data.columnists[n]; -%>
+                                    <columnist name="<%- thisColumnist.columnistnameslug %>">
+                                        <a href="" title="Takes you to see the columnist <%- thisColumnist.columnistname %> and all of their articles">
+                                            <div class="columnist-container">
+                                                <div class="columnist-left">
+                                                    <div class="article-image <%- thisColumnist.imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisColumnist.columnistimage100 %>');">
+                                                            <img src="<%- thisColumnist.columnistimage100 %>" alt="Image of the columnist <%- thisColumnist.columnistname %>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="columnist-right">
+                                                    <h1><%- thisColumnist.columnistname %></h1>
+                                                    <h2 class="textn"><%- thisColumnist.columnistcovers %></h2>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </columnist>
+                                <% } -%>
+                            <% } else if ( thisArticleContainerSlug === "series" ) { -%>
+                                <% for (p = 0; p < data.series.length; p++) { -%>
+                                    <% var thisSeries = data.series[p]; -%>
+                                    <series name="<%- thisSeries.subcategoryfirstchildslug %>">
+                                        <a href="" title="Takes you to see the <%- thisSeries.subcategoryfirstchild %> series">
+                                            <div class="series-container">
+                                                <div class="series-left">
+                                                    <div class="article-image <%- thisSeries.imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisSeries.seriesimage %>');">
+                                                            <img src="<%- thisSeries.seriesimage %>" alt="Image of the series <%- thisSeries.columnistname %>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="series-right">
+                                                    <h1><%- thisSeries.subcategoryfirstchild %></h1>
+                                                    <h2 class="textn"><%- thisSeries.seriescovers %></h2>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </series>
+                                <% } -%>
+                            <% } -%>
+                            </div>
+                        <% } -%>
+                    <% } else { -%>
+                        <% if ( (navigationLevel.categoryslug) === "happening-now" ) { -%>
+                            <div name="<%- navigationLevel.categoryslug %>" class="mainnav-sections-subcategory-related-articles">
+                                <% for (var k = 0 ; k < data.articles.length; k++) { %>
+                                    <% if (data.articles[k].happeningnow === 1) { -%>
+                                        <% while (k++ < 12) { -%>
+                                            <article name="<%- data.articles[k].categoryslug %>">
+                                                <a href="" title="Takes you to read <%- data.articles[k].hardlead %> article">
+                                                    <div class="article-image <%- data.articles[k].imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- data.articles[k].hardleadimage350 %>');">
+                                                            <img src="<%- data.articles[k].hardleadimage350 %>" alt="Image for <%- data.articles[k].hardlead %> article" />
+                                                        </div>
+                                                    </div>
+                                                    <h1><%- data.articles[k].hardlead %></h1>
+                                                </a>
+                                            </article>
+                                        <% } -%>
+                                    <% } -%>
+                                <% } -%>
+                            </div>
+                        <% } else { -%>
+                            <% var thisGeneralArticleContainerSlug = navigationLevel.categoryslug; -%>
+                            <div name="<%- thisGeneralArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
+                                <% for (var m = 0 ; m < data.articles.length; m++) { -%>
+                                    <% var thisGeneralArticleSlug = data.articles[m]; -%>
+                                    <% if ( thisGeneralArticleContainerSlug === thisGeneralArticleSlug.categoryslug ) { -%>
+                                        <article name="<%- thisGeneralArticleSlug.categoryslug %>">
+                                            <a href="" title="Takes you to read <%- thisGeneralArticleSlug.kicker %> article">
+                                                <div class="article-image <%- thisGeneralArticleSlug.imageorientation %>">
+                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisGeneralArticleSlug.kickerimage350 %>');">
+                                                        <img src="<%- thisGeneralArticleSlug.kickerimage350 %>" alt="Image for <%- thisGeneralArticleSlug.kicker %> article" />
+                                                    </div>
+                                                </div>
+                                                <h1><%- thisGeneralArticleSlug.kicker %></h1>
+                                            </a>
+                                        </article>
+                                    <% } -%>
+                                <% } -%>
+                            </div>
+                        <% } -%>
+                    <% } -%>
+                    <div class="clearfix"></div>
+                </section>
+            <% } -%>
+            <% for (var i = 0 ; i < data.nav2.length; i++) { -%>
+                <% navigationLevel = data.nav2[i]; -%>
+                <% navigationSubLevel = navigationLevel.subcategories; -%>
+                <section name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" class="mainnav-sections-subcategory-container">
+                    <h3 class="mainnav-sections-subcategory-title"><a href="" title="<%- data.nav2[i].category || data.nav2[i].microsite %>"><%- data.nav2[i].category || data.nav2[i].microsite %><span class="hover-go"><i class="icon icon-go"></i></span></a></h3>
+                    <% if ( navigationLevel.hasOwnProperty("subcategories") ) { -%>
+                        <ul class="mainnav-sections-subcategory">
+                            <% for (j = 0; j < navigationSubLevel.length; j++) { -%>
+                                <li name="<%- navigationSubLevel[j].subcategoryslug %>" class="mainnav-sections-subcategory-item">
+                                    <a title=""><%- navigationSubLevel[j].subcategory %><span class="hover-go"><i class="icon icon-go"></i></span></a>
+                                </li>
+                            <% } -%>
+                        </ul>
+                        <% for (k = 0; k < navigationSubLevel.length; k++) { -%>
+                            <% var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; -%>
+                            <div name="<%- thisArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
+                            <% var ifStatementIterationLimit = 0; -%>
+                            <% for (l = 0; l < data.articles.length; l++) { -%>
+                                <% var thisArticleSlug = data.articles[l]; -%>
+                                <% if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { -%>
+                                    <% if (ifStatementIterationLimit < 12) { -%>
+                                        <article name="<%- thisArticleSlug.subcategoryslug %>">
+                                            <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
+                                                <div class="article-image <%- thisArticleSlug.imageorientation %>">
+                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisArticleSlug.kickerimage350 %>');">
+                                                        <img src="<%- thisArticleSlug.kickerimage350 %>" alt="Image for <%- thisArticleSlug.kicker %> article" />
+                                                    </div>
+                                                </div>
+                                                <h1><%- thisArticleSlug.kicker %></h1>
+                                            </a>
+                                        </article>
+                                        <% ifStatementIterationLimit ++; -%>
+                                    <% } -%>
+                                <% } -%>
+                            <% } -%>
+                            </div>
+                        <% } -%>
+                    <% } else if ( navigationLevel.hasOwnProperty("categories") ) { -%>
+                        <ul class="mainnav-sections-subcategory">
+                            <% for (m = 0; m < navigationLevel.categories.length; m++) { -%>
+                                <% navigationSubLevel = navigationLevel.categories[m]; -%>
+                                <li name="<%- navigationSubLevel.categoryslug %>" class="mainnav-sections-subcategory-item">
+                                    <a title=""><%- navigationSubLevel.category %><span class="hover-go"><i class="icon icon-go"></i></span></a>
+                                </li>
+                            <% } -%>
+                        </ul>
+                        <% for (n = 0; n < navigationLevel.categories.length; n++) { -%>
+                            <% var thisMicrositeArticleContainerSlug = navigationLevel.categories[n].categoryslug; -%>
+                            <div name="<%- thisMicrositeArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
+                            <% if ( thisMicrositeArticleContainerSlug === "list-a-home" ) { -%>
+                                <div class="list-a-home-title">
+                                    <h3>Post a Real Estate Advert</h3>
+                                </div>
+                                <h4>Choose the option that's right for you.</h4>
+                                <div class="list-a-home-container">
+                                    <div class="list-a-home-inner">
+                                        <div class="list-a-home-marketing textb">
+                                            <p>Attiki</p>
+                                            <div class="list-a-home-marketing-promo">
+                                                <small class="textup">From<br /><span class="list-a-home-marketing-promo-amount">&#8364;130</span></small>
+                                            </div>
+                                        </div>
+                                        <h5 class="textup">For Sale</h5>
+                                        <div class="list-a-home-content">
+                                            <ol>
+                                                <li>Add up to 10 photos and 5 floorplans</li>
+                                                <li>45 lines of text included</li>
+                                                <li>Include websites, email addresses, open house information and more.</li>
+                                                <li>Print ads include 4 lines of text in the National edition of the next Sunday TPNStwo Newspaper.</li>
+                                                <li class="list-a-home-closing-date textb"><small>&#42; Ad must be completed by Wednesday at 5:00PM</small></li>
+                                            </ol>
+                                            <div class="list-a-home-table">
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p><span class="textb">&#8364;130</span> 14 days</p>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">Online Only</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p><span class="textb">&#8364;280</span> 28 days</p>
+                                                        <small class="textb">plus 1 Sunday in print</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">Online &amp; Print</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-a-home-inner">
+                                        <div class="list-a-home-marketing textb">
+                                            <p>Attiki</p>
+                                            <div class="list-a-home-marketing-promo">
+                                                <small class="textup">From<br /><span class="list-a-home-marketing-promo-amount">&#8364;99</span></small>
+                                            </div>
+                                        </div>
+                                        <h5 class="textup">For Rent</h5>
+                                        <div class="list-a-home-content">
+                                            <ol>
+                                                <li>Add up to 10 photos and 5 floorplans</li>
+                                                <li>45 lines of text included</li>
+                                                <li>Include websites, email addresses, open house information and more.</li>
+                                                <li>Print ads include 4 lines of text in the National edition of the next Sunday TPNStwo Newspaper.</li>
+                                                <li class="list-a-home-closing-date textb"><small>&#42; Ad must be completed by Wednesday at 5:00PM</small></li>
+                                            </ol>
+                                            <div class="list-a-home-table">
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p><span class="textb">&#8364;99</span> 14 days</p>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">Online Only</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p><span class="textb">&#8364;249</span> 28 days</p>
+                                                        <small class="textb">plus 1 Sunday in print</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">Online &amp; Print</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-a-home-inner">
+                                        <div class="list-a-home-marketing textb">
+                                            <h5 class="textup">More Options</h5>
+                                        </div>
+                                        <div class="list-a-home-content">
+                                            <div class="list-a-home-table">
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p class="textb">Nationwide Listings</p>
+                                                        <small>Additional posting options if your property lies outside of Attiki</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p class="textb">Bulk Online Only Packages</p>
+                                                        <small>Brand your listings with your own logo and save money when you buy in bulk.</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p class="textb">Commercial Real Estate</p>
+                                                        <small>Post a commercial real estate listing on tpnstwo.com and spitogatos.gr.</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <p class="textb">Print Ads</p>
+                                                        <small>Place your ad in the TPNStwo Newspaper here or call us on 210 123 1234.</small>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">More</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-a-home-inner">
+                                        <div class="list-a-home-marketing textb">
+                                            <h5 class="textup">Holiday Rentals and B&amp;Bs</h5>
+                                        </div>
+                                        <div class="list-a-home-content">
+                                            <ol>
+                                                <li>Add up to 5 photos</li>
+                                                <li>Up to 8000 characters</li>
+                                                <li>Make your listing featured or premium</li>
+                                            </ol>
+                                            <div class="list-a-home-table">
+                                                <div class="list-a-home-row">
+                                                    <div class="list-a-home-cell">
+                                                        <small class="textb">Starting At...</small>
+                                                        <p><span class="textb">&#8364;60</span> 30 days</p>
+                                                    </div>
+                                                    <div class="list-a-home-cell">
+                                                        <div class="global-green-button global-button user-controller-form-input-button">
+                                                            <p class="textc"><a class="user-controller-form-input-button-subscribe textb">Post an Ad</a></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            <% } else { -%>
+                                <% var micrositeIfStatementIterationLimit = 0; -%>
+                                <% for (p = 0; p < data.articles.length; p++) { -%>
+                                    <% var thisMicrositeArticleSlug = data.articles[p]; -%>
+                                    <% if ( thisMicrositeArticleContainerSlug === thisMicrositeArticleSlug.categoryslug ) { -%>
+                                        <% if (micrositeIfStatementIterationLimit < 12) { -%>
+                                            <article name="<%- thisMicrositeArticleSlug.categoryslug %>">
+                                                <a href="" title="Takes you to read <%- thisMicrositeArticleSlug.kicker %> article">
+                                                    <div class="article-image <%- thisMicrositeArticleSlug.imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisMicrositeArticleSlug.kickerimage350 %>');">
+                                                            <img src="<%- thisMicrositeArticleSlug.kickerimage350 %>" alt="Image for <%- thisMicrositeArticleSlug.kicker %> article" />
+                                                        </div>
+                                                    </div>
+                                                    <h1><%- thisMicrositeArticleSlug.kicker %></h1>
+                                                </a>
+                                            </article>
+                                            <% micrositeIfStatementIterationLimit ++; -%>
+                                        <% } -%>
+                                    <% } -%>
+                                <% } -%>
+                            <% } -%>
+                            </div>
+                        <% } -%>
+                    <% } -%>
+                    <div class="clearfix"></div>
+                </section>
+            <% } -%>
+        </div>
+        <div class="mainnav-sections-right">
+            <h3 class="mainnav-sections-subcategory-title">More...</h3>
+            <ul>
+                <% for (var i = 0 ; i < data.nav3.length; i++) { -%>
+                    <li name="<%- data.nav3[i].categoryslug || data.nav3[i].micrositeslug %>">
+                        <a href="<%- data.nav3[i].externalsitelink %>" title="<%- data.nav3[i].category || data.nav3[i].microsite %> || data.nav3[i].externalsitedescription"><%- data.nav3[i].category || data.nav3[i].microsite || data.nav3[i].externalsite %></a>
+                    </li>
+                <% } -%>
+            </ul>
+            <ul>
+                <% for (var i = 0 ; i < data.nav4.length; i++) { -%>
+                    <li name="<%- data.nav4[i].categoryslug || data.nav4[i].micrositeslug %>">
+                        <a href="<%- data.nav4[i].externalsitelink %>" title="<%- data.nav4[i].category || data.nav4[i].microsite %> || data.nav4[i].externalsitedescription"><%- data.nav4[i].category || data.nav4[i].microsite || data.nav4[i].externalsite %></a>
+                    </li>
+                <% } -%>
+            </ul>
+            <ul>
+                <% for (var i = 0 ; i < data.nav5.length; i++) { -%>
+                    <li name="<%- data.nav5[i].categoryslug || data.nav5[i].micrositeslug %>">
+                        <a href="<%- data.nav5[i].externalsitelink %>" title="<%- data.nav5[i].category || data.nav5[i].microsite || data.nav5[i].externalsitedescription %>"><%- data.nav5[i].category || data.nav5[i].microsite || data.nav5[i].externalsite %></a>
+                    </li>
+                <% } -%>
+            </ul>
+            <ul>
+                <% for (var i = 0 ; i < data.nav6.length; i++) { -%>
+                    <li name="<%- data.nav6[i].categoryslug || data.nav6[i].micrositeslug %>">
+                        <a href="<%- data.nav6[i].externalsitelink %>" title="<%- data.nav6[i].category || data.nav6[i].microsite || data.nav6[i].externalsitedescription %>"><%- data.nav6[i].category || data.nav6[i].microsite || data.nav6[i].externalsite %></a>
+                    </li>
+                <% } -%>
+            </ul>
+            <ul>
+                <% for (var i = 0 ; i < data.nav7.length; i++) { -%>
+                    <li name="<%- data.nav7[i].categoryslug || data.nav7[i].micrositeslug %>">
+                        <a href="<%- data.nav7[i].externalsitelink %>" title="<%- data.nav7[i].category || data.nav7[i].microsite || data.nav7[i].externalsitedescription %>"><%- data.nav7[i].category || data.nav7[i].microsite || data.nav7[i].externalsite %></a>
+                    </li>
+                <% } -%>
+            </ul>
+        </div>
+    </div>
+</nav>

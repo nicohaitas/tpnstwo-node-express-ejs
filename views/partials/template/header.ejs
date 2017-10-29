@@ -1,0 +1,32 @@
+<header>
+    <div class="container-newspaper-logo">
+        <h1><a href="/" title="TPNS Two - All news, latest news and news from the most revealing news site TPNS Two.">TPNS<span class="texti">two</span></a></h1>
+    </div>
+    <div class="container-search">
+        <form class="searchform" action="" method="get">
+            <label>
+                <span class="hidden">TPNS Two Article Search</span>
+                <input type="search" class="searchform-textbox" placeholder="Find an article" value="" name="" pattern="[a-zA-Z0-9]+[a-zA-Z0-9 ]{2,}" />
+                <button type="reset" class="searchform-reset"><i class="icon icon-undo"></i></button>
+                <button type="submit" class="global-button global-green-button searchform-submit"><i class="icon icon-search"></i></button>
+            </label>
+        </form>
+        <a>
+            <span class="container-search-closed-mode" title="Open the search area here"><i class="icon icon-search"></i></span>
+            <span class="container-search-open-mode" title="Close the search area here"><i class="icon icon-close"></i></span>
+        </a>
+    </div>
+    <div class="container-return-to-newspaper">
+        <h5><a title="Closes the Search Page and takes you back to the Newspaper"><i class="icon icon-arrow-left"></i>Back to the Newspaper</a></h5>
+    </div>
+    <div class="container-additional-nav">
+        <ul class="textup">
+            <% for(var i = 0; i < data.navHeader.length; i++) { %><li name="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>">
+                <h6><a href="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>" title="Takes you to <%- data.navHeader[i].category || data.navHeader[i].microsite %>"><%- data.navHeader[i].category || data.navHeader[i].microsite %></a></h6>
+            </li><% } %>
+            <li>
+                <h6><a title="">Subscribe<img src="./images/subscribe-newspaper.jpg" alt="Image of the TPNS Two Newspaper" /></a></h6>
+            </li>
+        </ul>
+    </div>
+</header>

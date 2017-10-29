@@ -1,0 +1,167 @@
+/* 
+ Admotion Copyright ? 2001-2015 Template v1.0.1
+*/
+
+/* Custom Stylesheet: Add, remove or overwrite the template rules here */
+@charset "utf-8";
+
+/* In-Page Section */
+.inpage-section {
+}
+
+/****************/
+/* Button Class */
+/****************/
+
+.adm-filmstrip-previous-button, .adm-filmstrip-next-button{
+	cursor: pointer;
+	margin: 5px;
+	width: 40px;
+	height: 40px;
+	left: 125px;
+	background-size: 100%;
+	-webkit-background-size: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	background-position: 0px 0px;
+	background-repeat: no-repeat no-repeat;
+	z-index: 1;
+}
+
+.adm-filmstrip-previous-button{
+	background-image: url(images/icon-arrow.png);
+}
+
+.adm-filmstrip-next-button{
+	background-image: url(images/icon-arrow.png);
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); /* IE 9 */
+	-webkit-transform:rotate(180deg); /* Opera, Chrome, and Safari */
+}
+
+.adm-page {
+	background: #EAEDE9;
+	color: #66CC33;
+	border:#CCD2CA 1px solid;
+    background-image: url(images/background.png);
+}
+
+.adm-page p {
+	position: relative;
+	margin: 0px;
+	left: 10px;
+	top: 213px;
+	width: 190px;
+	height: auto;
+	right: auto;
+	bottom: auto;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	color: rgba(22, 17, 17, 0.63);
+	font-weight: normal;
+	text-decoration: none;
+	font-style: normal;
+	text-align: left;
+}
+
+.adm-page .img-touch {
+	position: relative;
+	margin: 0px;
+	left: 210px;
+	top: 50px;
+	width: 80px;
+	height: 96px;
+	right: auto;
+	bottom: auto;
+	background-size: 100%;
+	-webkit-background-size: 100%;
+	background-image: url(images/touch-vertical.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat no-repeat;
+}
+
+.adm-page .logo-admotion {
+	position: relative;
+	margin: 0px;
+	left: 10px;
+	top: 70px;
+	width: 140px;
+	height: 23px;
+	right: auto;
+	bottom: auto;
+	background-size: 100%;
+	-webkit-background-size: 100%;
+	background-image: url(images/Admotion-Logo-140.png);
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	background-position: 0px 0px;
+	background-repeat: no-repeat no-repeat;
+}
+
+.adm-page h3 {
+	position: relative;
+	margin: 0px;
+	left: 10px;
+	top: 179px;
+	width: auto;
+	height: auto;
+	right: auto;
+	bottom: auto;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: none;
+	font-style: normal;
+}
+
+.adm-page h2 {
+	position: relative;
+	margin: 0px;
+	left: 10px;
+	top: 110px;
+	width: 150px;
+	height:0px;
+	right: auto;
+	bottom: auto;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	text-decoration: none;
+	font-style: normal;
+	text-align: left;
+}
+
+nav{
+	margin-left: 80px;
+	position: relative;
+	bottom: -135px;
+}
+
+.adm-band{
+	position:absolute;
+	left:1px;top:1px;
+	z-index:0;
+	overflow:hidden;
+	width:298px;
+}
+
+#Panel2 .adm-band{
+	top:601px;
+}
+
+#Panel3 .adm-band{
+	top:1201px;
+}
+
+a img{
+    border:0;
+}
+
+.comp-viewport .controller-button.prev,
+.comp-viewport .controller-button.next {
+  -webkit-transform: translateX( -50%) rotate(90deg);
+  -moz-transform: translateX( -50%) rotate(90deg);
+  -ms-transform: translateX(-50%) rotate(90deg);
+  transform: translateX( -50%) rotate(90deg);
+ }
+ 

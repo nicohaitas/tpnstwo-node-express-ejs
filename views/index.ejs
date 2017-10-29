@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head id="tpns.com" data-template-set="<%= title %>">
+    <% include partials/template/head.ejs %>
+  </head>
+  <body class="newspaper-category">
+    <div class="page-wrap">
+      <% include partials/template/mainnav.ejs %>
+      <% include partials/template/indexpagewrapleft.ejs %>
+      <% include partials/template/header.ejs %>
+      <div class="page-wrap-right">
+        <% include partials/template/newspapername.ejs %>
+        <% include partials/content/indexhappeningnow.ejs %>
+        <% include partials/content/indexsections.ejs %>
+      </div>
+      <% include partials/template/footer.ejs %>
+      <% include partials/template/indexjsdefaults.ejs %>
+      <% include partials/template/jsdefaults.ejs %>
+    </div>
+  </body>
+</html>

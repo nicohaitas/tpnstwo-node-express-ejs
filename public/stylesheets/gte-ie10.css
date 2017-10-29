@@ -1,0 +1,7 @@
+/* CSS Document */
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {  
+   body {
+		background:yellow;
+	}
+}
