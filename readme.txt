@@ -23,8 +23,8 @@ setup environment...
     > npm install -g express-generator
     > express -e tpnstwo
 
-NOTE: The Node NPM Folder on the server is PRIVATE and cannot be used for public purposes, as your file paths will return 404 (not found).
-NOTE: when ready to upload this code to the Git Repo replace all manually added public dependancies in the lib folder with Bower
+NOTE: The Node NPM Folder on the server is PRIVATE and cannot be used for public purposes, as your file paths will return 404 (not found). The bower.json file is for PUBLIC use, add public packages to its dependencies by...
+    > bower install new-package-name --save
 
 change directory to project directory:
     > cd /d E:\Nico Websites\News Site\Node Express EJS\tpnstwo

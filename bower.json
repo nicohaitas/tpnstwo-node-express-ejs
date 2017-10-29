@@ -1,0 +1,21 @@
+{
+  "name": "tpnstwo-node-express-ejs",
+  "description": "Node Express EJS version of the TPNStwo App",
+  "main": "",
+  "authors": [
+    "nicohaitas <nicohaitas@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/nicohaitas/tpnstwo-node-express-ejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "waypoints": "^4.0.1"
+  }
+}

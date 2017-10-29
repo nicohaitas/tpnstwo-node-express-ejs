@@ -1,6 +1,6 @@
 /*!
-Waypoints - 4.0.1
-Copyright © 2011-2016 Caleb Troughton
+Waypoints - 4.0.0
+Copyright © 2011-2015 Caleb Troughton
 Licensed under the MIT license.
 https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 */
@@ -121,11 +121,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   /* Public */
   /* http://imakewebthings.com/waypoints/api/enable-all */
   Waypoint.enableAll = function() {
-    Waypoint.Context.refreshAll()
-    for (var waypointKey in allWaypoints) {
-      allWaypoints[waypointKey].enabled = true
-    }
-    return this
+    Waypoint.invokeAll('enable')
   }
 
   /* Public */
@@ -200,10 +196,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     element.waypointContextKey = this.key
     contexts[element.waypointContextKey] = this
     keyCounter += 1
-    if (!Waypoint.windowContext) {
-      Waypoint.windowContext = true
-      Waypoint.windowContext = new Context(window)
-    }
 
     this.createThrottledScrollHandler()
     this.createThrottledResizeHandler()
@@ -220,8 +212,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
   Context.prototype.checkEmpty = function() {
     var horizontalEmpty = this.Adapter.isEmptyObject(this.waypoints.horizontal)
     var verticalEmpty = this.Adapter.isEmptyObject(this.waypoints.vertical)
-    var isWindow = this.element == this.element.window
-    if (horizontalEmpty && verticalEmpty && !isWindow) {
+    if (horizontalEmpty && verticalEmpty) {
       this.adapter.off('.waypoints')
       delete contexts[this.key]
     }
@@ -290,9 +281,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 
       for (var waypointKey in this.waypoints[axisKey]) {
         var waypoint = this.waypoints[axisKey][waypointKey]
-        if (waypoint.triggerPoint === null) {
-          continue
-        }
         var wasBeforeTriggerPoint = axis.oldScroll < waypoint.triggerPoint
         var nowAfterTriggerPoint = axis.newScroll >= waypoint.triggerPoint
         var crossedForward = wasBeforeTriggerPoint && nowAfterTriggerPoint
@@ -412,7 +400,7 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
         }
 
         contextModifier = axis.contextScroll - axis.contextOffset
-        waypoint.triggerPoint = Math.floor(elementOffset + contextModifier - adjustment)
+        waypoint.triggerPoint = elementOffset + contextModifier - adjustment
         wasBeforeScroll = oldTriggerPoint < axis.oldScroll
         nowAfterScroll = waypoint.triggerPoint >= axis.oldScroll
         triggeredBackward = wasBeforeScroll && nowAfterScroll
@@ -466,7 +454,6 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
     }
     Context.refreshAll()
   }
-
 
   Waypoint.requestAnimationFrame = function(callback) {
     var requestFn = window.requestAnimationFrame ||
