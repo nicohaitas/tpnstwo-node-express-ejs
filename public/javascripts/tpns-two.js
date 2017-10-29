@@ -159,8 +159,6 @@ document.querySelector('.mainnav-button a').onclick = function() {
     }
 }
 
-// Testing 123
-
 // Auto close the Main Navigation Area
 // ------------------------------------------------------------------------
 function traverseChildren(elem){
