@@ -1,0 +1,20 @@
+{
+    "name": "tpnstwo-node-express-ejs",
+    "authors": [
+        "Nico Haitas <nhaitas@gmail.com>"
+    ],
+    "description": "",
+    "main": "",
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public/lib",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+    }
+}

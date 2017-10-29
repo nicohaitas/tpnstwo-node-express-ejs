@@ -1,4 +1,23 @@
-﻿setup environment...
+﻿github:
+    Quick setup — if you’ve done this kind of thing before
+        https...
+        > https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
+        ssh...
+        > git@github.com:nicohaitas/tpnstwo-node-express-ejs.git
+
+    …or create a new repository on the command line
+        > echo "# tpnstwo-node-express-ejs" >> README.md
+        > git init
+        > git add README.md
+        > git commit -m "first commit"
+        > git remote add origin https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
+        > git push -u origin master
+
+    …or push an existing repository from the command line
+        > git remote add origin https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
+        > git push -u origin master
+
+setup environment...
     > download and install node.js from https://nodejs.org/en/
     > npm install -g express
     > npm install -g express-generator
