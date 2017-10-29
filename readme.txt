@@ -21,6 +21,7 @@ setup environment...
     > download and install node.js from https://nodejs.org/en/
     > npm install -g express
     > npm install -g express-generator
+    > npm install -g bower
     > express -e tpnstwo
 
 NOTE: The Node NPM Folder on the server is PRIVATE and cannot be used for public purposes, as your file paths will return 404 (not found). The bower.json file is for PUBLIC use, add public packages to its dependencies by...
