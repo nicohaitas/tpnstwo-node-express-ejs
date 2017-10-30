@@ -144,47 +144,29 @@ document.querySelector('.category-links > li[name="happening-now"]').setAttribut
 // Sections Navigation, making this section active when in view
 // ------------------------------------------------------------------------
 var eachIndexArticleSection = document.querySelectorAll('.page-wrap-right section');
-for ( var j = 0, thisIndexArticleSection = eachIndexArticleSection.length; j < thisIndexArticleSection; j++) {
-    var indexArticleSectionList = eachIndexArticleSection[j];
-    indexArticleSectionList.setAttribute("data-order", + j);
-
-        /*
-    new Waypoint.Inview({
-        
-        element: $(this),
+for (var i = 0; i < eachIndexArticleSection.length; i++) {
+    var indexArticleSectionList = eachIndexArticleSection[i];
+    var indexArticleSectionName = indexArticleSectionList.getAttribute('id');
+    indexArticleSectionList.setAttribute("data-order", + i);
+    var inview = new Waypoint.Inview({
+        element: indexArticleSectionList,
         enter: function(direction) {
-            var id = $(this.element).attr('id');
-            $('.category-links > li[name='+ id +'] > .category-mark a').addClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-link-details').addClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-one-only span').addClass('currently-visible');
-        }
-    });
-
-        */
-}
-/*
-$('.page-wrap-right section').each(function(i) {
-    // Add Incremental Data Order to the sections
-    $(this).attr('data-order', (i + 1));
-    
-    new Waypoint.Inview({
-        
-        element: $(this),
-        enter: function(direction) {
-            var id = $(this.element).attr('id');
-            $('.category-links > li[name='+ id +'] > .category-mark a').addClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-link-details').addClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-one-only span').addClass('currently-visible');
+            var id = this.element.getAttribute('id');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
         },
-        
         exited: function(direction) {
-            var id = $(this.element).attr('id');
-            $('.category-links > li[name='+ id +'] > .category-mark a').removeClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-link-details').removeClass('currently-visible');
-            $('.category-links > li[name='+ id +'] > .category-one-only span').removeClass('currently-visible');
+            var id = this.element.getAttribute('id');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
         }
-    });
-});
+    })
+}
+
+/*
+
 */
 
 
