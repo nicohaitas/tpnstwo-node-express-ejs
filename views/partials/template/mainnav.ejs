@@ -8,42 +8,42 @@
     <div class="mainnav-sections">
         <div class="mainnav-sections-left">
             <ul class="primaryCategories">
-                <% for (var i = 0 ; i < data.nav1.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav1.length; i++) { _%>
                     <li name="<%- data.nav1[i].categoryslug %>" class="mainnav-sections-category-nav">
                         <h5><a href="<%- data.nav1[i].categoryslug %>" title="Takes you to the <%- data.nav1[i].category %> Category"><%- data.nav1[i].category %><span class="hover-go"><i class="icon icon-go"></i></span></a></h5>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
             <ul>
-                <% for (var i = 0 ; i < data.nav2.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav2.length; i++) { _%>
                     <li name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" class="mainnav-sections-category-nav">
                         <h5><a href="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title="Takes you to the <%- data.nav2[i].category || data.nav2[i].microsite %> Category"><%- data.nav2[i].category || data.nav2[i].microsite %><span class="hover-go"><i class="icon icon-go"></i></span></a></h5>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
         </div>
         <div class="mainnav-sections-middle">
-            <% for (var i = 0 ; i < data.nav1.length; i++) { -%>
-                <% navigationLevel = data.nav1[i]; -%>
-                <% var navigationSubLevel = navigationLevel.subcategories; -%>
+            <%_ for (var i = 0 ; i < data.nav1.length; i++) { _%>
+                <%_ navigationLevel = data.nav1[i]; _%>
+                <%_ var navigationSubLevel = navigationLevel.subcategories; _%>
                 <section name="<%- navigationLevel.categoryslug %>" class="mainnav-sections-subcategory-container">
                     <h3 class="mainnav-sections-subcategory-title"><a href="" title="<%- navigationLevel.category %>"><%- navigationLevel.category %><span class="hover-go"><i class="icon icon-go"></i></span></a></h3>
-                    <% if ( navigationLevel.hasOwnProperty("subcategories") ) { -%>
+                    <%_ if ( navigationLevel.hasOwnProperty("subcategories") ) { _%>
                         <ul class="mainnav-sections-subcategory">
-                            <% for (j = 0; j < navigationSubLevel.length; j++) { -%>
+                            <%_ for (j = 0; j < navigationSubLevel.length; j++) { _%>
                                 <li name="<%- navigationSubLevel[j].subcategoryslug %>" class="mainnav-sections-subcategory-item">
                                     <a title=""><%- navigationSubLevel[j].subcategory %><span class="hover-go"><i class="icon icon-go"></i></span></a>
                                 </li>
-                            <% } -%>
+                            <%_ } _%>
                         </ul>
-                        <% for (k = 0; k < navigationSubLevel.length; k++) { -%>
-                            <% var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; -%>
+                        <%_ for (k = 0; k < navigationSubLevel.length; k++) { _%>
+                            <%_ var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; _%>
                             <div name="<%- thisArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
-                            <% var ifStatementIterationLimit = 0; -%>
-                            <% for (l = 0; l < data.articles.length; l++) { -%>
-                                <% var thisArticleSlug = data.articles[l]; -%>
-                                <% if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { -%>
-                                    <% if (ifStatementIterationLimit < 12) { -%>
+                            <%_ var ifStatementIterationLimit = 0; _%>
+                            <%_ for (l = 0; l < data.articles.length; l++) { _%>
+                                <%_ var thisArticleSlug = data.articles[l]; _%>
+                                <%_ if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { _%>
+                                    <%_ if (ifStatementIterationLimit < 12) { _%>
                                         <article name="<%- thisArticleSlug.subcategoryslug %>">
                                             <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
                                                 <div class="article-image <%- thisArticleSlug.imageorientation %>">
@@ -54,13 +54,13 @@
                                                 <h1><%- thisArticleSlug.kicker %></h1>
                                             </a>
                                         </article>
-                                        <% ifStatementIterationLimit ++; -%>
-                                    <% } -%>
-                                <% } -%>
-                            <% } -%>
-                            <% if ( thisArticleContainerSlug === "columnists" ) { -%>
-                                <% for (n = 0; n < data.columnists.length; n++) { -%>
-                                    <% var thisColumnist = data.columnists[n]; -%>
+                                        <%_ ifStatementIterationLimit ++; _%>
+                                    <%_ } _%>
+                                <%_ } _%>
+                            <%_ } _%>
+                            <%_ if ( thisArticleContainerSlug === "columnists" ) { _%>
+                                <%_ for (n = 0; n < data.columnists.length; n++) { _%>
+                                    <%_ var thisColumnist = data.columnists[n]; _%>
                                     <columnist name="<%- thisColumnist.columnistnameslug %>">
                                         <a href="" title="Takes you to see the columnist <%- thisColumnist.columnistname %> and all of their articles">
                                             <div class="columnist-container">
@@ -78,10 +78,10 @@
                                             </div>
                                         </a>
                                     </columnist>
-                                <% } -%>
-                            <% } else if ( thisArticleContainerSlug === "series" ) { -%>
-                                <% for (p = 0; p < data.series.length; p++) { -%>
-                                    <% var thisSeries = data.series[p]; -%>
+                                <%_ } _%>
+                            <%_ } else if ( thisArticleContainerSlug === "series" ) { _%>
+                                <%_ for (p = 0; p < data.series.length; p++) { _%>
+                                    <%_ var thisSeries = data.series[p]; _%>
                                     <series name="<%- thisSeries.subcategoryfirstchildslug %>">
                                         <a href="" title="Takes you to see the <%- thisSeries.subcategoryfirstchild %> series">
                                             <div class="series-container">
@@ -99,16 +99,16 @@
                                             </div>
                                         </a>
                                     </series>
-                                <% } -%>
-                            <% } -%>
+                                <%_ } _%>
+                            <%_ } _%>
                             </div>
-                        <% } -%>
-                    <% } else { -%>
-                        <% if ( (navigationLevel.categoryslug) === "happening-now" ) { -%>
+                        <%_ } _%>
+                    <%_ } else { _%>
+                        <%_ if ( (navigationLevel.categoryslug) === "happening-now" ) { _%>
                             <div name="<%- navigationLevel.categoryslug %>" class="mainnav-sections-subcategory-related-articles">
-                                <% for (var k = 0 ; k < data.articles.length; k++) { %>
-                                    <% if (data.articles[k].happeningnow === 1) { -%>
-                                        <% while (k++ < 12) { -%>
+                                <%_ for (var k = 0 ; k < data.articles.length; k++) { _%>
+                                    <%_ if (data.articles[k].happeningnow === 1) { _%>
+                                        <%_ while (k++ < 12) { _%>
                                             <article name="<%- data.articles[k].categoryslug %>">
                                                 <a href="" title="Takes you to read <%- data.articles[k].hardlead %> article">
                                                     <div class="article-image <%- data.articles[k].imageorientation %>">
@@ -119,55 +119,55 @@
                                                     <h1><%- data.articles[k].hardlead %></h1>
                                                 </a>
                                             </article>
-                                        <% } -%>
-                                    <% } -%>
-                                <% } -%>
+                                        <%_ } _%>
+                                    <%_ } _%>
+                                <%_ } _%>
                             </div>
-                        <% } else { -%>
-                            <% var thisGeneralArticleContainerSlug = navigationLevel.categoryslug; -%>
+                        <%_ } else { _%>
+                            <%_ var thisGeneralArticleContainerSlug = navigationLevel.categoryslug; _%>
                             <div name="<%- thisGeneralArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
-                                <% for (var m = 0 ; m < data.articles.length; m++) { -%>
-                                    <% var thisGeneralArticleSlug = data.articles[m]; -%>
-                                    <% if ( thisGeneralArticleContainerSlug === thisGeneralArticleSlug.categoryslug ) { -%>
-                                        <article name="<%- thisGeneralArticleSlug.categoryslug %>">
-                                            <a href="" title="Takes you to read <%- thisGeneralArticleSlug.kicker %> article">
-                                                <div class="article-image <%- thisGeneralArticleSlug.imageorientation %>">
-                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisGeneralArticleSlug.kickerimage350 %>');">
-                                                        <img src="<%- thisGeneralArticleSlug.kickerimage350 %>" alt="Image for <%- thisGeneralArticleSlug.kicker %> article" />
-                                                    </div>
+                            <%_ for (var m = 0 ; m < data.articles.length; m++) { _%>
+                                <%_ var thisGeneralArticleSlug = data.articles[m]; _%>
+                                <%_ if ( thisGeneralArticleContainerSlug === thisGeneralArticleSlug.categoryslug ) { _%>
+                                    <article name="<%- thisGeneralArticleSlug.categoryslug %>">
+                                        <a href="" title="Takes you to read <%- thisGeneralArticleSlug.kicker %> article">
+                                            <div class="article-image <%- thisGeneralArticleSlug.imageorientation %>">
+                                                <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisGeneralArticleSlug.kickerimage350 %>');">
+                                                    <img src="<%- thisGeneralArticleSlug.kickerimage350 %>" alt="Image for <%- thisGeneralArticleSlug.kicker %> article" />
                                                 </div>
-                                                <h1><%- thisGeneralArticleSlug.kicker %></h1>
-                                            </a>
-                                        </article>
-                                    <% } -%>
-                                <% } -%>
+                                            </div>
+                                            <h1><%- thisGeneralArticleSlug.kicker %></h1>
+                                        </a>
+                                    </article>
+                                <%_ } _%>
+                            <%_ } _%>
                             </div>
-                        <% } -%>
-                    <% } -%>
+                        <%_ } _%>
+                    <%_ } _%>
                     <div class="clearfix"></div>
                 </section>
-            <% } -%>
-            <% for (var i = 0 ; i < data.nav2.length; i++) { -%>
-                <% navigationLevel = data.nav2[i]; -%>
-                <% navigationSubLevel = navigationLevel.subcategories; -%>
+            <%_ } _%>
+            <%_ for (var i = 0 ; i < data.nav2.length; i++) { _%>
+                <%_ navigationLevel = data.nav2[i]; _%>
+                <%_ navigationSubLevel = navigationLevel.subcategories; _%>
                 <section name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" class="mainnav-sections-subcategory-container">
                     <h3 class="mainnav-sections-subcategory-title"><a href="" title="<%- data.nav2[i].category || data.nav2[i].microsite %>"><%- data.nav2[i].category || data.nav2[i].microsite %><span class="hover-go"><i class="icon icon-go"></i></span></a></h3>
-                    <% if ( navigationLevel.hasOwnProperty("subcategories") ) { -%>
+                    <%_ if ( navigationLevel.hasOwnProperty("subcategories") ) { _%>
                         <ul class="mainnav-sections-subcategory">
-                            <% for (j = 0; j < navigationSubLevel.length; j++) { -%>
+                            <%_ for (j = 0; j < navigationSubLevel.length; j++) { _%>
                                 <li name="<%- navigationSubLevel[j].subcategoryslug %>" class="mainnav-sections-subcategory-item">
                                     <a title=""><%- navigationSubLevel[j].subcategory %><span class="hover-go"><i class="icon icon-go"></i></span></a>
                                 </li>
-                            <% } -%>
+                            <%_ } _%>
                         </ul>
-                        <% for (k = 0; k < navigationSubLevel.length; k++) { -%>
-                            <% var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; -%>
+                        <%_ for (k = 0; k < navigationSubLevel.length; k++) { _%>
+                            <%_ var thisArticleContainerSlug = navigationSubLevel[k].subcategoryslug; _%>
                             <div name="<%- thisArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
-                            <% var ifStatementIterationLimit = 0; -%>
-                            <% for (l = 0; l < data.articles.length; l++) { -%>
-                                <% var thisArticleSlug = data.articles[l]; -%>
-                                <% if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { -%>
-                                    <% if (ifStatementIterationLimit < 12) { -%>
+                            <%_ var ifStatementIterationLimit = 0; _%>
+                            <%_ for (l = 0; l < data.articles.length; l++) { _%>
+                                <%_ var thisArticleSlug = data.articles[l]; _%>
+                                <%_ if ( thisArticleContainerSlug === thisArticleSlug.subcategoryslug ) { _%>
+                                    <%_ if (ifStatementIterationLimit < 12) { _%>
                                         <article name="<%- thisArticleSlug.subcategoryslug %>">
                                             <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
                                                 <div class="article-image <%- thisArticleSlug.imageorientation %>">
@@ -178,25 +178,25 @@
                                                 <h1><%- thisArticleSlug.kicker %></h1>
                                             </a>
                                         </article>
-                                        <% ifStatementIterationLimit ++; -%>
-                                    <% } -%>
-                                <% } -%>
-                            <% } -%>
+                                        <%_ ifStatementIterationLimit ++; _%>
+                                    <%_ } _%>
+                                <%_ } _%>
+                            <%_ } _%>
                             </div>
-                        <% } -%>
-                    <% } else if ( navigationLevel.hasOwnProperty("categories") ) { -%>
+                        <%_ } _%>
+                    <%_ } else if ( navigationLevel.hasOwnProperty("categories") ) { _%>
                         <ul class="mainnav-sections-subcategory">
-                            <% for (m = 0; m < navigationLevel.categories.length; m++) { -%>
-                                <% navigationSubLevel = navigationLevel.categories[m]; -%>
+                            <%_ for (m = 0; m < navigationLevel.categories.length; m++) { _%>
+                                <%_ navigationSubLevel = navigationLevel.categories[m]; _%>
                                 <li name="<%- navigationSubLevel.categoryslug %>" class="mainnav-sections-subcategory-item">
                                     <a title=""><%- navigationSubLevel.category %><span class="hover-go"><i class="icon icon-go"></i></span></a>
                                 </li>
-                            <% } -%>
+                            <%_ } _%>
                         </ul>
-                        <% for (n = 0; n < navigationLevel.categories.length; n++) { -%>
-                            <% var thisMicrositeArticleContainerSlug = navigationLevel.categories[n].categoryslug; -%>
+                        <%_ for (n = 0; n < navigationLevel.categories.length; n++) { _%>
+                            <%_ var thisMicrositeArticleContainerSlug = navigationLevel.categories[n].categoryslug; _%>
                             <div name="<%- thisMicrositeArticleContainerSlug %>" class="mainnav-sections-subcategory-related-articles">
-                            <% if ( thisMicrositeArticleContainerSlug === "list-a-home" ) { -%>
+                            <%_ if ( thisMicrositeArticleContainerSlug === "list-a-home" ) { _%>
                                 <div class="list-a-home-title">
                                     <h3>Post a Real Estate Advert</h3>
                                 </div>
@@ -365,12 +365,12 @@
 
                                     <div class="clearfix"></div>
                                 </div>
-                            <% } else { -%>
-                                <% var micrositeIfStatementIterationLimit = 0; -%>
-                                <% for (p = 0; p < data.articles.length; p++) { -%>
-                                    <% var thisMicrositeArticleSlug = data.articles[p]; -%>
-                                    <% if ( thisMicrositeArticleContainerSlug === thisMicrositeArticleSlug.categoryslug ) { -%>
-                                        <% if (micrositeIfStatementIterationLimit < 12) { -%>
+                            <%_ } else { _%>
+                                <%_ var micrositeIfStatementIterationLimit = 0; _%>
+                                <%_ for (p = 0; p < data.articles.length; p++) { _%>
+                                    <%_ var thisMicrositeArticleSlug = data.articles[p]; _%>
+                                    <%_ if ( thisMicrositeArticleContainerSlug === thisMicrositeArticleSlug.categoryslug ) { _%>
+                                        <%_ if (micrositeIfStatementIterationLimit < 12) { _%>
                                             <article name="<%- thisMicrositeArticleSlug.categoryslug %>">
                                                 <a href="" title="Takes you to read <%- thisMicrositeArticleSlug.kicker %> article">
                                                     <div class="article-image <%- thisMicrositeArticleSlug.imageorientation %>">
@@ -381,54 +381,54 @@
                                                     <h1><%- thisMicrositeArticleSlug.kicker %></h1>
                                                 </a>
                                             </article>
-                                            <% micrositeIfStatementIterationLimit ++; -%>
-                                        <% } -%>
-                                    <% } -%>
-                                <% } -%>
-                            <% } -%>
+                                            <%_ micrositeIfStatementIterationLimit ++; _%>
+                                        <%_ } _%>
+                                    <%_ } _%>
+                                <%_ } _%>
+                            <%_ } _%>
                             </div>
-                        <% } -%>
-                    <% } -%>
+                        <%_ } _%>
+                    <%_ } _%>
                     <div class="clearfix"></div>
                 </section>
-            <% } -%>
+            <%_ } _%>
         </div>
         <div class="mainnav-sections-right">
             <h3 class="mainnav-sections-subcategory-title">More...</h3>
             <ul>
-                <% for (var i = 0 ; i < data.nav3.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav3.length; i++) { _%>
                     <li name="<%- data.nav3[i].categoryslug || data.nav3[i].micrositeslug %>">
                         <a href="<%- data.nav3[i].externalsitelink %>" title="<%- data.nav3[i].category || data.nav3[i].microsite %> || data.nav3[i].externalsitedescription"><%- data.nav3[i].category || data.nav3[i].microsite || data.nav3[i].externalsite %></a>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
             <ul>
-                <% for (var i = 0 ; i < data.nav4.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav4.length; i++) { _%>
                     <li name="<%- data.nav4[i].categoryslug || data.nav4[i].micrositeslug %>">
                         <a href="<%- data.nav4[i].externalsitelink %>" title="<%- data.nav4[i].category || data.nav4[i].microsite %> || data.nav4[i].externalsitedescription"><%- data.nav4[i].category || data.nav4[i].microsite || data.nav4[i].externalsite %></a>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
             <ul>
-                <% for (var i = 0 ; i < data.nav5.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav5.length; i++) { _%>
                     <li name="<%- data.nav5[i].categoryslug || data.nav5[i].micrositeslug %>">
                         <a href="<%- data.nav5[i].externalsitelink %>" title="<%- data.nav5[i].category || data.nav5[i].microsite || data.nav5[i].externalsitedescription %>"><%- data.nav5[i].category || data.nav5[i].microsite || data.nav5[i].externalsite %></a>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
             <ul>
-                <% for (var i = 0 ; i < data.nav6.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav6.length; i++) { _%>
                     <li name="<%- data.nav6[i].categoryslug || data.nav6[i].micrositeslug %>">
                         <a href="<%- data.nav6[i].externalsitelink %>" title="<%- data.nav6[i].category || data.nav6[i].microsite || data.nav6[i].externalsitedescription %>"><%- data.nav6[i].category || data.nav6[i].microsite || data.nav6[i].externalsite %></a>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
             <ul>
-                <% for (var i = 0 ; i < data.nav7.length; i++) { -%>
+                <%_ for (var i = 0 ; i < data.nav7.length; i++) { _%>
                     <li name="<%- data.nav7[i].categoryslug || data.nav7[i].micrositeslug %>">
                         <a href="<%- data.nav7[i].externalsitelink %>" title="<%- data.nav7[i].category || data.nav7[i].microsite || data.nav7[i].externalsitedescription %>"><%- data.nav7[i].category || data.nav7[i].microsite || data.nav7[i].externalsite %></a>
                     </li>
-                <% } -%>
+                <%_ } _%>
             </ul>
         </div>
     </div>

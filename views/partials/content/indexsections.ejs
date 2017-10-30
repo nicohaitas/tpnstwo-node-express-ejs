@@ -1,7 +1,7 @@
-<% for (var i = 0 ; i < data.nav1.length; i++) { -%>
-    <% var navigationLevel = data.nav1[i]; -%>
-    <% if ( (navigationLevel.categoryslug) === "happening-now" ) { -%>
-    <% } else { -%>
+<%_ for (var i = 0 ; i < data.nav1.length; i++) { _%>
+    <%_ var navigationLevel = data.nav1[i]; _%>
+    <%_ if ( (navigationLevel.categoryslug) === "happening-now" ) { _%>
+    <%_ } else { _%>
             <section id="<%- navigationLevel.categoryslug %>">
                 <div class="container-content-section-title">
                     <h1><a><%- navigationLevel.category %></a></h1>
@@ -16,7 +16,7 @@
                         <article></article>
                     </div>
                     <div name="sportsscores" class="lead-story-left-column">
-                        <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                        <%_ if ( (navigationLevel.categoryslug) === "sports" ) { _%>
                         <div class="content-area-category-title textb textup">
                             Scoreboard
                         </div>
@@ -32,7 +32,7 @@
                             <div class="nicoslide-prev-btn nicoslide-btn-disabled"><i class="icon icon-arrow-left"></i><span class="hidden">Previous Scoreboard</span></div>
                             <div class="nicoslide-next-btn"><i class="icon icon-arrow-right"></i><span class="hidden">Next Scoreboard</span></div>
                         </div>
-                        <% } -%>
+                        <%_ } _%>
                     </div>
                     <div class="content-area-latest-articles">
                         <div class="content-area-latest-articles-top-promo-area">
@@ -82,7 +82,7 @@
                                     </ul>
                                 </div>
                                 <div class="content-area-elsewhere-other-inner-container">
-                                    <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                                    <%_ if ( (navigationLevel.categoryslug) === "sports" ) { _%>
                                     <div class="content-area-category-title textb textup">
                                         Sports Guide&#39;s
                                     </div>
@@ -92,7 +92,7 @@
                                             <h1>The annual guide to the world&#39;s top 100 football players</h1>
                                         </a>
                                     </div>
-                                    <% } -%>
+                                    <%_ } _%>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="aside-module aside-promo-area-two-column">
-                        <% if ( (navigationLevel.categoryslug) === "sports" ) { -%>
+                        <%_ if ( (navigationLevel.categoryslug) === "sports" ) { _%>
                         <div class="tpns-live-sports-radio">
                             <div class="content-area-category-title textr textb textup">
                                 <i class="icon icon-radio-button-solid">LIVE</i>TPNS SPORTS FM 94.3
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                        <% } -%>
+                        <%_ } _%>
                     </div>
                     <div name="sports-news" class="aside-module content-area-tabbed-news-feed">
                         <div class="content-area-category-title textr textb textup">
@@ -164,5 +164,5 @@
                 </aside>
                 <div class="clearfix"></div>
             </section>
-    <% } -%>
-<% } -%>
+    <%_ } _%>
+<%_ } _%>

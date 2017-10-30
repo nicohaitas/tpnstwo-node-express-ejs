@@ -137,11 +137,55 @@ function userControllerClose() {
 function containerSectionsClosed() {
     document.querySelector('.container-sections').classList.add('container-sections-closed');
 }
+// Setup the Sections Navigation
+// ------------------------------------------------------------------------
+document.querySelector('.category-links > li[name="happening-now"]').setAttribute("class", "disabled");
 
+// Sections Navigation, making this section active when in view
+// ------------------------------------------------------------------------
+var eachIndexArticleSection = document.querySelectorAll('.page-wrap-right section');
+for ( var j = 0, thisIndexArticleSection = eachIndexArticleSection.length; j < thisIndexArticleSection; j++) {
+    var indexArticleSectionList = eachIndexArticleSection[j];
+    indexArticleSectionList.setAttribute("data-order", + j);
 
+        /*
+    new Waypoint.Inview({
+        
+        element: $(this),
+        enter: function(direction) {
+            var id = $(this.element).attr('id');
+            $('.category-links > li[name='+ id +'] > .category-mark a').addClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-link-details').addClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-one-only span').addClass('currently-visible');
+        }
+    });
 
-
-
+        */
+}
+/*
+$('.page-wrap-right section').each(function(i) {
+    // Add Incremental Data Order to the sections
+    $(this).attr('data-order', (i + 1));
+    
+    new Waypoint.Inview({
+        
+        element: $(this),
+        enter: function(direction) {
+            var id = $(this.element).attr('id');
+            $('.category-links > li[name='+ id +'] > .category-mark a').addClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-link-details').addClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-one-only span').addClass('currently-visible');
+        },
+        
+        exited: function(direction) {
+            var id = $(this.element).attr('id');
+            $('.category-links > li[name='+ id +'] > .category-mark a').removeClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-link-details').removeClass('currently-visible');
+            $('.category-links > li[name='+ id +'] > .category-one-only span').removeClass('currently-visible');
+        }
+    });
+});
+*/
 
 
 // Manually Open and Close the Main Navigation Area

@@ -21,9 +21,11 @@
     </div>
     <div class="container-additional-nav">
         <ul class="textup">
-            <% for(var i = 0; i < data.navHeader.length; i++) { %><li name="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>">
-                <h6><a href="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>" title="Takes you to <%- data.navHeader[i].category || data.navHeader[i].microsite %>"><%- data.navHeader[i].category || data.navHeader[i].microsite %></a></h6>
-            </li><% } %>
+            <%_ for(var i = 0; i < data.navHeader.length; i++) { _%>
+                <li name="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>">
+                    <h6><a href="<%- data.navHeader[i].categoryslug || data.navHeader[i].micrositeslug %>" title="Takes you to <%- data.navHeader[i].category || data.navHeader[i].microsite %>"><%- data.navHeader[i].category || data.navHeader[i].microsite %></a></h6>
+                </li>
+            <%_ } %>
             <li>
                 <h6><a title="">Subscribe<img src="./images/subscribe-newspaper.jpg" alt="Image of the TPNS Two Newspaper" /></a></h6>
             </li>

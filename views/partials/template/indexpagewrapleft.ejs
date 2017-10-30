@@ -173,240 +173,52 @@
                     </div>
                 </div>
             </li>
-            <li name="happeningnow" class="disabled">
-                <div class="category-mark">
-                    <a name="happeningnow" href="#happeningnow" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details currently-visible" name="happeningnow">
-                    Happening Now
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="happeningnow">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark currently-visible">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
+            <%_ for (var i = 0 ; i < data.nav1.length; i++) { _%>
+                <%_ navigationLevel = data.nav1[i]; _%>
+                <li name="<%- navigationLevel.categoryslug %>">
+                    <div class="category-mark">
+                        <a name="<%- navigationLevel.categoryslug %>" href="#<%- navigationLevel.categoryslug %>" title=""><i class="icon icon-radio-button-solid"></i></a>
+                        <i class="icon icon-radio-button-disabled"></i>
+                        <i class="icon icon-arrow-right"></i>
+                        <i class="icon icon-go"></i>
                     </div>
-                    <div class="category-filter" name="happeningnow">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
+                    <div class="category-link-details currently-visible" name="<%- navigationLevel.categoryslug %>">
+                        <%_ if ( (navigationLevel.categoryslug) === "happening-now" ) { _%>
+                            <%- navigationLevel.category %>
+                        <%_ } else { _%>
+                            <a href="/<%- navigationLevel.categoryslug %>" title="Takes you to the <%- navigationLevel.category %> category"><%- navigationLevel.category %></a>
+                        <%_ } _%>
                     </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark currently-visible">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
+                    <div class="category-controllers">
+                        <div class="category-one-only" name="<%- navigationLevel.categoryslug %>">
+                            <label>
+                                <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
+                                <span class="category-one-only-mark currently-visible">
+                                    <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
+                                    <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
+                                    <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
+                                    <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="category-filter" name="<%- navigationLevel.categoryslug %>">
+                            <label class="category-filter-label">
+                                <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
+                                <div class="category-filter-slider-handle"></div>
+                            </label>
+                        </div>
+                        <div class="category-add-remove-section">
+                            <div class="category-add-remove-section-each">
+                                <span class="category-add-remove-section-each-mark currently-visible">
+                                    <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
+                                    <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
+                                    <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <li name="sports">
-                <div class="category-mark">
-                    <a name="sports" href="#sports" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details" name="sports">
-                    <a>Sports</a>
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="sports">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="category-filter" name="sports">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
-                    </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li name="politics">
-                <div class="category-mark">
-                    <a name="politics" href="#politics" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details" name="politics">
-                    <a>Politics</a>
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="politics">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="category-filter" name="politics">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
-                    </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li name="world">
-                <div class="category-mark">
-                    <a name="world" href="#world" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details" name="world">
-                    <a>World</a>
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="world">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="category-filter" name="world">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
-                    </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li name="technology">
-                <div class="category-mark">
-                    <a name="technology" href="#technology" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details" name="technology">
-                    <a>Technology</a>
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="technology">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="category-filter" name="technology">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
-                    </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li name="business">
-                <div class="category-mark">
-                    <a name="business" href="#business" title=""><i class="icon icon-radio-button-solid"></i></a>
-                    <i class="icon icon-radio-button-disabled"></i>
-                    <i class="icon icon-arrow-right"></i>
-                    <i class="icon icon-go"></i>
-                </div>
-                <div class="category-link-details" name="business">
-                    <a>Business</a>
-                </div>
-                <div class="category-controllers">
-                    <div class="category-one-only" name="business">
-                        <label>
-                            <input class="category-one-only-radio" type="radio" name="category-one-only-filter" />
-                            <span class="category-one-only-mark">
-                                <span class="category-one-only-mark-inactive"><i class="icon icon-radio-button-off"></i></span>
-                                <span class="category-one-only-mark-active"><i class="icon icon-radio-button-solid"></i></span>
-                                <span class="category-one-only-mark-filtered"><i class="icon icon-radio-button-on"></i></span>
-                                <span class="category-one-only-mark-disabled"><i class="icon icon-radio-button-disabled"></i></span>
-                            </span>
-                        </label>
-                    </div>
-                    <div class="category-filter" name="business">
-                        <label class="category-filter-label">
-                            <input class="category-filter-checkbox" type="checkbox" name="category-filter" />
-                            <div class="category-filter-slider-handle"></div>
-                        </label>
-                    </div>
-                    <div class="category-add-remove-section">
-                        <div class="category-add-remove-section-each">
-                            <span class="category-add-remove-section-each-mark">
-                                <span class="category-add-remove-section-each-mark-disabled"><i class="icon icon-square-empty"></i></span>
-                                <span class="category-add-remove-section-each-mark-add"><i class="icon icon-square-add"></i></span>
-                                <span class="category-add-remove-section-each-mark-remove"><i class="icon icon-square-subtract"></i></span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </li>
+                </li>
+            <%_ } _%>
             <li class="add-section">
                 <a class="add-section-mark" title="">
                     <i class="icon icon-add"></i>
