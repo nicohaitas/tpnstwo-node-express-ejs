@@ -164,6 +164,17 @@ for (var i = 0; i < eachIndexArticleSection.length; i++) {
         }
     })
 }
+// Continue Incremental Data Order from page-wrap-right sections to the 
+// article-store sections
+// ------------------------------------------------------------------------
+var eachIndexArticleStoreSection = document.querySelectorAll('.article-store section');
+for (var i = 0; i < eachIndexArticleStoreSection.length; i++) {
+    var indexArticleStoreSectionList = eachIndexArticleStoreSection[i];
+    var indexArticleSectionName = indexArticleStoreSectionList.getAttribute('id');
+    var indexArticleSectionTotal = document.querySelectorAll('.page-wrap-right section').length;
+    indexArticleStoreSectionList.setAttribute("data-order", indexArticleSectionTotal + i);
+}
+
 
 /*
 
