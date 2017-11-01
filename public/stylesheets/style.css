@@ -988,11 +988,8 @@ a:hover .hover-go {
 }
 .page-wrap-left .category-one-only input[type="radio"]:disabled + span .category-one-only-mark-disabled, 
 .page-wrap-left .category-one-only input[type="radio"]:disabled + span:hover .category-one-only-mark-disabled,
-.page-wrap-left .category-link-details.category-filter-active.currently-visible {
+.page-wrap-left .category-link-details.category-filter-active.currently-visible a {
 	color:#606060; cursor:default;
-}
-.page-wrap-left .category-one-only.shitty span.shitty:hover, .page-wrap-left .category-one-only.shitty span.shitty.currently-visible:hover {
-	color:#606060 !important; cursor:default !important; pointer-events:none !important;
 }
 .page-wrap-left .category-one-only span.currently-visible {
 	color:#b3b3b4;

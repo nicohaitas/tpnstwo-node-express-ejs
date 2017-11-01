@@ -137,6 +137,7 @@ function userControllerClose() {
 function containerSectionsClosed() {
     document.querySelector('.container-sections').classList.add('container-sections-closed');
 }
+
 // Setup the Sections Navigation
 // ------------------------------------------------------------------------
 document.querySelector('.category-links > li[name="happening-now"]').setAttribute("class", "disabled");
@@ -164,6 +165,7 @@ for (var i = 0; i < eachIndexArticleSection.length; i++) {
         }
     })
 }
+
 // Continue Incremental Data Order from page-wrap-right sections to the 
 // article-store sections
 // ------------------------------------------------------------------------
@@ -175,8 +177,187 @@ for (var i = 0; i < eachIndexArticleStoreSection.length; i++) {
     indexArticleStoreSectionList.setAttribute("data-order", indexArticleSectionTotal + i);
 }
 
+// Sections Navigation, user customization of the newspaper
+// ------------------------------------------------------------------------
+var eachIndexArticleCategoryLink = document.querySelectorAll('.category-links > li');
+for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
+    var thisIndexArticleCategoryLink = eachIndexArticleCategoryLink[i];
+    
+    // Add Incremental Data Order to the add / remove section buttons and continue the numbering to the Additional Categories
+    if ( thisIndexArticleCategoryLink.hasAttribute('name') ) {
+        thisIndexArticleCategoryLink.setAttribute("data-order", + i);
+    }
+    
+    var indexArticleCategoryNamedLinksTotal = document.querySelectorAll('.category-links > li[name]').length;
+    var indexArticleAdditionalCategoryLinks = document.querySelectorAll('.additional-sections-container > li');
+    for (var j = 0; j < indexArticleAdditionalCategoryLinks.length; j++) {
+        var thisIndexArticleAdditionalCategoryLinks = indexArticleAdditionalCategoryLinks[j];
+        thisIndexArticleAdditionalCategoryLinks.setAttribute("data-order", indexArticleCategoryNamedLinksTotal + j + 1);
+    }
+    var inputs = document.querySelectorAll("input[type='checkbox'][name='category-filter']");
+    //inputs.setAttribute('checked', 'checked');
+    for(var j = 0; j < inputs.length; j++) {
+        inputs[j].removeAttribute('disabled');
+        inputs[j].checked = true;
+        if ( inputs[j].parentElement.classList.contains('disabled') ) {
+            inputs[j].setAttribute('disabled', 'true');
+        }
+
+        // create local storage container
+        //var storedSection;
+                var sections = [];
+        
+        inputs[j].onchange = function() {
+            var categoryFilterCheckbox = this;
+            var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
+            while ( addSectionOpen.length > 0 ) {
+                addSectionOpen[0].classList.remove('add-section-open');
+            }
+            var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+            while ( containerSectionErrorOpen.length > 0 ) {
+                containerSectionErrorOpen[0].classList.remove('active');
+            }
+            // if stored locally and exists
+            if (this.checked) {
+                var sectionsContainer = document.querySelector('.page-wrap-right');
+                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
+                var checkboxId = siblingRadioButton.getAttribute('name');
+
+                var siblingCategoryMark = siblingRadioButton.getElementsByClassName('category-mark radio-active')
+                if ( siblingCategoryMark.length > 0 ) {
+                    siblingCategoryMark[0].classList.remove('radio-active');
+                }
+
+                var siblingCategoryAddRemoveSection = siblingRadioButton.getElementsByClassName('category-add-remove-section disabled')
+                if ( siblingCategoryAddRemoveSection.length > 0 ) {
+                    siblingCategoryAddRemoveSection[0].classList.remove('disabled');
+                }
+
+                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
+                if ( siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').hasAttribute('disabled') ) {
+                    siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').removeAttribute('disabled');
+                }
+
+                var siblingCategoryAddRemoveSection = siblingRadioButton.getElementsByClassName('category-link-details category-filter-active')
+                if ( siblingCategoryAddRemoveSection.length > 0 ) {
+                    siblingCategoryAddRemoveSection[0].classList.remove('category-filter-active');
+                }
+
+                // check local storage for this and add again
+                var thisStoredSectionFound = false;
+                for(var i = 0; i < sections.length; i++) {
+                    var thisStoredSection = sections[i];
+                    if (checkboxId === thisStoredSection.categorySlug) {
+                        thisStoredSectionFound = true;
+                        var retreiveThisStoredSection = document.querySelector('.page-wrap-right').innerHTML += thisStoredSection.sectionContent;
+                        delete thisStoredSection.categorySlug;
+                        delete thisStoredSection.sectionContent;
+                        break;
+                    }
+                }
+                
+                // Place Categories in original order
+                var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
+                var sectionsForSortingArray = [];
+                for (var i = 0; i < sectionsForSorting.length; ++i) {
+                    sectionsForSortingArray.push(sectionsForSorting[i]);
+                }
+                sectionsForSortingArray.sort(function(a, b) {
+                    return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+                });
+                sectionsForSortingArray.forEach(function(el) {
+                    document.querySelector('.page-wrap-right').appendChild(el);
+                });
+                // re-initialize navigation
+                Waypoint.refreshAll();
+
+            } else {
+                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
+                var checkboxId = siblingRadioButton.getAttribute('name');
+                // detach current Section, convert to array of objects with key value pairs and add to local storage
+                function removeEl() {
+                    var sectionID = checkboxId;
+                    storedSection = document.getElementById(checkboxId);
+                    var storedSectionHTML = storedSection.outerHTML;
+                    var sectionHTML = storedSectionHTML;
+
+                    var sectionObject = {};
+                    //sectionObject[sectionID] = sectionHTML;
+                    //sectionObject["category-slug", sectionID] = "category-section", sectionHTML;
+                    sectionObject["categorySlug"] = sectionID, sectionObject["sectionContent"] = sectionHTML;
+                    sections.push(sectionObject);
+                    // finally remove the html from the DOM not the variable
+                    storedSection.remove();
+                    // Uncomment the console log below to see the array in the browser console
+                    //console.log("sections: %s", JSON.stringify(sections));
+                }
+                removeEl();
+                // re-initialize navigation
+                Waypoint.refreshAll();
+                siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
+                siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
+                siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
+                siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
+            }
+
+
+
+
+        }
+    }
+
+}
+
 
 /*
+
+$('.category-links li').each(function(i) {
+    
+    // create local storage container
+    var storedSection;
+
+    // Add Incremental Data Order to the add / remove section buttons
+    $(this).find('.category-add-remove-section-each').parent().parent().parent().attr('data-order', (i + 0));
+    
+    $("input[type='checkbox'][name='category-filter']").prop('disabled', false);
+    $(".disabled input[type='checkbox'][name='category-filter']").prop('disabled', true);
+    
+    $(this).find('.category-filter-checkbox').change(function() {
+        $(".add-section").removeClass('add-section-open');
+        $('.container-sections-error').removeClass('active');
+        // if stored locally and exists
+        if ($(this).is(':checked')) {
+            var sectionsContainer = $('.page-wrap-right');
+            
+            $(this).parent().parent().parent().parent().find('input[type="radio"][name="category-one-only-filter"]').prop('disabled', false);
+            $(this).parent().parent().parent().parent().find('.category-mark').removeClass('radio-active');
+            $(this).parent().parent().parent().parent().find('.category-add-remove-section').removeClass('disabled');
+            $(this).parent().parent().parent().parent().find('.category-link-details').removeClass('category-filter-active');
+            // check local storage for this and add again
+            storedSection.appendTo('.page-wrap-right').show(300);
+            // once appended to the DOM again remove from local storage
+            storedSection = null;
+            // sort the newly added item as per original order via its data-order incrementer
+            sectionsContainer.find('section').sort(globalSectionSortViaDataSortAttribute).appendTo( sectionsContainer );
+            sectionsContainer = null;
+            Waypoint.refreshAll();
+        } else if (!storedSection) {
+            var checkboxId = $(this).parent().parent().parent().parent().attr('name');
+            // detach and add to local storage
+            storedSection = $('.page-wrap-right section[id='+ checkboxId +']').hide(500, function(){
+                $(this).detach();
+                Waypoint.refreshAll();
+            });
+            // re-initialize navigation
+            Waypoint.refreshAll();
+            $(this).parent().parent().parent().parent().find('.category-mark').addClass('radio-active');
+            $(this).parent().parent().parent().parent().find('.category-add-remove-section').addClass('disabled');
+            $(this).parent().parent().parent().parent().find('input[type="radio"][name="category-one-only-filter"]').prop('disabled', true);
+            $(this).parent().parent().parent().parent().find('.category-link-details').addClass('category-filter-active');
+        }
+        //Waypoint.refreshAll();
+    });
+});
 
 */
 
