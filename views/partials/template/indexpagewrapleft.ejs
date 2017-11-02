@@ -176,8 +176,8 @@
             <%_ for (var i = 0 ; i < data.nav1.length; i++) { _%>
                 <%_ navigationLevel = data.nav1[i]; _%>
                 <li name="<%- navigationLevel.categoryslug %>">
-                    <div class="category-mark">
-                        <a name="<%- navigationLevel.categoryslug %>" href="#<%- navigationLevel.categoryslug %>" title=""><i class="icon icon-radio-button-solid"></i></a>
+                    <div class="category-mark" name="<%- navigationLevel.categoryslug %>">
+                        <a href="#<%- navigationLevel.categoryslug %>" title=""><i class="icon icon-radio-button-solid"></i></a>
                         <i class="icon icon-radio-button-disabled"></i>
                         <i class="icon icon-arrow-right"></i>
                         <i class="icon icon-go"></i>
@@ -235,8 +235,8 @@
                         <%_ for (var i = 0 ; i < data.nav2.length; i++) { _%>
                             <%_ navigationLevel = data.nav2[i]; _%>
                             <li name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>">
-                                <div class="category-mark">
-                                    <a name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" href="#<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title=""><i class="icon icon-radio-button-solid"></i></a>
+                                <div class="category-mark" name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>">
+                                    <a href="#<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title=""><i class="icon icon-radio-button-solid"></i></a>
                                     <i class="icon icon-radio-button-disabled"></i>
                                     <i class="icon icon-arrow-right"></i>
                                     <i class="icon icon-go"></i>

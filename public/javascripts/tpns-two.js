@@ -1,3 +1,4 @@
+window.__forceSmoothScrollPolyfill__ = true;
 
 // ----------------------------------------------------------------------------
 //
@@ -194,9 +195,10 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
         var thisIndexArticleAdditionalCategoryLinks = indexArticleAdditionalCategoryLinks[j];
         thisIndexArticleAdditionalCategoryLinks.setAttribute("data-order", indexArticleCategoryNamedLinksTotal + j + 1);
     }
+
     var inputs = document.querySelectorAll("input[type='checkbox'][name='category-filter']");
-    //inputs.setAttribute('checked', 'checked');
     for(var j = 0; j < inputs.length; j++) {
+
         inputs[j].removeAttribute('disabled');
         inputs[j].checked = true;
         if ( inputs[j].parentElement.classList.contains('disabled') ) {
@@ -204,19 +206,20 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
         }
 
         // create local storage container
-        //var storedSection;
-                var sections = [];
-        
+        var sections = [];
         inputs[j].onchange = function() {
             var categoryFilterCheckbox = this;
+
             var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
             while ( addSectionOpen.length > 0 ) {
                 addSectionOpen[0].classList.remove('add-section-open');
             }
+
             var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
             while ( containerSectionErrorOpen.length > 0 ) {
                 containerSectionErrorOpen[0].classList.remove('active');
             }
+
             // if stored locally and exists
             if (this.checked) {
                 var sectionsContainer = document.querySelector('.page-wrap-right');
@@ -282,8 +285,6 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     var sectionHTML = storedSectionHTML;
 
                     var sectionObject = {};
-                    //sectionObject[sectionID] = sectionHTML;
-                    //sectionObject["category-slug", sectionID] = "category-section", sectionHTML;
                     sectionObject["categorySlug"] = sectionID, sectionObject["sectionContent"] = sectionHTML;
                     sections.push(sectionObject);
                     // finally remove the html from the DOM not the variable
@@ -299,64 +300,94 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
                 siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
             }
-
-
-
-
         }
     }
+}
 
+// Sections Navigation, on click scroll to section
+// Hash URL's are as per default disabled, to enable follow the
+// instruction below...
+// ------------------------------------------------------------------------
+
+var mango = document.querySelectorAll('.category-mark');
+for (var i = 0; i < mango.length; i++) {
+    mango[i].onclick = function(e) {
+        e.preventDefault();
+        var banana = this;
+        var orange = banana.getAttribute('name');
+        banana.classList.add('fart');
+
+        var element = document.getElementById(orange);
+        //document.getElementById('dynamictabstrp').scrollIntoView(true);
+        element.scrollIntoView({
+            block: "start",
+            behavior: "smooth"
+        });
+        console.log(banana);
+        console.log(orange);
+        console.log(element);
+
+
+        //console.log(banana.classList);
+            
+    }
 }
 
 
 /*
+var element = document.querySelector(".category-mark a");
+var elementName = element.getAttribute('name');
+var q = document.getElementById(elementName);
+q.addEventListener('click',function(){
+	element.scrollIntoView({block: "start", behavior: "smooth"});
+    console.log(element);
+    console.log(elementName);
+    console.log(q);
+},false);
+*/
+/*
 
-$('.category-links li').each(function(i) {
-    
-    // create local storage container
-    var storedSection;
+$('.category-links li .category-mark a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(e) {
+                    Waypoint.refreshAll();
+                    $(".add-section").removeClass('add-section-open');
+                    $('.container-sections-error').removeClass('active');
+                    $('.category-links li .category-mark a').removeClass('currently-visible');
+                    $('.category-links li .category-link-details').removeClass('currently-visible');
+                    $('.category-links li .category-one-only span').removeClass('currently-visible');
 
-    // Add Incremental Data Order to the add / remove section buttons
-    $(this).find('.category-add-remove-section-each').parent().parent().parent().attr('data-order', (i + 0));
-    
-    $("input[type='checkbox'][name='category-filter']").prop('disabled', false);
-    $(".disabled input[type='checkbox'][name='category-filter']").prop('disabled', true);
-    
-    $(this).find('.category-filter-checkbox').change(function() {
-        $(".add-section").removeClass('add-section-open');
-        $('.container-sections-error').removeClass('active');
-        // if stored locally and exists
-        if ($(this).is(':checked')) {
-            var sectionsContainer = $('.page-wrap-right');
+    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+        
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        
+        // var targetWithHash = $(this).attr("href");
+        
+        if (target.length) {
+            e.preventDefault();
             
-            $(this).parent().parent().parent().parent().find('input[type="radio"][name="category-one-only-filter"]').prop('disabled', false);
-            $(this).parent().parent().parent().parent().find('.category-mark').removeClass('radio-active');
-            $(this).parent().parent().parent().parent().find('.category-add-remove-section').removeClass('disabled');
-            $(this).parent().parent().parent().parent().find('.category-link-details').removeClass('category-filter-active');
-            // check local storage for this and add again
-            storedSection.appendTo('.page-wrap-right').show(300);
-            // once appended to the DOM again remove from local storage
-            storedSection = null;
-            // sort the newly added item as per original order via its data-order incrementer
-            sectionsContainer.find('section').sort(globalSectionSortViaDataSortAttribute).appendTo( sectionsContainer );
-            sectionsContainer = null;
-            Waypoint.refreshAll();
-        } else if (!storedSection) {
-            var checkboxId = $(this).parent().parent().parent().parent().attr('name');
-            // detach and add to local storage
-            storedSection = $('.page-wrap-right section[id='+ checkboxId +']').hide(500, function(){
-                $(this).detach();
-                Waypoint.refreshAll();
+            $('html, body').animate({
+                scrollTop: target.offset().top - 40
+            }, 1000, function() {
+                
+                var $target = $(target);
+                $target.focus();
+                
+                // NOTE: To show the href # value in the URL uncomment the line below AND the variable named targetWithHash above
+                // location.hash = targetWithHash;
+                
+                if ($target.is(":focus")) {
+                    return false;
+                } else {
+                    $target.attr('tabindex','-1');
+                    $target.focus();
+                }
             });
-            // re-initialize navigation
-            Waypoint.refreshAll();
-            $(this).parent().parent().parent().parent().find('.category-mark').addClass('radio-active');
-            $(this).parent().parent().parent().parent().find('.category-add-remove-section').addClass('disabled');
-            $(this).parent().parent().parent().parent().find('input[type="radio"][name="category-one-only-filter"]').prop('disabled', true);
-            $(this).parent().parent().parent().parent().find('.category-link-details').addClass('category-filter-active');
+            $(this).addClass('currently-visible');
+            $(this).parent().parent().find('.category-link-details').addClass('currently-visible');
+            $(this).parent().parent().find('.category-one-only span').addClass('currently-visible');
         }
-        //Waypoint.refreshAll();
-    });
+        target = null;
+    }
 });
 
 */
