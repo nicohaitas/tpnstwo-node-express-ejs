@@ -1,4 +1,15 @@
+
+// ----------------------------------------------------------------------------
+//
+// The Scroll Behavior specification has been introduced as an extension of 
+// the Window interface to allow for the developer to opt in to native smooth 
+// scrolling.
+// This polyfill allows the new Mozilla specification to work cross browser
+// but also be backward compatible to older browsers includin IE.
+//
+// ----------------------------------------------------------------------------
 window.__forceSmoothScrollPolyfill__ = true;
+window.__IntersectionObserverPolyfill__ = true;
 
 // ----------------------------------------------------------------------------
 //
@@ -143,36 +154,36 @@ function containerSectionsClosed() {
 // ------------------------------------------------------------------------
 document.querySelector('.category-links > li[name="happening-now"]').setAttribute("class", "disabled");
 
-// Sections Navigation, making this section active when in view
+// Sections Navigation, making this section active (using an Intersection 
+// Observer ) when in view
 // ------------------------------------------------------------------------
-var eachIndexArticleSection = document.querySelectorAll('.page-wrap-right section');
-for (var i = 0; i < eachIndexArticleSection.length; i++) {
-    var indexArticleSectionList = eachIndexArticleSection[i];
-    var indexArticleSectionName = indexArticleSectionList.getAttribute('id');
-    indexArticleSectionList.setAttribute("data-order", + i);
-    var inview = new Waypoint.Inview({
-        element: indexArticleSectionList,
-        enter: function(direction) {
-            var id = this.element.getAttribute('id');
+var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+    for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+        var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+        if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
-        },
-        exited: function(direction) {
-            var id = this.element.getAttribute('id');
+        } else {
+            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
         }
-    })
-}
+        observer.takeRecords(id);
+    }
+});
+allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+    observer.observe(eachIndexArticleSection);
+});
 
 // Continue Incremental Data Order from page-wrap-right sections to the 
 // article-store sections
 // ------------------------------------------------------------------------
-var eachIndexArticleStoreSection = document.querySelectorAll('.article-store section');
-for (var i = 0; i < eachIndexArticleStoreSection.length; i++) {
-    var indexArticleStoreSectionList = eachIndexArticleStoreSection[i];
+for (var i = 0; i < allIndexArticleSections.length; i++) {
+    var indexArticleStoreSectionList = allIndexArticleSections[i];
     var indexArticleSectionName = indexArticleStoreSectionList.getAttribute('id');
     var indexArticleSectionTotal = document.querySelectorAll('.page-wrap-right section').length;
     indexArticleStoreSectionList.setAttribute("data-order", indexArticleSectionTotal + i);
@@ -271,9 +282,28 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 sectionsForSortingArray.forEach(function(el) {
                     document.querySelector('.page-wrap-right').appendChild(el);
                 });
-                // re-initialize navigation
-                Waypoint.refreshAll();
-
+                // re-initialize navigation Intersection Observer
+                var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+                observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+                    for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                        var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                        if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                        } else {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                        }
+                        observer.takeRecords(id);
+                    }
+                });
+                allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+                    observer.observe(eachIndexArticleSection);
+                });
             } else {
                 var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
                 var checkboxId = siblingRadioButton.getAttribute('name');
@@ -293,8 +323,28 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     //console.log("sections: %s", JSON.stringify(sections));
                 }
                 removeEl();
-                // re-initialize navigation
-                Waypoint.refreshAll();
+                // re-initialize navigation Intersection Observer
+                var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+                observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+                    for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                        var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                        if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                        } else {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                        }
+                        observer.takeRecords(id);
+                    }
+                });
+                allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+                    observer.observe(eachIndexArticleSection);
+                });
                 siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
                 siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
                 siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
@@ -304,91 +354,23 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     }
 }
 
-// Sections Navigation, on click scroll to section
-// Hash URL's are as per default disabled, to enable follow the
-// instruction below...
+// Sections Navigation, on click scroll to a section
 // ------------------------------------------------------------------------
-
-var mango = document.querySelectorAll('.category-mark');
-for (var i = 0; i < mango.length; i++) {
-    mango[i].onclick = function(e) {
+var allCategoryMarks = document.querySelectorAll('.category-mark');
+for (var i = 0; i < allCategoryMarks.length; i++) {
+    allCategoryMarks[i].onclick = function(e) {
         e.preventDefault();
-        var banana = this;
-        var orange = banana.getAttribute('name');
-        banana.classList.add('fart');
-
-        var element = document.getElementById(orange);
-        //document.getElementById('dynamictabstrp').scrollIntoView(true);
+        var thisCategoryMark = this;
+        var thisCategoryMarksName = thisCategoryMark.getAttribute('name');
+        var element = document.getElementById(thisCategoryMarksName);
         element.scrollIntoView({
             block: "start",
             behavior: "smooth"
         });
-        console.log(banana);
-        console.log(orange);
-        console.log(element);
-
-
-        //console.log(banana.classList);
-            
     }
 }
 
-
 /*
-var element = document.querySelector(".category-mark a");
-var elementName = element.getAttribute('name');
-var q = document.getElementById(elementName);
-q.addEventListener('click',function(){
-	element.scrollIntoView({block: "start", behavior: "smooth"});
-    console.log(element);
-    console.log(elementName);
-    console.log(q);
-},false);
-*/
-/*
-
-$('.category-links li .category-mark a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(e) {
-                    Waypoint.refreshAll();
-                    $(".add-section").removeClass('add-section-open');
-                    $('.container-sections-error').removeClass('active');
-                    $('.category-links li .category-mark a').removeClass('currently-visible');
-                    $('.category-links li .category-link-details').removeClass('currently-visible');
-                    $('.category-links li .category-one-only span').removeClass('currently-visible');
-
-    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-        
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-        
-        // var targetWithHash = $(this).attr("href");
-        
-        if (target.length) {
-            e.preventDefault();
-            
-            $('html, body').animate({
-                scrollTop: target.offset().top - 40
-            }, 1000, function() {
-                
-                var $target = $(target);
-                $target.focus();
-                
-                // NOTE: To show the href # value in the URL uncomment the line below AND the variable named targetWithHash above
-                // location.hash = targetWithHash;
-                
-                if ($target.is(":focus")) {
-                    return false;
-                } else {
-                    $target.attr('tabindex','-1');
-                    $target.focus();
-                }
-            });
-            $(this).addClass('currently-visible');
-            $(this).parent().parent().find('.category-link-details').addClass('currently-visible');
-            $(this).parent().parent().find('.category-one-only span').addClass('currently-visible');
-        }
-        target = null;
-    }
-});
 
 */
 
@@ -410,7 +392,7 @@ document.querySelector('.mainnav-button a').onclick = function() {
 
 // Auto close the Main Navigation Area
 // ------------------------------------------------------------------------
-function traverseChildren(elem){
+function traverseChildren(elem) {
     var children = [];
     var q = [];
     q.push(elem);
@@ -429,7 +411,7 @@ function traverseChildren(elem){
     }
     return children;
 }
-function makeMouseOutFn(elem){
+function makeMouseOutFn(elem) {
     var list = traverseChildren(elem);
     return function onMouseOut(event) {
         var e = event.toElement || event.relatedTarget;
