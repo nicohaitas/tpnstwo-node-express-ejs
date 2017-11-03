@@ -175,9 +175,10 @@ observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
         observer.takeRecords(id);
     }
 });
-allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+for (var i = 0; i < allIndexArticleSections.length; i++) {
+    var eachIndexArticleSection = allIndexArticleSections[i];
     observer.observe(eachIndexArticleSection);
-});
+}
 
 // Continue Incremental Data Order from page-wrap-right sections to the 
 // article-store sections
@@ -301,9 +302,10 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                         observer.takeRecords(id);
                     }
                 });
-                allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+                for (var i = 0; i < allIndexArticleSections.length; i++) {
+                    var eachIndexArticleSection = allIndexArticleSections[i];
                     observer.observe(eachIndexArticleSection);
-                });
+                }
             } else {
                 var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
                 var checkboxId = siblingRadioButton.getAttribute('name');
@@ -323,6 +325,10 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     //console.log("sections: %s", JSON.stringify(sections));
                 }
                 removeEl();
+                siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
+                siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
+                siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
+                siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
                 // re-initialize navigation Intersection Observer
                 var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
                 observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
@@ -342,13 +348,10 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                         observer.takeRecords(id);
                     }
                 });
-                allIndexArticleSections.forEach(function(eachIndexArticleSection) {
+                for (var i = 0; i < allIndexArticleSections.length; i++) {
+                    var eachIndexArticleSection = allIndexArticleSections[i];
                     observer.observe(eachIndexArticleSection);
-                });
-                siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
-                siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
-                siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
-                siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
+                }
             }
         }
     }
