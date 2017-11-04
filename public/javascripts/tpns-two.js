@@ -117,6 +117,17 @@ document.querySelector(".primaryCategories li:first-child").classList.add('mainn
 document.querySelector(".primaryCategories li:first-child a").innerHTML='<span class="textb">TPNS</span><span class="texti">two</span> Home<span class="hover-go"><i class="icon icon-go"></i></span>';
 document.querySelector(".primaryCategories li:first-child a").href = '/';
 
+// Setup the left Category Navigation
+// ------------------------------------------------------------------------
+var disableOneOnlyCategoryFilter = document.getElementsByName('category-one-only-filter');
+for ( i = 0; i < disableOneOnlyCategoryFilter.length; i++ ) {
+    var disableEachOneOnlyCategoryFilter = disableOneOnlyCategoryFilter[i];
+    if ( disableEachOneOnlyCategoryFilter.checked = true ) {
+        disableEachOneOnlyCategoryFilter.checked = false;
+    }
+}
+document.querySelector('.category-one-only-reset').style.display = 'none';
+
 // Header Search Form auto-close
 // ------------------------------------------------------------------------
 function searchFormAutoClose() {
@@ -195,12 +206,31 @@ for (var i = 0; i < allIndexArticleSections.length; i++) {
 var eachIndexArticleCategoryLink = document.querySelectorAll('.category-links > li');
 for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     var thisIndexArticleCategoryLink = eachIndexArticleCategoryLink[i];
-    
-    // Add Incremental Data Order to the add / remove section buttons and continue the numbering to the Additional Categories
     if ( thisIndexArticleCategoryLink.hasAttribute('name') ) {
+        // Add Incremental Data Order to the add / remove section buttons and continue the numbering to the Additional Categories
         thisIndexArticleCategoryLink.setAttribute("data-order", + i);
+        // On hover of Category Title replace the scrollTo button with the Go To Button
+        if ( thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a") ) {
+            var showGoIcon = thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a");
+            for(var j = 0; j < showGoIcon.length; j++) {
+                showGoIcon[j].onmouseover = function() {
+                    var showGoIconMouseOver = this;
+                    var showGoIconMouseOverParentsUntilLi = showGoIconMouseOver.parentElement.parentElement;
+                    showGoIconMouseOverParentsUntilLi.querySelector('.category-mark a').style.display = 'none';
+                    showGoIconMouseOverParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').style.display = 'none';
+                    showGoIconMouseOverParentsUntilLi.querySelector('.category-mark .icon-go').style.display = 'block';
+                }
+                showGoIcon[j].onmouseout = function() {
+                    var showGoIconMouseLeave = this;
+                    var showGoIconMouseLeaveParentsUntilLi = showGoIconMouseLeave.parentElement.parentElement;
+                    showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark a').removeAttribute('style');
+                    showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').removeAttribute('style');
+                    showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-go').removeAttribute('style');
+                }
+            }
+        }
     }
-    
+
     var indexArticleCategoryNamedLinksTotal = document.querySelectorAll('.category-links > li[name]').length;
     var indexArticleAdditionalCategoryLinks = document.querySelectorAll('.additional-sections-container > li');
     for (var j = 0; j < indexArticleAdditionalCategoryLinks.length; j++) {
@@ -208,18 +238,17 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
         thisIndexArticleAdditionalCategoryLinks.setAttribute("data-order", indexArticleCategoryNamedLinksTotal + j + 1);
     }
 
-    var inputs = document.querySelectorAll("input[type='checkbox'][name='category-filter']");
-    for(var j = 0; j < inputs.length; j++) {
+    var categoryCheckbox = document.querySelectorAll("input[type='checkbox'][name='category-filter']");
+    for(var j = 0; j < categoryCheckbox.length; j++) {
 
-        inputs[j].removeAttribute('disabled');
-        inputs[j].checked = true;
-        if ( inputs[j].parentElement.classList.contains('disabled') ) {
-            inputs[j].setAttribute('disabled', 'true');
+        categoryCheckbox[j].removeAttribute('disabled');
+        categoryCheckbox[j].checked = true;
+        if ( categoryCheckbox[j].parentElement.classList.contains('disabled') ) {
+            categoryCheckbox[j].setAttribute('disabled', 'true');
         }
-
         // create local storage container
         var sections = [];
-        inputs[j].onchange = function() {
+        categoryCheckbox[j].onchange = function() {
             var categoryFilterCheckbox = this;
 
             var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
@@ -315,20 +344,14 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     storedSection = document.getElementById(checkboxId);
                     var storedSectionHTML = storedSection.outerHTML;
                     var sectionHTML = storedSectionHTML;
-
                     var sectionObject = {};
                     sectionObject["categorySlug"] = sectionID, sectionObject["sectionContent"] = sectionHTML;
                     sections.push(sectionObject);
-                    // finally remove the html from the DOM not the variable
                     storedSection.remove();
                     // Uncomment the console log below to see the array in the browser console
                     //console.log("sections: %s", JSON.stringify(sections));
                 }
                 removeEl();
-                siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
-                siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
-                siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
-                siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
                 // re-initialize navigation Intersection Observer
                 var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
                 observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
@@ -352,10 +375,142 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     var eachIndexArticleSection = allIndexArticleSections[i];
                     observer.observe(eachIndexArticleSection);
                 }
+                siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
+                siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
+                siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
+                siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
+            }
+        }
+    }
+    
+    var categoryRadioButton = document.querySelectorAll("input[type='radio'][name='category-one-only-filter']");
+    for(var k = 0; k < categoryRadioButton.length; k++) {
+        var eachCategoryRadioButton = categoryRadioButton[k];
+        eachCategoryRadioButton.onchange = function() {
+            var thisCategoryRadioButton = this;
+            var thisCategoryRadioButtonParentName = thisCategoryRadioButton.parentElement.parentElement.parentElement.parentElement.getAttribute('name');
+            var thisCategoryRadioButtonParents = thisCategoryRadioButton.parentElement.parentElement.parentElement.parentElement;
+            var disableAddRemoveFilter = document.querySelectorAll('.category-add-remove-section');
+            for ( i = 0; i < disableAddRemoveFilter.length; i++ ) {
+                var disableEachAddRemoveFilter = disableAddRemoveFilter[i];
+                disableEachAddRemoveFilter.classList.add('disabled');
+            }
+            var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+            while ( containerSectionErrorOpen.length > 0 ) {
+                containerSectionErrorOpen[0].classList.remove('active');
+            }
+            var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
+            while ( addSectionOpen.length > 0 ) {
+                addSectionOpen[0].classList.remove('add-section-open');
+            }
+            var disableCategoryFilter = document.getElementsByName('category-filter');
+            for ( i = 0; i < disableCategoryFilter.length; i++ ) {
+                var disableEachCategoryFilter = disableCategoryFilter[i];
+                disableEachCategoryFilter.disabled = true;
+            }
+            if (this.checked) {
+                var hideAllVisibleSections = document.querySelectorAll('.page-wrap-right section');
+                for ( i = 0; i < hideAllVisibleSections.length; i++ ) {
+                    var hideEachVisibleSections = hideAllVisibleSections[i];
+                    hideEachVisibleSections.style.display = 'none';
+                }
+                var allCategoryMarkRadioActive = document.querySelectorAll('.category-mark');
+                for ( i = 0; i < allCategoryMarkRadioActive.length; i++ ) {
+                    var eachCategoryMarkRadioActive = allCategoryMarkRadioActive[i];
+                    eachCategoryMarkRadioActive.classList.add('radio-active');
+                }
+                document.querySelector('.page-wrap-right section[id="'+ thisCategoryRadioButtonParentName +'"]').style.display = 'block';
+                document.querySelector('.category-one-only-reset').style.display = 'inline-block';
+                document.querySelector('.add-section').classList.add('radio-active');
+                thisCategoryRadioButtonParents.querySelector('.category-mark').classList.remove('radio-active');
             }
         }
     }
 }
+
+// Reset the one only category, filter to show all the visible categories
+// ------------------------------------------------------------------------
+document.querySelector('.category-one-only-reset').onclick = function() {
+    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+    while ( containerSectionErrorOpen.length > 0 ) {
+        containerSectionErrorOpen[0].classList.remove('active');
+    }
+    var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
+    while ( addSectionOpen.length > 0 ) {
+        addSectionOpen[0].classList.remove('add-section-open');
+    }
+    var resetAddSection = document.getElementsByClassName('add-section radio-active');
+    while ( resetAddSection.length > 0 ) {
+        resetAddSection[0].classList.remove('radio-active');
+    }
+    document.querySelector('.category-one-only-reset').style.display = 'none';
+    var hideAllVisibleSections = document.querySelectorAll('.page-wrap-right section');
+    for ( i = 0; i < hideAllVisibleSections.length; i++ ) {
+        var hideEachVisibleSections = hideAllVisibleSections[i];
+        hideEachVisibleSections.removeAttribute('style');
+    }
+    var disableCategoryFilter = document.getElementsByName('category-filter');
+    for ( i = 0; i < disableCategoryFilter.length; i++ ) {
+        var disableEachCategoryFilter = disableCategoryFilter[i];
+        disableEachCategoryFilter.disabled = false;
+    }
+    var disableOneOnlyCategoryFilter = document.getElementsByName('category-one-only-filter');
+    for ( i = 0; i < disableOneOnlyCategoryFilter.length; i++ ) {
+        var disableEachOneOnlyCategoryFilter = disableOneOnlyCategoryFilter[i];
+        disableEachOneOnlyCategoryFilter.checked = false;
+    }
+    var resetAddRemoveSection = document.getElementsByClassName('category-add-remove-section disabled');
+    while ( resetAddRemoveSection.length > 0 ) {
+        resetAddRemoveSection[0].classList.remove('disabled');
+    }
+    var resetCategoryMark = document.getElementsByClassName('category-mark radio-active');
+    while ( resetCategoryMark.length > 0 ) {
+        resetCategoryMark[0].classList.remove('radio-active');
+    }
+    var resetCategoryMarkAnchor = document.querySelectorAll('.category-mark .currently-visible');
+    for ( i = 0; i < resetCategoryMarkAnchor.length; i++ ) {
+        var resetEachCategoryMarkAnchor = resetCategoryMarkAnchor[i];
+        resetEachCategoryMarkAnchor.classList.remove('currently-visible');
+    }
+    var resetCategoryLinkDetails = document.getElementsByClassName('category-link-details currently-visible');
+    while ( resetCategoryLinkDetails.length > 0 ) {
+        resetCategoryLinkDetails[0].classList.remove('currently-visible');
+    }
+    var resetCategoryOneOnlyMark = document.getElementsByClassName('category-one-only-mark currently-visible');
+    while ( resetCategoryOneOnlyMark.length > 0 ) {
+        resetCategoryOneOnlyMark[0].classList.remove('currently-visible');
+    }
+    window.scrollTo(0, 0);
+}
+
+
+/*
+
+$(".category-add-remove-section").on("click", function () {
+    
+    $('.container-sections-error').removeClass('active');
+    
+    if ($(this).parent().parent().hasClass('disabled')) {
+        
+        $(this).bind('click', false);
+    } else {
+
+        var removeSectionParentListItem = $(this).parent().parent();
+        var removeSectionParentListItemId = $(this).parent().parent().attr('name');
+        var targetContainerSection = $('.page-wrap-right section[id='+ removeSectionParentListItemId +']');
+        removeSectionParentListItem.appendTo('.add-section .additional-sections-container');
+        // Cut and Paste article category associated to this remove button's click event
+        targetContainerSection.appendTo('.article-store');
+        removeSectionParentListItem = null;
+        removeSectionParentListItemId = null;
+        targetContainerSection = null;
+    }
+    
+    $(".additional-sections-container").children().sort(globalSectionSortViaDataSortAttribute).appendTo('.additional-sections-container');
+    Waypoint.refreshAll();
+});
+
+*/
 
 // Sections Navigation, on click scroll to a section
 // ------------------------------------------------------------------------
