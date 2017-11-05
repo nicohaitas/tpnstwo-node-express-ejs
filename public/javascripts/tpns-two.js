@@ -191,14 +191,21 @@ for (var i = 0; i < allIndexArticleSections.length; i++) {
     observer.observe(eachIndexArticleSection);
 }
 
-// Continue Incremental Data Order from page-wrap-right sections to the 
-// article-store sections
+// Incremental Data Order for page-wrap-right sections
 // ------------------------------------------------------------------------
-for (var i = 0; i < allIndexArticleSections.length; i++) {
-    var indexArticleStoreSectionList = allIndexArticleSections[i];
-    var indexArticleSectionName = indexArticleStoreSectionList.getAttribute('id');
+for (var j = 0; j < allIndexArticleSections.length; j++) {
+    var indexArticleStoreSectionList = allIndexArticleSections[j];
+    indexArticleStoreSectionList.setAttribute("data-order", j + 1);
+}
+
+// Continue Incremental Data Order for article-store sections from the 
+// page-wrap-right sections
+// ------------------------------------------------------------------------
+var AllArticleStoreSections = document.querySelectorAll('.article-store section');
+for (var k = 0; k < AllArticleStoreSections.length; k++) {
+    var eachArticleStoreSection = AllArticleStoreSections[k];
     var indexArticleSectionTotal = document.querySelectorAll('.page-wrap-right section').length;
-    indexArticleStoreSectionList.setAttribute("data-order", indexArticleSectionTotal + i);
+    eachArticleStoreSection.setAttribute("data-order", indexArticleSectionTotal + k + 1);
 }
 
 // Sections Navigation, user customization of the newspaper
@@ -209,6 +216,7 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     if ( thisIndexArticleCategoryLink.hasAttribute('name') ) {
         // Add Incremental Data Order to the add / remove section buttons and continue the numbering to the Additional Categories
         thisIndexArticleCategoryLink.setAttribute("data-order", + i);
+
         // On hover of Category Title replace the scrollTo button with the Go To Button
         if ( thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a") ) {
             var showGoIcon = thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a");
@@ -226,6 +234,62 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark a').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-go').removeAttribute('style');
+                }
+            }
+        }
+
+        // Remove Category and add to the Article Store for retreival later
+        // ------------------------------------------------------------------------
+        var AllAddRemoveSectionButons = thisIndexArticleCategoryLink.querySelectorAll('.category-add-remove-section')
+        for(var k = 0; k < AllAddRemoveSectionButons.length; k++) {
+            AllAddRemoveSectionButons[k].onclick = function() {
+                var addRemoveSectionParentLi = this.parentElement.parentElement;
+                var addRemoveSectionParentLiName = addRemoveSectionParentLi.getAttribute('name');
+
+                var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+                while ( containerSectionErrorOpen.length > 0 ) {
+                    containerSectionErrorOpen[0].classList.remove('active');
+                }
+
+                document.querySelector('.additional-sections-container').appendChild(addRemoveSectionParentLi);
+                var targetContainerSection = document.querySelector('.page-wrap-right section[id="'+ addRemoveSectionParentLiName +'"]');
+                document.querySelector('.article-store').appendChild(targetContainerSection);
+
+                // Place Navigation in original order
+                var sectionsForSorting = document.querySelectorAll('.additional-sections-container > li');
+                var sectionsForSortingArray = [];
+                for (var i = 0; i < sectionsForSorting.length; ++i) {
+                    sectionsForSortingArray.push(sectionsForSorting[i]);
+                }
+                sectionsForSortingArray.sort(function(a, b) {
+                    return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+                });
+                sectionsForSortingArray.forEach(function(el) {
+                    document.querySelector('.additional-sections-container').appendChild(el);
+                });
+                
+                // re-initialize navigation Intersection Observer
+                var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+                observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+                    for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                        var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                        if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                        } else {
+                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                        }
+                        observer.takeRecords(id);
+                    }
+                });
+                for (var i = 0; i < allIndexArticleSections.length; i++) {
+                    var eachIndexArticleSection = allIndexArticleSections[i];
+                    observer.observe(eachIndexArticleSection);
                 }
             }
         }
@@ -482,35 +546,6 @@ document.querySelector('.category-one-only-reset').onclick = function() {
     }
     window.scrollTo(0, 0);
 }
-
-
-/*
-
-$(".category-add-remove-section").on("click", function () {
-    
-    $('.container-sections-error').removeClass('active');
-    
-    if ($(this).parent().parent().hasClass('disabled')) {
-        
-        $(this).bind('click', false);
-    } else {
-
-        var removeSectionParentListItem = $(this).parent().parent();
-        var removeSectionParentListItemId = $(this).parent().parent().attr('name');
-        var targetContainerSection = $('.page-wrap-right section[id='+ removeSectionParentListItemId +']');
-        removeSectionParentListItem.appendTo('.add-section .additional-sections-container');
-        // Cut and Paste article category associated to this remove button's click event
-        targetContainerSection.appendTo('.article-store');
-        removeSectionParentListItem = null;
-        removeSectionParentListItemId = null;
-        targetContainerSection = null;
-    }
-    
-    $(".additional-sections-container").children().sort(globalSectionSortViaDataSortAttribute).appendTo('.additional-sections-container');
-    Waypoint.refreshAll();
-});
-
-*/
 
 // Sections Navigation, on click scroll to a section
 // ------------------------------------------------------------------------
