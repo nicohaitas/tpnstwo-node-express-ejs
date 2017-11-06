@@ -242,7 +242,7 @@
                                     <i class="icon icon-go"></i>
                                 </div>
                                 <div class="category-link-details" name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>">
-                                    <a href="/<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title="Takes you to the <%- navigationLevel.category %> category"><%- navigationLevel.category %></a>
+                                    <a href="/<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>" title="Takes you to the <%- data.nav2[i].category || data.nav2[i].microsite %> category"><%- data.nav2[i].category || data.nav2[i].microsite %></a>
                                 </div>
                                 <div class="category-controllers">
                                     <div class="category-one-only" name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>">

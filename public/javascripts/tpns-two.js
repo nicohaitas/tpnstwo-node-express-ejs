@@ -179,9 +179,18 @@ observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
         } else {
             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
-            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
-            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+            while ( !RemoveCategoryMark === null ) {
+                RemoveCategoryMark[0].classList.remove('currently-visible');
+            }
+            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+            while ( !RemoveCategoryLinkDetails === null ) {
+                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+            }
+            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+            while ( !RemoveCategoryController === null ) {
+                RemoveCategoryController[0].classList.remove('currently-visible');
+            }
         }
         observer.takeRecords(id);
     }
@@ -242,6 +251,7 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
         // ------------------------------------------------------------------------
         var AllAddRemoveSectionButons = thisIndexArticleCategoryLink.querySelectorAll('.category-add-remove-section')
         for(var k = 0; k < AllAddRemoveSectionButons.length; k++) {
+            var eachAddRemoveSectionButon = AllAddRemoveSectionButons[k];
             AllAddRemoveSectionButons[k].onclick = function() {
                 var addRemoveSectionParentLi = this.parentElement.parentElement;
                 var addRemoveSectionParentLiName = addRemoveSectionParentLi.getAttribute('name');
@@ -280,9 +290,18 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
                             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                            while ( !RemoveCategoryMark === null ) {
+                                RemoveCategoryMark[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                            while ( !RemoveCategoryLinkDetails === null ) {
+                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                            while ( !RemoveCategoryController === null ) {
+                                RemoveCategoryController[0].classList.remove('currently-visible');
+                            }
                         }
                         observer.takeRecords(id);
                     }
@@ -388,9 +407,18 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
                             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                            while ( !RemoveCategoryMark === null ) {
+                                RemoveCategoryMark[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                            while ( !RemoveCategoryLinkDetails === null ) {
+                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                            while ( !RemoveCategoryController === null ) {
+                                RemoveCategoryController[0].classList.remove('currently-visible');
+                            }
                         }
                         observer.takeRecords(id);
                     }
@@ -428,9 +456,18 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
                             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                            while ( !RemoveCategoryMark === null ) {
+                                RemoveCategoryMark[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                            while ( !RemoveCategoryLinkDetails === null ) {
+                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                            }
+                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                            while ( !RemoveCategoryController === null ) {
+                                RemoveCategoryController[0].classList.remove('currently-visible');
+                            }
                         }
                         observer.takeRecords(id);
                     }
@@ -491,6 +528,143 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
         }
     }
 }
+
+// Remove Article from Article Store and place into page-wrap-right
+// ------------------------------------------------------------------------
+document.querySelector('.add-section-mark').onclick = function() {
+    var thisOpenAddSectionButton = this.parentElement;
+
+    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+    while ( containerSectionErrorOpen.length > 0 ) {
+        containerSectionErrorOpen[0].classList.remove('active');
+    }
+
+    thisOpenAddSectionButton.classList.toggle('add-section-open');
+    
+    var allAddSectionCategories = document.querySelectorAll(".additional-sections-container li");
+    for(var j = 0; j < allAddSectionCategories.length; j++) {
+        allAddSectionCategories[j].onclick = function() {
+            var thisAddSectionCategory = this;
+
+            // Move Navigation Item
+            document.querySelector('.category-links').appendChild(thisAddSectionCategory);
+
+            // Place Navigation in original order
+            var sectionsForSorting = document.querySelectorAll('.category-links > li');
+            var sectionsForSortingArray = [];
+            for (var i = 0; i < sectionsForSorting.length; ++i) {
+                sectionsForSortingArray.push(sectionsForSorting[i]);
+            }
+            sectionsForSortingArray.sort(function(a, b) {
+                return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+            });
+            sectionsForSortingArray.forEach(function(el) {
+                document.querySelector('.category-links').appendChild(el);
+            });
+
+            var moveAddSectionToEnd = document.querySelector('.add-section');
+            var moveAddSectionParent = document.querySelector('.category-links');
+            moveAddSectionParent.appendChild(moveAddSectionToEnd);
+
+            // Move Stored Article Item
+            var moveStoredSectionName = thisAddSectionCategory.getAttribute('name');
+            var targetForStoredSection = document.querySelector('.article-store section[id="'+ moveStoredSectionName +'"]');
+            document.querySelector('.page-wrap-right').appendChild(targetForStoredSection);
+
+            // Place Article Sections in original order
+            var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
+            var sectionsForSortingArray = [];
+            for (var i = 0; i < sectionsForSorting.length; ++i) {
+                sectionsForSortingArray.push(sectionsForSorting[i]);
+            }
+            sectionsForSortingArray.sort(function(a, b) {
+                return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+            });
+            sectionsForSortingArray.forEach(function(el) {
+                document.querySelector('.page-wrap-right').appendChild(el);
+            });
+
+            var moveAddSectionToEnd = document.querySelector('.add-section');
+            var moveAddSectionParent = document.querySelector('.category-links');
+            moveAddSectionParent.appendChild(moveAddSectionToEnd);
+
+            // re-initialize navigation Intersection Observer
+            var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+            observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+                for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                    var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                    if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                    } else {
+                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                        var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                        while ( !RemoveCategoryMark === null ) {
+                            RemoveCategoryMark[0].classList.remove('currently-visible');
+                        }
+                        var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                        while ( !RemoveCategoryLinkDetails === null ) {
+                            RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                        }
+                        var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                        while ( !RemoveCategoryController === null ) {
+                            RemoveCategoryController[0].classList.remove('currently-visible');
+                        }
+                    }
+                    observer.takeRecords(id);
+                }
+            });
+            for (var i = 0; i < allIndexArticleSections.length; i++) {
+                var eachIndexArticleSection = allIndexArticleSections[i];
+                observer.observe(eachIndexArticleSection);
+            }
+        }
+    }
+}
+
+/*
+$(".add-section .add-section-mark").on("click", function() {
+
+                        $(this).parent().toggleClass('add-section-open');
+                        $('.container-sections-error').removeClass('active');
+                        Waypoint.refreshAll();
+    
+    $('.add-section-open .additional-sections-container').on( "click", "li", function() {
+
+        if($('.category-links > li').length < 8) {
+            
+            var removeThisListItem = $(this);
+            removeThisListItem.off().appendTo('.category-links');
+
+            $('.category-links').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.category-links');
+            
+            // Cut and Paste article category associated to this remove button's click event
+            var removeSectionParentListItemId = $(this).attr('name');
+            var targetContainerSection = $('.article-store section[id='+ removeSectionParentListItemId +']');
+            targetContainerSection.hide().appendTo('.page-wrap-right').show(300);
+            $('.page-wrap-right > section').sort(globalSectionSortViaDataSortAttribute).appendTo('.page-wrap-right');
+            $('.category-links').append($('li.add-section'));
+
+            // Re-initialize Hover events on the Top Level Category Link
+            $('.category-links > li > .category-link-details').on('mouseenter', 'a', categoryHoverBulletShow);
+            $('.category-links > li > .category-link-details').on('mouseleave', 'a', categoryHoverBulletHide);
+            removeSectionParentListItemId = null;
+            targetContainerSection = null;
+            $('.category-links').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.category-links');
+            Waypoint.refreshAll();
+        } else {
+            
+            $('.container-sections-error').addClass('active');
+        }
+
+        $('.additional-sections-container').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.additional-sections-container');
+        Waypoint.refreshAll();
+    });
+
+});
+ */
 
 // Reset the one only category, filter to show all the visible categories
 // ------------------------------------------------------------------------
@@ -801,5 +975,4 @@ document.querySelector('.user-controller-login-form .user-controller-form-input-
 }
 
 /*
-
 */
