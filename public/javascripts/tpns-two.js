@@ -632,65 +632,6 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
     }
 });
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-$(".add-section .add-section-mark").on("click", function() {
-
-                        $(this).parent().toggleClass('add-section-open');
-                        $('.container-sections-error').removeClass('active');
-                        Waypoint.refreshAll();
-    
-    $('.add-section-open .additional-sections-container').on( "click", "li", function() {
-
-        if($('.category-links > li').length < 8) {
-            
-            var removeThisListItem = $(this);
-            removeThisListItem.off().appendTo('.category-links');
-
-            $('.category-links').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.category-links');
-            
-            // Cut and Paste article category associated to this remove button's click event
-            var removeSectionParentListItemId = $(this).attr('name');
-            var targetContainerSection = $('.article-store section[id='+ removeSectionParentListItemId +']');
-            targetContainerSection.hide().appendTo('.page-wrap-right').show(300);
-            $('.page-wrap-right > section').sort(globalSectionSortViaDataSortAttribute).appendTo('.page-wrap-right');
-            $('.category-links').append($('li.add-section'));
-
-            // Re-initialize Hover events on the Top Level Category Link
-            $('.category-links > li > .category-link-details').on('mouseenter', 'a', categoryHoverBulletShow);
-            $('.category-links > li > .category-link-details').on('mouseleave', 'a', categoryHoverBulletHide);
-            removeSectionParentListItemId = null;
-            targetContainerSection = null;
-            $('.category-links').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.category-links');
-            Waypoint.refreshAll();
-        } else {
-            
-            $('.container-sections-error').addClass('active');
-        }
-
-        $('.additional-sections-container').children().sort(globalSectionSortViaDataSortAttribute).appendTo('.additional-sections-container');
-        Waypoint.refreshAll();
-    });
-
-});
- */
-
 // Reset the one only category, filter to show all the visible categories
 // ------------------------------------------------------------------------
 document.querySelector('.category-one-only-reset').onclick = function() {

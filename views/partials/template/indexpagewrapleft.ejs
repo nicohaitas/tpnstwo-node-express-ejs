@@ -160,7 +160,7 @@
             <p>You have reached the maximum newspaper sections.</p>
             <p>To add a new section please remove one from the current list of sections below first</p>
         </div>
-        <ul class="category-links">
+        <ul class="category-links" id="categoryLinks">
             <li class="disabled">
                 <div class="category-controllers">
                     <div class="category-one-only category-one-only-reset">
@@ -231,7 +231,7 @@
                     </span>
                 </a>
                 <div class="additional-sections">
-                    <ul class="additional-sections-container">
+                    <ul class="additional-sections-container" id="additionalSectionsContainer">
                         <%_ for (var i = 0 ; i < data.nav2.length; i++) { _%>
                             <%_ navigationLevel = data.nav2[i]; _%>
                             <li name="<%- data.nav2[i].categoryslug || data.nav2[i].micrositeslug %>">
