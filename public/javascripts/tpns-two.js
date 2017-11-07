@@ -703,11 +703,6 @@ for (var i = 0; i < allCategoryMarks.length; i++) {
     }
 }
 
-/*
-
-*/
-
-
 // Manually Open and Close the Main Navigation Area
 // ------------------------------------------------------------------------
 document.querySelector('.mainnav-button a').onclick = function() {
@@ -940,5 +935,23 @@ document.querySelector('.user-controller-login-form .user-controller-form-input-
     }
 }
 
+// Pinned Articles Setup
+// ------------------------------------------------------------------------
+var totalPinnedArticlesBefore = document.querySelector('.pinned-articles-content ul').children.length;
+console.log(totalPinnedArticlesBefore);
+document.querySelector('.container-pinned-total').innerHTML = totalPinnedArticlesBefore;
+if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
+    document.querySelector('.container-pinned-total').style.display = "none";
+    document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
+} else {
+    document.querySelector('.container-pinned-total').style.display = "block";
+    var removeNoPinnedArticles = document.getElementsByClassName('container-pinned-articles container-no-pinned-articles');
+    while ( removeNoPinnedArticles.length > 0 ) {
+        removeNoPinnedArticles[0].classList.remove('container-no-pinned-articles');
+    }
+}
+
+
 /*
+
 */
