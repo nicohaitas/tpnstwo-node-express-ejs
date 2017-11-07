@@ -225,7 +225,7 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     if ( thisIndexArticleCategoryLink.hasAttribute('name') ) {
         // Add Incremental Data Order to the add / remove section buttons and continue the numbering to the Additional Categories
         thisIndexArticleCategoryLink.setAttribute("data-order", + i);
-
+        
         // On hover of Category Title replace the scrollTo button with the Go To Button
         if ( thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a") ) {
             var showGoIcon = thisIndexArticleCategoryLink.querySelectorAll(".category-link-details a");
@@ -243,72 +243,6 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark a').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-go').removeAttribute('style');
-                }
-            }
-        }
-
-        // Remove Category and add to the Article Store for retreival later
-        // ------------------------------------------------------------------------
-        var AllAddRemoveSectionButons = thisIndexArticleCategoryLink.querySelectorAll('.category-add-remove-section')
-        for(var k = 0; k < AllAddRemoveSectionButons.length; k++) {
-            var eachAddRemoveSectionButon = AllAddRemoveSectionButons[k];
-            AllAddRemoveSectionButons[k].onclick = function() {
-                var addRemoveSectionParentLi = this.parentElement.parentElement;
-                var addRemoveSectionParentLiName = addRemoveSectionParentLi.getAttribute('name');
-
-                var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-                while ( containerSectionErrorOpen.length > 0 ) {
-                    containerSectionErrorOpen[0].classList.remove('active');
-                }
-
-                document.querySelector('.additional-sections-container').appendChild(addRemoveSectionParentLi);
-                var targetContainerSection = document.querySelector('.page-wrap-right section[id="'+ addRemoveSectionParentLiName +'"]');
-                document.querySelector('.article-store').appendChild(targetContainerSection);
-
-                // Place Navigation in original order
-                var sectionsForSorting = document.querySelectorAll('.additional-sections-container > li');
-                var sectionsForSortingArray = [];
-                for (var i = 0; i < sectionsForSorting.length; ++i) {
-                    sectionsForSortingArray.push(sectionsForSorting[i]);
-                }
-                sectionsForSortingArray.sort(function(a, b) {
-                    return +a.getAttribute("data-order") - +b.getAttribute("data-order");
-                });
-                sectionsForSortingArray.forEach(function(el) {
-                    document.querySelector('.additional-sections-container').appendChild(el);
-                });
-                
-                // re-initialize navigation Intersection Observer
-                var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
-                observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
-                    for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
-                        var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
-                        if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
-                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
-                        } else {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                            while ( !RemoveCategoryMark === null ) {
-                                RemoveCategoryMark[0].classList.remove('currently-visible');
-                            }
-                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                            while ( !RemoveCategoryLinkDetails === null ) {
-                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
-                            }
-                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                            while ( !RemoveCategoryController === null ) {
-                                RemoveCategoryController[0].classList.remove('currently-visible');
-                            }
-                        }
-                        observer.takeRecords(id);
-                    }
-                });
-                for (var i = 0; i < allIndexArticleSections.length; i++) {
-                    var eachIndexArticleSection = allIndexArticleSections[i];
-                    observer.observe(eachIndexArticleSection);
                 }
             }
         }
@@ -529,7 +463,77 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     }
 }
 
-// Remove Article from Article Store and place into page-wrap-right
+// Remove a live Category and place into the article store while
+// updating the event listener on each move click event
+// Important! The parent html element must be an id
+document.getElementById("categoryLinks").addEventListener("click",function(e) {
+    // e.target was the clicked element
+    if (e.target.matches("li")) {
+        // Do Nothing
+    } else if (e.target && e.target.matches("i.icon-square-subtract")) {
+        var addRemoveSectionLi = e.target;
+        var addRemoveSectionParentLi = addRemoveSectionLi.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        var addRemoveSectionParentLiName = addRemoveSectionParentLi.getAttribute('name');
+        
+        var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+        while ( containerSectionErrorOpen.length > 0 ) {
+            containerSectionErrorOpen[0].classList.remove('active');
+        }
+        // Move Navigation Item
+        document.querySelector('.additional-sections-container').appendChild(addRemoveSectionParentLi);
+        
+        var targetContainerSection = document.querySelector('.page-wrap-right section[id="'+ addRemoveSectionParentLiName +'"]');
+        document.querySelector('.article-store').appendChild(targetContainerSection);
+
+        // Place Navigation in original order
+        var sectionsForSorting = document.querySelectorAll('.additional-sections-container > li');
+        var sectionsForSortingArray = [];
+        for (var i = 0; i < sectionsForSorting.length; ++i) {
+            sectionsForSortingArray.push(sectionsForSorting[i]);
+        }
+        sectionsForSortingArray.sort(function(a, b) {
+            return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+        });
+        sectionsForSortingArray.forEach(function(el) {
+            document.querySelector('.additional-sections-container').appendChild(el);
+        });
+        
+        // re-initialize navigation Intersection Observer
+        var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+        observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+            for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                } else {
+                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                    while ( !RemoveCategoryMark === null ) {
+                        RemoveCategoryMark[0].classList.remove('currently-visible');
+                    }
+                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                    while ( !RemoveCategoryLinkDetails === null ) {
+                        RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                    }
+                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                    while ( !RemoveCategoryController === null ) {
+                        RemoveCategoryController[0].classList.remove('currently-visible');
+                    }
+                }
+                observer.takeRecords(id);
+            }
+        });
+        for (var i = 0; i < allIndexArticleSections.length; i++) {
+            var eachIndexArticleSection = allIndexArticleSections[i];
+            observer.observe(eachIndexArticleSection);
+        }
+        
+    }
+});
+
 // ------------------------------------------------------------------------
 document.querySelector('.add-section-mark').onclick = function() {
     var thisOpenAddSectionButton = this.parentElement;
@@ -540,89 +544,110 @@ document.querySelector('.add-section-mark').onclick = function() {
     }
 
     thisOpenAddSectionButton.classList.toggle('add-section-open');
-    
-    var allAddSectionCategories = document.querySelectorAll(".additional-sections-container li");
-    for(var j = 0; j < allAddSectionCategories.length; j++) {
-        allAddSectionCategories[j].onclick = function() {
-            var thisAddSectionCategory = this;
+}
 
-            // Move Navigation Item
-            document.querySelector('.category-links').appendChild(thisAddSectionCategory);
+// Remove Article from Article Store and place into page-wrap-right while
+// updating the event listener on each move click event
+// Important! The parent html element must be an id
+document.getElementById("additionalSectionsContainer").addEventListener("click",function(e) {
+    if (e.target.matches("i.icon-square-subtract")) {
+        // Do Nothing
+    } else if (e.target && e.target.matches("li")) {
+        var thisAddSectionCategory = e.target;
 
-            // Place Navigation in original order
-            var sectionsForSorting = document.querySelectorAll('.category-links > li');
-            var sectionsForSortingArray = [];
-            for (var i = 0; i < sectionsForSorting.length; ++i) {
-                sectionsForSortingArray.push(sectionsForSorting[i]);
-            }
-            sectionsForSortingArray.sort(function(a, b) {
-                return +a.getAttribute("data-order") - +b.getAttribute("data-order");
-            });
-            sectionsForSortingArray.forEach(function(el) {
-                document.querySelector('.category-links').appendChild(el);
-            });
+        // Move Navigation Item
+        document.querySelector('.category-links').appendChild(thisAddSectionCategory);
 
-            var moveAddSectionToEnd = document.querySelector('.add-section');
-            var moveAddSectionParent = document.querySelector('.category-links');
-            moveAddSectionParent.appendChild(moveAddSectionToEnd);
+        // Place Navigation in original order
+        var sectionsForSorting = document.querySelectorAll('.category-links > li');
+        var sectionsForSortingArray = [];
+        for (var i = 0; i < sectionsForSorting.length; ++i) {
+            sectionsForSortingArray.push(sectionsForSorting[i]);
+        }
+        sectionsForSortingArray.sort(function(a, b) {
+            return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+        });
+        sectionsForSortingArray.forEach(function(el) {
+            document.querySelector('.category-links').appendChild(el);
+        });
 
-            // Move Stored Article Item
-            var moveStoredSectionName = thisAddSectionCategory.getAttribute('name');
-            var targetForStoredSection = document.querySelector('.article-store section[id="'+ moveStoredSectionName +'"]');
-            document.querySelector('.page-wrap-right').appendChild(targetForStoredSection);
+        var moveAddSectionToEnd = document.querySelector('.add-section');
+        var moveAddSectionParent = document.querySelector('.category-links');
+        moveAddSectionParent.appendChild(moveAddSectionToEnd);
 
-            // Place Article Sections in original order
-            var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
-            var sectionsForSortingArray = [];
-            for (var i = 0; i < sectionsForSorting.length; ++i) {
-                sectionsForSortingArray.push(sectionsForSorting[i]);
-            }
-            sectionsForSortingArray.sort(function(a, b) {
-                return +a.getAttribute("data-order") - +b.getAttribute("data-order");
-            });
-            sectionsForSortingArray.forEach(function(el) {
-                document.querySelector('.page-wrap-right').appendChild(el);
-            });
+        // Move Stored Article Item
+        var moveStoredSectionName = thisAddSectionCategory.getAttribute('name');
+        var targetForStoredSection = document.querySelector('.article-store section[id="'+ moveStoredSectionName +'"]');
+        document.querySelector('.page-wrap-right').appendChild(targetForStoredSection);
 
-            var moveAddSectionToEnd = document.querySelector('.add-section');
-            var moveAddSectionParent = document.querySelector('.category-links');
-            moveAddSectionParent.appendChild(moveAddSectionToEnd);
+        // Place Article Sections in original order
+        var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
+        var sectionsForSortingArray = [];
+        for (var i = 0; i < sectionsForSorting.length; ++i) {
+            sectionsForSortingArray.push(sectionsForSorting[i]);
+        }
+        sectionsForSortingArray.sort(function(a, b) {
+            return +a.getAttribute("data-order") - +b.getAttribute("data-order");
+        });
+        sectionsForSortingArray.forEach(function(el) {
+            document.querySelector('.page-wrap-right').appendChild(el);
+        });
 
-            // re-initialize navigation Intersection Observer
-            var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
-            observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
-                for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
-                    var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
-                    if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
-                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
-                        document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
-                    } else {
-                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                        var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                        while ( !RemoveCategoryMark === null ) {
-                            RemoveCategoryMark[0].classList.remove('currently-visible');
-                        }
-                        var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                        while ( !RemoveCategoryLinkDetails === null ) {
-                            RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
-                        }
-                        var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                        while ( !RemoveCategoryController === null ) {
-                            RemoveCategoryController[0].classList.remove('currently-visible');
-                        }
+        var moveAddSectionToEnd = document.querySelector('.add-section');
+        var moveAddSectionParent = document.querySelector('.category-links');
+        moveAddSectionParent.appendChild(moveAddSectionToEnd);
+
+        // re-initialize navigation Intersection Observer
+        var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+        observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
+            for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
+                var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
+                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
+                } else {
+                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
+                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
+                    while ( !RemoveCategoryMark === null ) {
+                        RemoveCategoryMark[0].classList.remove('currently-visible');
                     }
-                    observer.takeRecords(id);
+                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
+                    while ( !RemoveCategoryLinkDetails === null ) {
+                        RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                    }
+                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
+                    while ( !RemoveCategoryController === null ) {
+                        RemoveCategoryController[0].classList.remove('currently-visible');
+                    }
                 }
-            });
-            for (var i = 0; i < allIndexArticleSections.length; i++) {
-                var eachIndexArticleSection = allIndexArticleSections[i];
-                observer.observe(eachIndexArticleSection);
+                observer.takeRecords(id);
             }
+        });
+        for (var i = 0; i < allIndexArticleSections.length; i++) {
+            var eachIndexArticleSection = allIndexArticleSections[i];
+            observer.observe(eachIndexArticleSection);
         }
     }
-}
+});
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 $(".add-section .add-section-mark").on("click", function() {
