@@ -15,5 +15,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "yahoo-weather": "^1.0.0"
+  }
 }

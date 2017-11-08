@@ -935,10 +935,10 @@ document.querySelector('.user-controller-login-form .user-controller-form-input-
     }
 }
 
-// Pinned Articles Setup
+// Pinned Articles setup
 // ------------------------------------------------------------------------
 var totalPinnedArticlesBefore = document.querySelector('.pinned-articles-content ul').children.length;
-console.log(totalPinnedArticlesBefore);
+// console.log(totalPinnedArticlesBefore);
 document.querySelector('.container-pinned-total').innerHTML = totalPinnedArticlesBefore;
 if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
     document.querySelector('.container-pinned-total').style.display = "none";
@@ -951,6 +951,14 @@ if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
     }
 }
 
+// Yahoo Weather API
+// ------------------------------------------------------------------------
+function getWeatherDemo() {
+    $.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast ' + 'where woeid in (select woeid from geo.places(1) where text="London")&format=json', function (data) {
+        console.log(data);
+        alert("The temperatute in London is " + data.query.results.channel.item.condition.temp + data.query.results.channel.units.temperature );
+    });
+}
 
 /*
 
