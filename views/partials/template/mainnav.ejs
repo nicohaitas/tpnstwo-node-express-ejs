@@ -46,11 +46,13 @@
                                     <%_ if (ifStatementIterationLimit < 12) { _%>
                                         <article name="<%- thisArticleSlug.subcategoryslug %>">
                                             <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
+                                                <%_ if ( thisArticleSlug.kickerimage350 ) { _%>
                                                 <div class="article-image <%- thisArticleSlug.imageorientation %>">
                                                     <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisArticleSlug.kickerimage350 %>');">
                                                         <img src="<%- thisArticleSlug.kickerimage350 %>" alt="Image for <%- thisArticleSlug.kicker %> article" />
                                                     </div>
                                                 </div>
+                                                <%_ } _%>
                                                 <h1><%- thisArticleSlug.kicker %></h1>
                                             </a>
                                         </article>
@@ -65,11 +67,13 @@
                                         <a href="" title="Takes you to see the columnist <%- thisColumnist.columnistname %> and all of their articles">
                                             <div class="columnist-container">
                                                 <div class="columnist-left">
+                                                    <%_ if ( thisColumnist.columnistimage100 ) { _%>
                                                     <div class="article-image <%- thisColumnist.imageorientation %>">
                                                         <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisColumnist.columnistimage100 %>');">
                                                             <img src="<%- thisColumnist.columnistimage100 %>" alt="Image of the columnist <%- thisColumnist.columnistname %>" />
                                                         </div>
                                                     </div>
+                                                    <%_ } _%>
                                                 </div>
                                                 <div class="columnist-right">
                                                     <h1><%- thisColumnist.columnistname %></h1>
@@ -111,11 +115,13 @@
                                         <%_ while (k++ < 12) { _%>
                                             <article name="<%- data.articles[k].categoryslug %>">
                                                 <a href="" title="Takes you to read <%- data.articles[k].hardlead %> article">
+                                                    <%_ if ( data.articles[k].hardleadimage350 ) { _%>
                                                     <div class="article-image <%- data.articles[k].imageorientation %>">
                                                         <div class="new-article-image compat-object-fit" style="background-image: url('<%- data.articles[k].hardleadimage350 %>');">
                                                             <img src="<%- data.articles[k].hardleadimage350 %>" alt="Image for <%- data.articles[k].hardlead %> article" />
                                                         </div>
                                                     </div>
+                                                    <%_ } _%>
                                                     <h1><%- data.articles[k].hardlead %></h1>
                                                 </a>
                                             </article>
@@ -131,11 +137,13 @@
                                 <%_ if ( thisGeneralArticleContainerSlug === thisGeneralArticleSlug.categoryslug ) { _%>
                                     <article name="<%- thisGeneralArticleSlug.categoryslug %>">
                                         <a href="" title="Takes you to read <%- thisGeneralArticleSlug.kicker %> article">
+                                            <%_ if ( thisGeneralArticleSlug.kickerimage350 ) { _%>
                                             <div class="article-image <%- thisGeneralArticleSlug.imageorientation %>">
                                                 <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisGeneralArticleSlug.kickerimage350 %>');">
                                                     <img src="<%- thisGeneralArticleSlug.kickerimage350 %>" alt="Image for <%- thisGeneralArticleSlug.kicker %> article" />
                                                 </div>
                                             </div>
+                                            <%_ } _%>
                                             <h1><%- thisGeneralArticleSlug.kicker %></h1>
                                         </a>
                                     </article>
@@ -170,11 +178,13 @@
                                     <%_ if (ifStatementIterationLimit < 12) { _%>
                                         <article name="<%- thisArticleSlug.subcategoryslug %>">
                                             <a href="" title="Takes you to read <%- thisArticleSlug.kicker %> article">
+                                                <%_ if ( thisGeneralArticleSlug.kickerimage350 ) { _%>
                                                 <div class="article-image <%- thisArticleSlug.imageorientation %>">
                                                     <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisArticleSlug.kickerimage350 %>');">
                                                         <img src="<%- thisArticleSlug.kickerimage350 %>" alt="Image for <%- thisArticleSlug.kicker %> article" />
                                                     </div>
                                                 </div>
+                                                 <%_ } _%>
                                                 <h1><%- thisArticleSlug.kicker %></h1>
                                             </a>
                                         </article>
@@ -373,11 +383,13 @@
                                         <%_ if (micrositeIfStatementIterationLimit < 12) { _%>
                                             <article name="<%- thisMicrositeArticleSlug.categoryslug %>">
                                                 <a href="" title="Takes you to read <%- thisMicrositeArticleSlug.kicker %> article">
+                                                    <%_ if ( thisMicrositeArticleSlug.kickerimage350 ) { _%>
                                                     <div class="article-image <%- thisMicrositeArticleSlug.imageorientation %>">
                                                         <div class="new-article-image compat-object-fit" style="background-image: url('<%- thisMicrositeArticleSlug.kickerimage350 %>');">
                                                             <img src="<%- thisMicrositeArticleSlug.kickerimage350 %>" alt="Image for <%- thisMicrositeArticleSlug.kicker %> article" />
                                                         </div>
                                                     </div>
+                                                    <%_ } _%>
                                                     <h1><%- thisMicrositeArticleSlug.kicker %></h1>
                                                 </a>
                                             </article>

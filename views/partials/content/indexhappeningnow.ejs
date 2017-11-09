@@ -10,11 +10,13 @@
                             <div class="article-category-container">
                                 <a>
                                     <h1 class="article-headline"><%- eachArticle.headline %></h1>
+                                    <%_ if ( eachArticle.kickerimage350 ) { _%>
                                     <div class="article-image <%- eachArticle.imageorientation %>">
                                         <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachArticle.kickerimage350 %>');">
                                             <img src="<%- eachArticle.kickerimage350 %>" alt="Image for <%- eachArticle.kicker %> article" />
                                         </div>
                                     </div>
+                                    <%_ } _%>
                                     <h3 class="article-subhead"><%- eachArticle.subhead %></h3>
                                 </a>
                             </div>
