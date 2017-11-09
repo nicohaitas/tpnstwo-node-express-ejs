@@ -1766,7 +1766,6 @@ article h1, article h2, article h3, article h4, article h5, article h6, article 
 article .article-category-main-container .article-category-container a, article .article-category-related-container .article-category-container a {
 	display:block;
 }
-
 /* Category Titles with or without link */
 .content-area-category-title {
 	position:relative; font-size:200%; line-height:100%; padding:0px 10px 10px; border-bottom:2px solid #1a1c1d; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; margin-bottom:15px; z-index:1001;
@@ -1808,7 +1807,7 @@ article:hover .article-editorsnotes {
 	line-height:14px; vertical-align:middle; padding:2px 0px;
 }
 .article-category-identifier-container a, .article-authors-container a {
-	text-transform:uppercase;
+	text-transform: uppercase;
 }
 .article-category-identifier-container .subcategory-first-child-identifier:not(:empty):before, .article-category-identifier-container .subcategory-second-child-identifier:not(:empty):before {
 	content:"-"; padding:0px 4px;
@@ -1985,19 +1984,6 @@ article:hover .article-editorsnotes {
 .content-area-lead-story .article-category-main-container .article-hardlead p, 
 .content-area-lead-story .article-category-main-container .article-editorsnotes p {
 	padding:0; margin:0;
-}
-/* What to show for a page is controlled by the admin settings dashboard for the index page and is also dependant on admin rights to if they can make changes to the settings */
-/* .content-area-lead-story .article-category-main-container .article-headline, */
-.content-area-lead-story .article-category-main-container .article-kicker, 
-/* .content-area-lead-story .article-category-main-container .article-subhead, */
-.content-area-lead-story .article-category-main-container .article-softlead, 
-.content-area-lead-story .article-category-main-container .article-hardlead, 
-.content-area-lead-story .article-category-main-container .article-nutshell, 
-.content-area-lead-story .article-category-main-container .article-billboard, 
-.content-area-lead-story .article-category-main-container .article-editorsnotes, 
-.content-area-lead-story .article-category-main-container > .article-additional-info .article-published-date-time, 
-.content-area-lead-story .article-category-main-container > .article-additional-info .article-comments-total-container {
-	display:none;
 }
 .article-nutshell li {
 	list-style-type:disc; padding:5px 0px; margin-left:18px;

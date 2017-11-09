@@ -723,6 +723,12 @@ var allCategoryMarks = document.querySelectorAll('.category-mark');
 for (var i = 0; i < allCategoryMarks.length; i++) {
     allCategoryMarks[i].onclick = function(e) {
         e.preventDefault();
+        
+        var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
+        if ( closeCategoryAddSection.length > 0 ) {
+            closeCategoryAddSection[0].classList.remove('add-section-open');
+        }
+
         var thisCategoryMark = this;
         var thisCategoryMarksName = thisCategoryMark.getAttribute('name');
         var element = document.getElementById(thisCategoryMarksName);
@@ -1003,14 +1009,18 @@ reallySimpleWeather.weather({
     }
 });
 
-/*
-function getWeatherDemo() {
-    $.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast ' + 'where woeid in (select woeid from geo.places(1) where text="London")&format=json', function (data) {
-        console.log(data);
-        alert("The temperatute in London is " + data.query.results.channel.item.condition.temp + data.query.results.channel.units.temperature );
-    });
-}
-*/
+// Index Page - Happening Now Lead Story Related Article Area Setup
+// ------------------------------------------------------------------------
+var leadArticleTitle = document.querySelector('.content-area-lead-story article .article-category-main-container .article-category-container a > h1');
+var leadArticleTitleHeight = leadArticleTitle.offsetHeight;
+document.querySelector('.content-area-lead-story article .article-category-main-container .article-controller-container').style.top = leadArticleTitleHeight + "px";
+var leadArticleContainer = document.querySelector('.content-area-lead-story article .article-category-main-container');
+var leadArticleContainerHeight = leadArticleContainer.offsetHeight;
+document.querySelector('.content-area-lead-story article .article-category-related-container').style.height = (leadArticleContainerHeight - leadArticleTitleHeight) + "px";
+document.querySelector('.content-area-lead-story article .article-category-related-container').style.marginTop = leadArticleTitleHeight + "px";
+
+
+
 /*
 
 */
