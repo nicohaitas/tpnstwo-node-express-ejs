@@ -16,6 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "yahoo-weather": "^1.0.0"
+    "reallysimpleweather": "^1.0.0"
   }
 }

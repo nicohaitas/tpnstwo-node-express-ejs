@@ -953,12 +953,25 @@ if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
 
 // Yahoo Weather API
 // ------------------------------------------------------------------------
-function getWeatherDemo() {
-    $.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast ' + 'where woeid in (select woeid from geo.places(1) where text="London")&format=json', function (data) {
-        console.log(data);
-        alert("The temperatute in London is " + data.query.results.channel.item.condition.temp + data.query.results.channel.units.temperature );
-    });
-}
+reallySimpleWeather.weather({
+    location: 'Athens, GR',
+    woeid: '',
+    unit: 'c',
+    success: function(weather) {
+        html = '<div class="weather-temp">\
+                    <i class="weather-' + weather.code + '"></i>\
+                    <span class="weather-temp-number textb">' + weather.temp + '&deg;' + weather.units.temp + '</span>\
+                </div>';
+        html += '<div class="weather-details">\
+                    <h4>' + weather.city + ', ' + weather.region + '</h4>\
+                    <p class="weather-details-current">' + weather.currently + '</p>\
+                </div>';
+        document.getElementById('weather').innerHTML = html;
+    },
+    error: function(error) {
+        document.getElementById('weather').innerHTML = '<p>'+error+'</p>';
+    }
+});
 
 /*
 
