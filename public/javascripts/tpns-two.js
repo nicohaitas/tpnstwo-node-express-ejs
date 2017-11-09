@@ -179,17 +179,23 @@ observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
         } else {
             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-            while ( !RemoveCategoryMark === null ) {
-                RemoveCategoryMark[0].classList.remove('currently-visible');
+            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
+            if ( RemoveCategoryMark !== null ) {
+                while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                }
             }
-            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-            while ( !RemoveCategoryLinkDetails === null ) {
-                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details');
+            if ( RemoveCategoryLinkDetails !== null ) {
+                while ( RemoveCategoryLinkDetails.classList.contains('currently-visible') ) {
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                }
             }
-            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-            while ( !RemoveCategoryController === null ) {
-                RemoveCategoryController[0].classList.remove('currently-visible');
+            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span');
+            if ( RemoveCategoryController !== null ) {
+                while ( RemoveCategoryController.classList.contains('currently-visible') ) {
+                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                }
             }
         }
         observer.takeRecords(id);
@@ -341,17 +347,23 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
                             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                            while ( !RemoveCategoryMark === null ) {
-                                RemoveCategoryMark[0].classList.remove('currently-visible');
+                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
+                            if ( RemoveCategoryMark !== null ) {
+                                while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                                }
                             }
-                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                            while ( !RemoveCategoryLinkDetails === null ) {
-                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details');
+                            if ( RemoveCategoryLinkDetails !== null ) {
+                                while ( RemoveCategoryLinkDetails.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                                }
                             }
-                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                            while ( !RemoveCategoryController === null ) {
-                                RemoveCategoryController[0].classList.remove('currently-visible');
+                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span');
+                            if ( RemoveCategoryController !== null ) {
+                                while ( RemoveCategoryController.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                                }
                             }
                         }
                         observer.takeRecords(id);
@@ -390,17 +402,23 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
                             var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                            while ( !RemoveCategoryMark === null ) {
-                                RemoveCategoryMark[0].classList.remove('currently-visible');
+                            var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
+                            if ( RemoveCategoryMark !== null ) {
+                                while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                                }
                             }
-                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                            while ( !RemoveCategoryLinkDetails === null ) {
-                                RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                            var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details');
+                            if ( RemoveCategoryLinkDetails !== null ) {
+                                while ( RemoveCategoryLinkDetails.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                                }
                             }
-                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                            while ( !RemoveCategoryController === null ) {
-                                RemoveCategoryController[0].classList.remove('currently-visible');
+                            var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span');
+                            if ( RemoveCategoryController !== null ) {
+                                while ( RemoveCategoryController.classList.contains('currently-visible') ) {
+                                    document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                                }
                             }
                         }
                         observer.takeRecords(id);
@@ -510,17 +528,23 @@ document.getElementById("categoryLinks").addEventListener("click",function(e) {
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                 } else {
                     var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                    while ( !RemoveCategoryMark === null ) {
-                        RemoveCategoryMark[0].classList.remove('currently-visible');
+                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
+                    if ( RemoveCategoryMark !== null ) {
+                        while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                        }
                     }
-                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                    while ( !RemoveCategoryLinkDetails === null ) {
-                        RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details');
+                    if ( RemoveCategoryLinkDetails !== null ) {
+                        while ( RemoveCategoryLinkDetails.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                        }
                     }
-                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                    while ( !RemoveCategoryController === null ) {
-                        RemoveCategoryController[0].classList.remove('currently-visible');
+                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span');
+                    if ( RemoveCategoryController !== null ) {
+                        while ( RemoveCategoryController.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                        }
                     }
                 }
                 observer.takeRecords(id);
@@ -609,17 +633,23 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                 } else {
                     var id = eachIndexArticleSectionEntry.target.getAttribute('id');
-                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a.currently-visible');
-                    while ( !RemoveCategoryMark === null ) {
-                        RemoveCategoryMark[0].classList.remove('currently-visible');
+                    var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
+                    if ( RemoveCategoryMark !== null ) {
+                        while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.remove('currently-visible');
+                        }
                     }
-                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details.currently-visible');
-                    while ( !RemoveCategoryLinkDetails === null ) {
-                        RemoveCategoryLinkDetails[0].classList.remove('currently-visible');
+                    var RemoveCategoryLinkDetails = document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details');
+                    if ( RemoveCategoryLinkDetails !== null ) {
+                        while ( RemoveCategoryLinkDetails.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.remove('currently-visible');
+                        }
                     }
-                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span.currently-visible');
-                    while ( !RemoveCategoryController === null ) {
-                        RemoveCategoryController[0].classList.remove('currently-visible');
+                    var RemoveCategoryController = document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span');
+                    if ( RemoveCategoryController !== null ) {
+                        while ( RemoveCategoryController.classList.contains('currently-visible') ) {
+                            document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.remove('currently-visible');
+                        }
                     }
                 }
                 observer.takeRecords(id);
@@ -973,6 +1003,14 @@ reallySimpleWeather.weather({
     }
 });
 
+/*
+function getWeatherDemo() {
+    $.get('https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast ' + 'where woeid in (select woeid from geo.places(1) where text="London")&format=json', function (data) {
+        console.log(data);
+        alert("The temperatute in London is " + data.query.results.channel.item.condition.temp + data.query.results.channel.units.temperature );
+    });
+}
+*/
 /*
 
 */
