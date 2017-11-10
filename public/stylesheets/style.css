@@ -2075,49 +2075,49 @@ article:hover .article-editorsnotes {
 	float:left; width:30%; height:auto; padding:0% 4% 0% 0%; margin:0; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;
 }
 /* What to show for a page is controlled by the admin settings dashboard for the index page trending articles and is also dependant on admin rights to if they can make changes to the settings */
-/* #happeningnow .lead-story-left-column .article-category-container .article-headline, */
-#happeningnow .lead-story-left-column .article-category-container .article-kicker, 
-#happeningnow .lead-story-left-column .article-category-container .article-subhead, 
-#happeningnow .lead-story-left-column .article-category-container .article-softlead, 
-#happeningnow .lead-story-left-column .article-category-container .article-hardlead, 
-#happeningnow .lead-story-left-column .article-category-container .article-nutshell,
-#happeningnow .lead-story-left-column article:nth-of-type(2) .article-category-container .article-nutshell p,
-#happeningnow .lead-story-left-column .article-category-container .article-billboard, 
-#happeningnow .lead-story-left-column .article-category-container .article-editorsnotes, 
-#happeningnow .lead-story-left-column .article-category-related-container, 
-#happeningnow .lead-story-left-column .article-additional-info .article-category-identifier-container, 
-#happeningnow .lead-story-left-column .article-additional-info .article-published-date-time, 
-#happeningnow .lead-story-left-column .article-additional-info .article-authors-container, 
-#happeningnow .lead-story-left-column .article-additional-info .article-comments-total-container,
-#happeningnow .lead-story-left-column article:nth-of-type(2) .article-category-container .article-image {
+/* #happening-now .lead-story-left-column .article-category-container .article-headline,
+#happening-now .lead-story-left-column .article-category-container .article-kicker, 
+#happening-now .lead-story-left-column .article-category-container .article-subhead, 
+#happening-now .lead-story-left-column .article-category-container .article-softlead, 
+#happening-now .lead-story-left-column .article-category-container .article-hardlead, 
+#happening-now .lead-story-left-column .article-category-container .article-nutshell,
+#happening-now .lead-story-left-column article:nth-of-type(2) .article-category-container .article-nutshell p,
+#happening-now .lead-story-left-column .article-category-container .article-billboard, 
+#happening-now .lead-story-left-column .article-category-container .article-editorsnotes, 
+#happening-now .lead-story-left-column .article-category-related-container, 
+#happening-now .lead-story-left-column .article-additional-info .article-category-identifier-container, 
+#happening-now .lead-story-left-column .article-additional-info .article-published-date-time, 
+#happening-now .lead-story-left-column .article-additional-info .article-authors-container, 
+#happening-now .lead-story-left-column .article-additional-info .article-comments-total-container,
+#happening-now .lead-story-left-column article:nth-of-type(2) .article-category-container .article-image {
 	display:none;
-}
-#happeningnow .lead-story-left-column article:nth-of-type(2) .article-category-container .article-nutshell {
+} */
+#happening-now .lead-story-left-column article .article-category-container .article-nutshell {
 	display:block; position:relative; z-index:1000; padding-top:10px;
 }
-#happeningnow .lead-story-left-column article:nth-of-type(2) .article-additional-info .article-authors-container, 
-#happeningnow .lead-story-left-column article:nth-of-type(2) .article-additional-info .article-comments-total-container {
+#happening-now .lead-story-left-column article .article-additional-info .article-authors-container, 
+#happening-now .lead-story-left-column article .article-additional-info .article-comments-total-container {
 	display:block;
 }
-#happeningnow .lead-story-left-column .article-additional-info {
+#happening-now .lead-story-left-column .article-additional-info {
 	padding:0px 20px; margin:0;
 }
-#happeningnow .lead-story-left-column .article-additional-info small:last-of-type {
+#happening-now .lead-story-left-column .article-additional-info small:last-of-type {
 	padding-bottom:20px;
 }
-#happeningnow .lead-story-left-column .article-category-main-container {
+#happening-now .lead-story-left-column .article-category-main-container {
 	position:relative; display:block; width:100%; padding:0; margin:0; overflow:hidden;
 }
-#happeningnow .lead-story-left-column .article-category-main-container:hover {
+#happening-now .lead-story-left-column .article-category-main-container:hover {
 	background:#FFFFFF;
 }
-#happeningnow .lead-story-left-column .article-category-main-container .article-category-container > a {
+#happening-now .lead-story-left-column .article-category-main-container .article-category-container > a {
 	display:block; padding:20px 20px 16px;
 }
-#happeningnow .lead-story-left-column .article-category-container .article-headline {
+#happening-now .lead-story-left-column .article-category-container .article-headline {
 	position:relative; font-size:1.714em; line-height:120%; margin-top:10px; z-index:1000;
 }
-#happeningnow .lead-story-left-column .article-category-main-container .article-controller-container {
+#happening-now .lead-story-left-column .article-category-main-container .article-controller-container {
 	margin:5px 5px 0px 0px; z-index:999;
 }
 
@@ -2357,19 +2357,19 @@ h2 { font-size:2.143em; }
 
 h3 { font-size:1.714em; }
 
-#happeningnow .lead-story-left-column .article-category-main-container {
+#happening-now .lead-story-left-column .article-category-main-container {
 	position:relative; display:block; width:100%; padding:0; margin:0; overflow:hidden;
 }
-#happeningnow .lead-story-left-column .article-category-main-container:hover {
+#happening-now .lead-story-left-column .article-category-main-container:hover {
 	background:#FFFFFF;
 }
-#happeningnow .lead-story-left-column .article-category-main-container .article-category-container > a {
+#happening-now .lead-story-left-column .article-category-main-container .article-category-container > a {
 	display:block; padding:20px 20px 16px;
 }
-#happeningnow .lead-story-left-column .article-category-container .article-headline {
+#happening-now .lead-story-left-column .article-category-container .article-headline {
 	position:relative; font-size:1.714em; line-height:120%; margin-top:10px; z-index:1000;
 }
-#happeningnow .lead-story-left-column .article-category-main-container .article-controller-container {
+#happening-now .lead-story-left-column .article-category-main-container .article-controller-container {
 	margin:5px 5px 0px 0px; z-index:999;
 }
 

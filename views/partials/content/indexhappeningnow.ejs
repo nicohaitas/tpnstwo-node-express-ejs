@@ -100,11 +100,9 @@
                                                         <%_ } _%>
                                                     </small>
                                                     <%_ if ( relatedArticleParent.allowcomments === 1 ) { _%>
-                                                    <div class="article-additional-info">
                                                         <small class="article-comments-total-container">
                                                             <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- relatedArticleParent.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
                                                         </small>
-                                                    </div>
                                                     <%_ } _%>
                                                 </div>
                                                 <div class="article-controller-container">
@@ -137,7 +135,70 @@
             <div class="content-area-category-title textb textup">
                 Trending
             </div>
-            <article></article>
+            <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                <%_ eachHappeningNowTrendingArticle = data.articles[i]; _%>
+                <%_ var thisHappeningNowTrendingArticle = eachHappeningNowTrendingArticle.happeningnowtrendingarticleid; _%>
+                <%_ if ( thisHappeningNowTrendingArticle !== 0 ) { _%>
+                    <article>
+                        <div class="article-category-main-container">
+                            <%_ if ( eachHappeningNowTrendingArticle.kickerimage350 ) { _%>
+                            <div class="article-category-container">
+                                <a>
+                                    <div class="article-image <%- eachHappeningNowTrendingArticle.imageorientation %> <%- eachHappeningNowTrendingArticle.imagefullwidth %>">
+                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachHappeningNowTrendingArticle.kickerimage350 %>');">
+                                            <img src="<%- eachHappeningNowTrendingArticle.kickerimage350 %>" alt="Image for <%- eachHappeningNowTrendingArticle.kicker %> article" />
+                                        </div>
+                                    </div>
+                                    <h1 class="article-headline"><%- eachHappeningNowTrendingArticle.headline %></h1>
+                                    <div class="content-area-trending-incrementer"><%- eachHappeningNowTrendingArticle.happeningnowtrendingarticleid %></div>
+                                </a>
+                            </div>
+                            <%_ } else { _%>
+                            <div class="article-category-container">
+                                <a>
+                                    <h1 class="article-headline"><%- eachHappeningNowTrendingArticle.headline %></h1>
+                                    <div class="article-nutshell"><%- eachHappeningNowTrendingArticle.nutshell %></div>
+                                    <div class="content-area-trending-incrementer"><%- eachHappeningNowTrendingArticle.happeningnowtrendingarticleid %></div>
+                                </a>
+                            </div>
+                            <div class="article-additional-info">
+                                <small class="article-authors-container">
+                                    By: 
+                                    <%_ if ( eachHappeningNowTrendingArticle.reporter1 ) { _%>
+                                        <a href=""><span class="article-author"><%- eachHappeningNowTrendingArticle.reporter1 %></span></a>
+                                    <%_ } _%>
+                                    <%_ if ( eachHappeningNowTrendingArticle.reporter1 && eachHappeningNowTrendingArticle.reporter2 ) { _%>
+                                        and <a href=""><span class="article-author"><%- eachHappeningNowTrendingArticle.reporter2 %></span></a>
+                                    <%_ } _%>
+                                </small>
+                                <%_ if ( eachHappeningNowTrendingArticle.allowcomments === 1 ) { _%>
+                                <small class="article-comments-total-container">
+                                    <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- eachHappeningNowTrendingArticle.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
+                                </small>
+                                <%_ } _%>
+                            </div>
+                            <%_ } _%>
+                            <div class="article-controller-container">
+                                <div class="article-controller-pin-article">
+                                    <a title=""><i class="icon icon-tack"></i></a>
+                                </div>
+                                <div class="article-controller-share-article">
+                                    <a class="article-controller-share-button" title="">
+                                        <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                        <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                    </a>
+                                    <div class="article-controller-share-social">
+                                        <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                        <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                        <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                        <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                <%_ } _%>
+            <%_ } _%>
             <div class="content-area-trending-promo-area">
                 <a>
                     <span class="content-area-trending-promo-title textb textup">Got a confidential news tip?</span>
