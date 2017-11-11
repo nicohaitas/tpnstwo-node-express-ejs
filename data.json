@@ -305,7 +305,14 @@
             "categoryslug": "design-interiors"
         }, {
             "category": "Food",
-            "categoryslug": "food"
+            "categoryslug": "food",
+            "subcategories": [{
+                "subcategory": "Wine, Beer &amp; Cocktails",
+                "subcategoryslug": "wine-beer-cocktails"
+            }, {
+                "subcategory": "Restaurant Reviews",
+                "subcategoryslug": "restaurant-reviews"
+            }]
         }, {
             "category": "Travel",
             "categoryslug": "travel"
@@ -3454,7 +3461,7 @@
         "publisheddatetime": "2017-10-09T13:27:06+02:00",
         "reporter1": "Eleni Nikologlou",
         "reporter2": "Nico Haitas",
-        "micrositeslug": "",
+        "micrositeslug": "tpnstwo-magazine",
         "categoryslug": "food",
         "subcategoryslug": "wine-beer-cocktails",
         "subcategoryfirstchildslug": "",
@@ -3509,7 +3516,7 @@
         "publisheddatetime": "2017-10-09T13:27:06+02:00",
         "reporter1": "Eleni Nikologlou",
         "reporter2": "Nico Haitas",
-        "micrositeslug": "",
+        "micrositeslug": "tpnstwo-magazine",
         "categoryslug": "food",
         "subcategoryslug": "restaurant-reviews",
         "subcategoryfirstchildslug": "",
@@ -4830,7 +4837,7 @@
         "reporter2": "",
         "micrositeslug": "tpnstwo-magazine",
         "categoryslug": "food",
-        "subcategoryslug": "",
+        "subcategoryslug": "wine-beer-cocktails",
         "subcategoryfirstchildslug": "",
         "subcategorysecondchildslug": "",
         "articleurlfromheadline": "lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-praesent-pellentesque-ex-velit-vitae-dictum",

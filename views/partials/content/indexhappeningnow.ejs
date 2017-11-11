@@ -16,6 +16,7 @@
                                             <img src="<%- eachArticle.kickerimage350 %>" alt="Image for <%- eachArticle.kicker %> article" />
                                         </div>
                                     </div>
+                                    <h3 class="article-subhead"><%- eachArticle.subhead %></h3>
                                     <%_ } else { _%>
                                     <h3 class="article-subhead"><%- eachArticle.subhead %></h3>
                                     <div class="article-nutshell"><%- eachArticle.nutshell %></div>
@@ -221,15 +222,55 @@
                         Topics
                     </div>
                     <div class="article-category-subcategory-container textup textc">
-                        <a href="" title="">Smarter Living</a>
+                        <a href="/tpnstwo-magazine" title="">TPNStwo Magazine</a>
                     </div>
                     <div class="content-area-latest-articles-top-promo-inner-area">
-                        <div class="content-area-latest-articles-top-promo-inner-area-split">
-                            <article></article>
-                        </div>
-                        <div class="content-area-latest-articles-top-promo-inner-area-split">
-                            <article></article>
-                        </div>
+                        <%_ var insiderArticleCounter = 0; _%>
+                        <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                            <%_ eachInsiderArticle = data.articles[i]; _%>
+                            <%_ var thisInsiderArticle = eachInsiderArticle.micrositeslug; _%>
+                            <%_ if ( thisInsiderArticle === "tpnstwo-magazine" ) { _%>
+                                <%_ if (insiderArticleCounter < 2) { _%>
+                                    <div class="content-area-latest-articles-top-promo-inner-area-split">
+                                        <article id="article-<%- eachInsiderArticle.articleid %>">
+                                            <div class="article-category-main-container">
+                                                <div class="article-category-container">
+                                                    <a>
+                                                        <%_ if ( eachInsiderArticle.kickerimage350 ) { _%>
+                                                        <div class="article-image <%- eachInsiderArticle.imageorientation %>">
+                                                            <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachInsiderArticle.kickerimage350 %>');">
+                                                                <img src="<%- eachInsiderArticle.kickerimage350 %>" alt="Image for <%- eachInsiderArticle.kicker %> article" />
+                                                            </div>
+                                                        </div>
+                                                        <%_ } _%>
+                                                        <h1 class="article-headline"><%- eachInsiderArticle.headline %></h1>
+                                                        <h3 class="article-subhead"><%- eachInsiderArticle.subhead %></h3>
+                                                    </a>
+                                                </div>
+                                                <div class="article-controller-container">
+                                                    <div class="article-controller-pin-article">
+                                                        <a title=""><i class="icon icon-tack"></i></a>
+                                                    </div>
+                                                    <div class="article-controller-share-article">
+                                                        <a class="article-controller-share-button" title="">
+                                                            <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                            <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                        </a>
+                                                        <div class="article-controller-share-social">
+                                                            <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                            <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                            <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                            <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <%_ insiderArticleCounter ++; _%>
+                                <%_ } _%>
+                            <%_ } _%>
+                        <%_ } _%>
                     </div>
                     <div class="article-category-signup-container textc">
                         <p>Get a weekly roundup of the best advice from <span class="textb">TPNS</span><span class="texti">two</span> on living a better, smarter, more fulfilling life.</p>
