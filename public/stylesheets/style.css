@@ -2947,24 +2947,6 @@ h3 { font-size:1.714em; }
 .aside-module:first-of-type {
 	padding-top:0px;
 }
-/* What to show for a page is controlled by the admin settings dashboard for the index page aside opinion articles and is also dependant on admin rights to if they can make changes to the settings */
-.content-area-opinion-cell:nth-of-type(3) article:nth-of-type(1) .article-category-main-container > .article-category-container .article-image, 
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-headline, 
-/* .content-area-opinion-cell .article-category-main-container > .article-category-container .article-kicker, */
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-subhead, 
-/* .content-area-opinion-cell .article-category-main-container > .article-category-container .article-softlead, */
-.content-area-opinion-cell:nth-of-type(3) .article-category-main-container > .article-category-container .article-softlead, 
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-hardlead, 
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-nutshell, 
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-billboard, 
-.content-area-opinion-cell .article-category-main-container > .article-category-container .article-editorsnotes, 
-.content-area-opinion-cell .article-category-main-container > .article-additional-info .article-published-date-time, 
-.content-area-opinion-cell .article-category-main-container > .article-additional-info .article-category-identifier-container {
-	display:none;
-}
-.content-area-opinion-cell:nth-of-type(3) .article-category-main-container > .article-category-container .article-subhead {
-	display:block;
-}
 .content-area-opinion-cell {
 	display:table-cell; width:50%; position:relative; vertical-align:top;
 }

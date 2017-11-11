@@ -1,12 +1,12 @@
 <section id="happening-now">
     <main>
         <div class="content-area-lead-story">
-            <article>
-                <div class="article-category-main-container">
-                    <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
-                        <%_ eachArticle = data.articles[i]; _%>
-                        <%_ var thisArticle = eachArticle.leadarticle; _%>
-                        <%_ if ( thisArticle === 1 ) { _%>
+            <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                <%_ eachArticle = data.articles[i]; _%>
+                <%_ var thisArticle = eachArticle.leadarticle; _%>
+                <%_ if ( thisArticle === 1 ) { _%>
+                    <article>
+                        <div class="article-category-main-container">
                             <div class="article-category-container">
                                 <a>
                                     <h1 class="article-headline"><%- eachArticle.headline %></h1>
@@ -63,73 +63,73 @@
                                     </div>
                                 </div>
                             </div>
-                        <%_ } _%>
-                    <%_ } _%>
-                </div>
-                <div class="article-category-related-container">
-                    <ul>
-                        <%_ for (var j = 0 ; j < data.articles.length; j++) { _%>
-                            <%_ var relatedArticleParent = data.articles[j]; _%>
-                            <%_ var relatedArticleParentId = relatedArticleParent.articleid; _%>
-                            <%_ for (var k = 0 ; k < eachArticle.relatedarticleid.length; k++) { _%>
-                                <%_ var relatedArticleRange = eachArticle.relatedarticleid[k]; _%>
-                                    <%_ if ( relatedArticleParentId === relatedArticleRange ) { _%>
-                                        <li id="article-<%- relatedArticleParent.articleid %>">
-                                            <article>
-                                                <div class="article-category-container">
-                                                    <a>
-                                                        <%_ if ( relatedArticleParent.kickerimage350 ) { _%>
-                                                        <div class="article-image <%- relatedArticleParent.imageorientation %> <%- relatedArticleParent.imagefullwidth %>">
-                                                            <div class="new-article-image compat-object-fit" style="background-image: url('<%- relatedArticleParent.kickerimage350 %>');">
-                                                                <img src="<%- relatedArticleParent.kickerimage350 %>" alt="Image for <%- relatedArticleParent.kicker %> article" />
+                        </div>
+                        <div class="article-category-related-container">
+                            <ul>
+                                <%_ for (var j = 0 ; j < data.articles.length; j++) { _%>
+                                    <%_ var relatedArticleParent = data.articles[j]; _%>
+                                    <%_ var relatedArticleParentId = relatedArticleParent.articleid; _%>
+                                    <%_ for (var k = 0 ; k < eachArticle.relatedarticleid.length; k++) { _%>
+                                        <%_ var relatedArticleRange = eachArticle.relatedarticleid[k]; _%>
+                                        <%_ if ( relatedArticleParentId === relatedArticleRange ) { _%>
+                                            <li id="article-<%- relatedArticleParent.articleid %>">
+                                                <article>
+                                                    <div class="article-category-container">
+                                                        <a>
+                                                            <%_ if ( relatedArticleParent.kickerimage350 ) { _%>
+                                                            <div class="article-image <%- relatedArticleParent.imageorientation %> <%- relatedArticleParent.imagefullwidth %>">
+                                                                <div class="new-article-image compat-object-fit" style="background-image: url('<%- relatedArticleParent.kickerimage350 %>');">
+                                                                    <img src="<%- relatedArticleParent.kickerimage350 %>" alt="Image for <%- relatedArticleParent.kicker %> article" />
+                                                                </div>
+                                                            </div>
+                                                            <%_ } _%>
+                                                            <h2 class="article-kicker"><%- relatedArticleParent.kicker %></h2>
+                                                            <h3 class="article-subhead"><%- relatedArticleParent.subhead %></h3>
+                                                        </a>
+                                                    </div>
+                                                    <div class="article-additional-info">
+                                                        <small class="article-authors-container">
+                                                            By: 
+                                                            <%_ if ( relatedArticleParent.reporter1 ) { _%>
+                                                                <a href=""><span class="article-author"><%- relatedArticleParent.reporter1 %></span></a>
+                                                            <%_ } _%>
+                                                            <%_ if ( relatedArticleParent.reporter1 && relatedArticleParent.reporter2 ) { _%>
+                                                                and <a href=""><span class="article-author"><%- relatedArticleParent.reporter2 %></span></a>
+                                                            <%_ } _%>
+                                                        </small>
+                                                        <%_ if ( relatedArticleParent.allowcomments === 1 ) { _%>
+                                                            <small class="article-comments-total-container">
+                                                                <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- relatedArticleParent.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
+                                                            </small>
+                                                        <%_ } _%>
+                                                    </div>
+                                                    <div class="article-controller-container">
+                                                        <div class="article-controller-pin-article">
+                                                            <a title=""><i class="icon icon-tack"></i></a>
+                                                        </div>
+                                                        <div class="article-controller-share-article">
+                                                            <a class="article-controller-share-button" title="">
+                                                                <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                                <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                            </a>
+                                                            <div class="article-controller-share-social">
+                                                                <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                                <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                                <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                                <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
                                                             </div>
                                                         </div>
-                                                        <%_ } _%>
-                                                        <h2 class="article-kicker"><%- relatedArticleParent.kicker %></h2>
-                                                        <h3 class="article-subhead"><%- relatedArticleParent.subhead %></h3>
-                                                    </a>
-                                                </div>
-                                                <div class="article-additional-info">
-                                                    <small class="article-authors-container">
-                                                        By: 
-                                                        <%_ if ( relatedArticleParent.reporter1 ) { _%>
-                                                            <a href=""><span class="article-author"><%- relatedArticleParent.reporter1 %></span></a>
-                                                        <%_ } _%>
-                                                        <%_ if ( relatedArticleParent.reporter1 && relatedArticleParent.reporter2 ) { _%>
-                                                            and <a href=""><span class="article-author"><%- relatedArticleParent.reporter2 %></span></a>
-                                                        <%_ } _%>
-                                                    </small>
-                                                    <%_ if ( relatedArticleParent.allowcomments === 1 ) { _%>
-                                                        <small class="article-comments-total-container">
-                                                            <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- relatedArticleParent.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
-                                                        </small>
-                                                    <%_ } _%>
-                                                </div>
-                                                <div class="article-controller-container">
-                                                    <div class="article-controller-pin-article">
-                                                        <a title=""><i class="icon icon-tack"></i></a>
                                                     </div>
-                                                    <div class="article-controller-share-article">
-                                                        <a class="article-controller-share-button" title="">
-                                                            <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
-                                                            <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
-                                                        </a>
-                                                        <div class="article-controller-share-social">
-                                                            <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
-                                                            <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
-                                                            <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
-                                                            <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                        </li>
+                                                </article>
+                                            </li>
+                                        <%_ } _%>
                                     <%_ } _%>
-                            <%_ } _%>
-                        <%_ } _%>
-                    </ul>
-                </div>
-            </article>
+                                <%_ } _%>
+                            </ul>
+                        </div>
+                    </article>
+                <%_ } _%>
+            <%_ } _%>
         </div>
         <div name="trending" class="lead-story-left-column">
             <div class="content-area-category-title textb textup">
@@ -454,10 +454,172 @@
                 Opinion
             </div>
             <div class="content-area-opinion-cell">
-                <article></article>
+                <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                    <%_ allArticlesForOpinion = data.articles[i]; _%>
+                    <%_ var leadArticleToGetOpinion = allArticlesForOpinion.leadarticle; _%>
+                    <%_ if ( leadArticleToGetOpinion === 1 ) { _%>
+                        <%_ for (var j = 0 ; j < data.articles.length; j++) { _%>
+                            <%_ var leadArticleOpinionParent = data.articles[j]; _%>
+                            <%_ var leadArticleOpinionParentId = leadArticleOpinionParent.articleid; _%>
+                            <%_ for (var k = 0 ; k < allArticlesForOpinion.relatedopinionarticleid.length; k++) { _%>
+                                <%_ var leadArticleOpinionParentRange = allArticlesForOpinion.relatedopinionarticleid[k]; _%>
+                                <%_ if ( leadArticleOpinionParentId === leadArticleOpinionParentRange ) { _%>
+                                    <%_ while (k++ < 1) { _%>
+                                        <article>
+                                            <div class="article-category-main-container">
+                                                <%_ if ( leadArticleOpinionParent.softleadimage350 ) { _%>
+                                                <div class="article-category-container">
+                                                    <a>
+                                                        <div class="article-image <%- leadArticleOpinionParent.imageorientation %> <%- leadArticleOpinionParent.imagefullwidth %>">
+                                                            <div class="new-article-image compat-object-fit" style="background-image: url('<%- leadArticleOpinionParent.softleadimage350 %>');">
+                                                                <img src="<%- leadArticleOpinionParent.softleadimage350 %>" alt="Image for <%- leadArticleOpinionParent.kicker %> article" />
+                                                            </div>
+                                                        </div>
+                                                        <h2 class="article-kicker"><%- leadArticleOpinionParent.kicker %></h2>
+                                                        <div class="article-softlead">
+                                                            <p><%- leadArticleOpinionParent.softlead %></p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <%_ } _%>
+                                                <div class="article-additional-info">
+                                                    <small class="article-authors-container">
+                                                        By: 
+                                                        <%_ if ( leadArticleOpinionParent.reporter1 ) { _%>
+                                                            <a href=""><span class="article-author"><%- leadArticleOpinionParent.reporter1 %></span></a>
+                                                        <%_ } _%>
+                                                        <%_ if ( leadArticleOpinionParent.reporter1 && leadArticleOpinionParent.reporter2 ) { _%>
+                                                            and <a href=""><span class="article-author"><%- leadArticleOpinionParent.reporter2 %></span></a>
+                                                        <%_ } _%>
+                                                    </small>
+                                                    <%_ if ( leadArticleOpinionParent.allowcomments === 1 ) { _%>
+                                                    <small class="article-comments-total-container">
+                                                        <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- leadArticleOpinionParent.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
+                                                    </small>
+                                                    <%_ } _%>
+                                                </div>
+                                                <div class="article-controller-container">
+                                                    <div class="article-controller-pin-article">
+                                                        <a title=""><i class="icon icon-tack"></i></a>
+                                                    </div>
+                                                    <div class="article-controller-share-article">
+                                                        <a class="article-controller-share-button" title="">
+                                                            <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                            <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                        </a>
+                                                        <div class="article-controller-share-social">
+                                                            <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                            <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                            <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                            <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="article-category-related-container">
+                                                <ul>
+                                                    <%_ var leadArticleOpinionParentRangeCounter = 0; _%>
+                                                    <%_ for (var l = 0 ; l < data.articles.length; l++) { _%>
+                                                        <%_ var relatedArticleOpinionParent = data.articles[l]; _%>
+                                                        <%_ var relatedArticleOpinionParentId = relatedArticleOpinionParent.articleid; _%>
+                                                        <%_ for (var m = 0 ; m < allArticlesForOpinion.relatedarticleid.length; m++) { _%>
+                                                            <%_ var relatedArticleOpinionRange = allArticlesForOpinion.relatedarticleid[m]; _%>
+                                                            <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
+                                                                <%_ if (leadArticleOpinionParentRangeCounter < 4) { _%>
+                                                                    <li id="article-<%- relatedArticleOpinionParent.articleid %>">
+                                                                        <article>
+                                                                            <div class="article-category-container">
+                                                                                <a>
+                                                                                    <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
+                                                                                </a>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <%_ leadArticleOpinionParentRangeCounter ++; _%>
+                                                                <%_ } _%>
+                                                            <%_ } _%>
+                                                        <%_ } _%>
+                                                    <%_ } _%>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                    <%_ } _%>
+                                <%_ } _%>
+                            <%_ } _%>
+                        <%_ } _%>
+                    <%_ } _%>
+                <%_ } _%>
             </div>
             <div class="content-area-opinion-cell">
-                <article></article>
+                <%_ for (var l = 0 ; l < data.articles.length; l++) { _%>
+                    <%_ allArticlesForOpinionRight = data.articles[l]; _%>
+                    <%_ var leadArticleToGetOpinionRight = allArticlesForOpinionRight.leadarticle; _%>
+                    <%_ var leadArticleOpinionParentRangeCounterRight = 0; _%>
+                    <%_ if ( leadArticleToGetOpinionRight === 1 ) { _%>
+                        <%_ for (var m = 0 ; m < data.articles.length; m++) { _%>
+                            <%_ var leadArticleOpinionParentRight = data.articles[m]; _%>
+                            <%_ var leadArticleOpinionParentIdRight = leadArticleOpinionParentRight.articleid; _%>
+                            <%_ for (var n = 1; n < allArticlesForOpinionRight.relatedopinionarticleid.length; n++) { _%>
+                                <%_ var leadArticleOpinionParentRangeRight = allArticlesForOpinionRight.relatedopinionarticleid[n]; _%>
+                                <%_ if ( leadArticleOpinionParentIdRight === leadArticleOpinionParentRangeRight ) { _%>
+                                    <%_ if (leadArticleOpinionParentRangeCounterRight < 2) { _%>
+                                        <article>
+                                            <div class="article-category-main-container">
+                                                <%_ if ( leadArticleOpinionParentRight.kickerimage350 ) { _%>
+                                                <div class="article-category-container">
+                                                    <a>
+                                                        <div class="article-image <%- leadArticleOpinionParentRight.imageorientation %> <%- leadArticleOpinionParentRight.imagefullwidth %>">
+                                                            <div class="new-article-image compat-object-fit" style="background-image: url('<%- leadArticleOpinionParentRight.kickerimage350 %>');">
+                                                                <img src="<%- leadArticleOpinionParentRight.kickerimage350 %>" alt="Image for <%- leadArticleOpinionParentRight.kicker %> article" />
+                                                            </div>
+                                                        </div>
+                                                        <h2 class="article-kicker"><%- leadArticleOpinionParentRight.kicker %></h2>
+                                                        <h3 class="article-subhead"><%- leadArticleOpinionParentRight.subhead %></h3>
+                                                    </a>
+                                                </div>
+                                                <%_ } _%>
+                                                <div class="article-additional-info">
+                                                    <small class="article-authors-container">
+                                                        By: 
+                                                        <%_ if ( leadArticleOpinionParentRight.reporter1 ) { _%>
+                                                            <a href=""><span class="article-author"><%- leadArticleOpinionParentRight.reporter1 %></span></a>
+                                                        <%_ } _%>
+                                                        <%_ if ( leadArticleOpinionParentRight.reporter1 && leadArticleOpinionParentRight.reporter2 ) { _%>
+                                                            and <a href=""><span class="article-author"><%- leadArticleOpinionParentRight.reporter2 %></span></a>
+                                                        <%_ } _%>
+                                                    </small>
+                                                    <%_ if ( leadArticleOpinionParentRight.allowcomments === 1 ) { _%>
+                                                    <small class="article-comments-total-container">
+                                                        <a href=""><i class="icon icon-comments"></i><span class="article-comments-total"><%- leadArticleOpinionParentRight.articletotalcomments %></span><span class="article-comments-text">Comments</span></a>
+                                                    </small>
+                                                    <%_ } _%>
+                                                </div>
+                                                <div class="article-controller-container">
+                                                    <div class="article-controller-pin-article">
+                                                        <a title=""><i class="icon icon-tack"></i></a>
+                                                    </div>
+                                                    <div class="article-controller-share-article">
+                                                        <a class="article-controller-share-button" title="">
+                                                            <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                            <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                        </a>
+                                                        <div class="article-controller-share-social">
+                                                            <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                            <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                            <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                            <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <%_ leadArticleOpinionParentRangeCounterRight ++; _%>
+                                    <%_ } _%>
+                                <%_ } _%>
+                            <%_ } _%>
+                        <%_ } _%>
+                    <%_ } _%>
+                <%_ } _%>
             </div>
         </div>
         <div class="aside-module aside-promo-area-two-column">
