@@ -16,8 +16,10 @@
                                             <img src="<%- eachArticle.kickerimage350 %>" alt="Image for <%- eachArticle.kicker %> article" />
                                         </div>
                                     </div>
-                                    <%_ } _%>
+                                    <%_ } else { _%>
                                     <h3 class="article-subhead"><%- eachArticle.subhead %></h3>
+                                    <div class="article-nutshell"><%- eachArticle.nutshell %></div>
+                                    <%_ } _%>
                                 </a>
                             </div>
                             <div class="article-additional-info">
@@ -518,24 +520,49 @@
                                             </div>
                                             <div class="article-category-related-container">
                                                 <ul>
-                                                    <%_ var leadArticleOpinionParentRangeCounter = 0; _%>
-                                                    <%_ for (var l = 0 ; l < data.articles.length; l++) { _%>
-                                                        <%_ var relatedArticleOpinionParent = data.articles[l]; _%>
-                                                        <%_ var relatedArticleOpinionParentId = relatedArticleOpinionParent.articleid; _%>
-                                                        <%_ for (var m = 0 ; m < allArticlesForOpinion.relatedarticleid.length; m++) { _%>
-                                                            <%_ var relatedArticleOpinionRange = allArticlesForOpinion.relatedarticleid[m]; _%>
-                                                            <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
-                                                                <%_ if (leadArticleOpinionParentRangeCounter < 4) { _%>
-                                                                    <li id="article-<%- relatedArticleOpinionParent.articleid %>">
-                                                                        <article>
-                                                                            <div class="article-category-container">
-                                                                                <a>
-                                                                                    <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
-                                                                                </a>
-                                                                            </div>
-                                                                        </article>
-                                                                    </li>
-                                                                    <%_ leadArticleOpinionParentRangeCounter ++; _%>
+                                                    <%_ if ( leadArticleOpinionParent.imagefullwidth ) { _%>
+                                                        <%_ var leadArticleOpinionParentRangeCounter = 0; _%>
+                                                        <%_ for (var l = 0 ; l < data.articles.length; l++) { _%>
+                                                            <%_ var relatedArticleOpinionParent = data.articles[l]; _%>
+                                                            <%_ var relatedArticleOpinionParentId = relatedArticleOpinionParent.articleid; _%>
+                                                            <%_ for (var m = 0 ; m < allArticlesForOpinion.relatedarticleid.length; m++) { _%>
+                                                                <%_ var relatedArticleOpinionRange = allArticlesForOpinion.relatedarticleid[m]; _%>
+                                                                <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
+                                                                    <%_ if (leadArticleOpinionParentRangeCounter < 3) { _%>
+                                                                        <li id="article-<%- relatedArticleOpinionParent.articleid %>">
+                                                                            <article>
+                                                                                <div class="article-category-container">
+                                                                                    <a>
+                                                                                        <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </article>
+                                                                        </li>
+                                                                        <%_ leadArticleOpinionParentRangeCounter ++; _%>
+                                                                    <%_ } _%>
+                                                                <%_ } _%>
+                                                            <%_ } _%>
+                                                        <%_ } _%>
+                                                    <%_ } else { _%>
+                                                        <%_ var leadArticleOpinionParentRangeCounter = 0; _%>
+                                                        <%_ for (var l = 0 ; l < data.articles.length; l++) { _%>
+                                                            <%_ var relatedArticleOpinionParent = data.articles[l]; _%>
+                                                            <%_ var relatedArticleOpinionParentId = relatedArticleOpinionParent.articleid; _%>
+                                                            <%_ for (var m = 0 ; m < allArticlesForOpinion.relatedarticleid.length; m++) { _%>
+                                                                <%_ var relatedArticleOpinionRange = allArticlesForOpinion.relatedarticleid[m]; _%>
+                                                                <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
+                                                                    <%_ if (leadArticleOpinionParentRangeCounter < 5) { _%>
+                                                                        <li id="article-<%- relatedArticleOpinionParent.articleid %>">
+                                                                            <article>
+                                                                                <div class="article-category-container">
+                                                                                    <a>
+                                                                                        <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </article>
+                                                                        </li>
+                                                                        <%_ leadArticleOpinionParentRangeCounter ++; _%>
+                                                                    <%_ } _%>
                                                                 <%_ } _%>
                                                             <%_ } _%>
                                                         <%_ } _%>
@@ -568,7 +595,7 @@
                                                 <%_ if ( leadArticleOpinionParentRight.kickerimage350 ) { _%>
                                                 <div class="article-category-container">
                                                     <a>
-                                                        <div class="article-image <%- leadArticleOpinionParentRight.imageorientation %> <%- leadArticleOpinionParentRight.imagefullwidth %>">
+                                                        <div class="article-image <%- leadArticleOpinionParentRight.imageorientation %> <%- leadArticleOpinionParent.imagefullwidth %>">
                                                             <div class="new-article-image compat-object-fit" style="background-image: url('<%- leadArticleOpinionParentRight.kickerimage350 %>');">
                                                                 <img src="<%- leadArticleOpinionParentRight.kickerimage350 %>" alt="Image for <%- leadArticleOpinionParentRight.kicker %> article" />
                                                             </div>
@@ -627,7 +654,49 @@
                 <div class="content-area-category-title textb textup">
                     Insider
                 </div>
-                <article></article>
+                <%_ var insiderArticleCounter = 0; _%>
+                <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                    <%_ eachInsiderArticle = data.articles[i]; _%>
+                    <%_ var thisInsiderArticle = eachInsiderArticle.micrositeslug; _%>
+                    <%_ if ( thisInsiderArticle === "tpnstwo-insider" ) { _%>
+                        <%_ if (insiderArticleCounter < 1) { _%>
+                            <article id="article-<%- eachInsiderArticle.articleid %>">
+                                <div class="article-category-main-container">
+                                    <div class="article-category-container">
+                                        <a>
+                                            <%_ if ( eachInsiderArticle.kickerimage350 ) { _%>
+                                            <div class="article-image <%- eachInsiderArticle.imageorientation %>">
+                                                <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachInsiderArticle.kickerimage350 %>');">
+                                                    <img src="<%- eachInsiderArticle.kickerimage350 %>" alt="Image for <%- eachInsiderArticle.kicker %> article" />
+                                                </div>
+                                            </div>
+                                            <%_ } _%>
+                                            <h2 class="article-kicker"><%- eachInsiderArticle.kicker %></h2>
+                                        </a>
+                                    </div>
+                                    <div class="article-controller-container">
+                                        <div class="article-controller-pin-article">
+                                            <a title=""><i class="icon icon-tack"></i></a>
+                                        </div>
+                                        <div class="article-controller-share-article">
+                                            <a class="article-controller-share-button" title="">
+                                                <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                            </a>
+                                            <div class="article-controller-share-social">
+                                                <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                            <%_ insiderArticleCounter ++; _%>
+                        <%_ } _%>
+                    <%_ } _%>
+                <%_ } _%>
             </div>
             <div class="content-area-opinion-cell">
                 <div class="content-area-category-title textr textb textup">

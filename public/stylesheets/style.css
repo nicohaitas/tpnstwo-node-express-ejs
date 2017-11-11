@@ -2977,21 +2977,6 @@ h3 { font-size:1.714em; }
 
 /* Index Page - Aside Opinion Area Related Articles
 ------------------------------------------------------------------------ */
-/* What to show for a page is controlled by the admin settings dashboard for the index page aside opinion articles and is also dependant on admin rights to if they can make changes to the settings */
-.content-area-opinion-cell:nth-of-type(3) .article-category-related-container, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-image, 
-/* .content-area-opinion-cell .article-category-related-container li .article-category-container .article-headline, */
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-kicker, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-subhead, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-softlead, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-hardlead, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-nutshell, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-billboard, 
-.content-area-opinion-cell .article-category-related-container li .article-category-container .article-editorsnotes, 
-.content-area-opinion-cell .article-category-related-container li .article-additional-info, 
-.content-area-opinion-cell .article-category-related-container li article > .article-controller-container {
-	display:none;
-}
 .content-area-opinion-cell .article-category-related-container {
 	float:none; display:block; width:100%; height:auto; overflow:inherit; overflow-y:inherit; padding:0px 20px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;
 }
@@ -3010,9 +2995,6 @@ h3 { font-size:1.714em; }
 .content-area-opinion-cell .article-category-related-container li:first-child article a {
 	padding-top:0px;
 }
-.content-area-opinion-cell .article-category-related-container li:nth-child(4) article a {
-	padding-bottom:0px;
-}
 .content-area-opinion-cell .article-category-related-container li .article-category-container .article-headline {
 	font-size:1em; line-height:120%;
 }
@@ -3028,19 +3010,6 @@ h3 { font-size:1.714em; }
 
 /* Aside Promo Area Insider Latest Article
 ------------------------------------------------------------------------ */
-/* This area is NOT controlled by the Admin Area */
-.aside-promo-area-two-column .article-category-container .article-kicker, 
-.aside-promo-area-two-column .article-category-container .article-subhead, 
-.aside-promo-area-two-column .article-category-container .article-softlead, 
-.aside-promo-area-two-column .article-category-container .article-hardlead, 
-.aside-promo-area-two-column .article-category-container .article-nutshell, 
-.aside-promo-area-two-column .article-category-container .article-billboard, 
-.aside-promo-area-two-column .article-category-container .article-editorsnotes, 
-.aside-promo-area-two-column .article-additional-info, 
-.aside-promo-area-two-column .article-controller-container, 
-.aside-promo-area-two-column .article-category-related-container {
-	display:none;
-}
 .aside-promo-area-two-column article {
 	padding:0; margin:0; margin-right:10px;
 }
