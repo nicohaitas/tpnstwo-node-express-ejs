@@ -75,6 +75,35 @@ if ( document.querySelector('.newspaper-category') ) {
 }
 document.querySelector('.current-year').innerHTML = curr_year;
 
+// Date from JSON
+// ------------------------------------------------------------------------
+var allContentDateTime = document.querySelectorAll('.article-published-date-time time');
+for(var i = 0; i < allContentDateTime.length; i++) {
+    var eachContentDateTime = allContentDateTime[i];
+    var eachContentDateTimeFromAttribute = eachContentDateTime.getAttribute('datetime');
+	var dd = new Date(eachContentDateTimeFromAttribute);
+	var curMonth = m_names[dd.getMonth()];
+	var curDay = dd.getDate();
+	var ddsup = "";
+	if (curDay === 1 || curDay === 21 || curDay === 31) {
+		ddsup = "st";
+	} else if (curDay === 2 || curDay === 22) {
+		ddsup = "nd";
+	} else if (curDay === 3 || curDay === 23) {
+		ddsup = "rd";
+	} else {
+		ddsup = "th";
+    }
+    eachContentDateTime.innerHTML = '<span class="current-day">' + curDay + '<SUP>' + ddsup + '</SUP></span> <span class="current-month">' + curMonth + '</span> <span class="current-year">' + dd.getFullYear() + '</span>';
+    //console.log(eachContentDateTimeFromAttribute);
+}
+
+// Aside Timeago Plugin Settings
+// ------------------------------------------------------------------------
+var timeagoIns = timeago();
+timeagoIns.render(document.querySelectorAll('.newsfeed-editors-choice-by-day-filter time.timeago'));
+timeagoIns.render(document.querySelectorAll('#editorschoice-sports time.timeago'));
+
 // Auto-Reveal Sticky Header Navigation
 // ------------------------------------------------------------------------
 var lastScrollTop = 0;
@@ -1081,6 +1110,30 @@ for ( var i = 0, eachAudioPlayersDownloadBtn = allAudioPlayersDownloadBtns.lengt
     thisAudioPlayersDownloadBtn.setAttribute('href', thisParentAudioPlayerSource);
 }
 
+// Happening Now Aside Editors Choice Height Controller
+// ------------------------------------------------------------------------
+var indexTrendingContainerHeight = document.querySelector('.lead-story-left-column').clientHeight;
+var indexAsideOpinionContainerHeight = document.querySelector('.content-area-opinion').clientHeight;
+var indexAsidePromoAreaContainerHeight = document.querySelector('.aside-promo-area-two-column').clientHeight;
+var indexAsideNewsFeedTitleContainerHeight = document.querySelector('.content-area-news-feed-title').clientHeight;
+var indexAsideNewsFeedFeedbackLinkHeight = document.querySelector('.newsfeed-editors-choice-feedback-link').clientHeight;
+// After adding the Ad's remember to remove it's height from the Editor's Choice Area here
+//
+//var indexAsideInHouseAdHeight = document.querySelector('.in-house-ad-area').clientHeight;
+//
+document.querySelector('.content-area-news-feed-inner-container').style.height = ((indexTrendingContainerHeight) - (indexAsideOpinionContainerHeight) - (indexAsidePromoAreaContainerHeight) - (indexAsideNewsFeedTitleContainerHeight) - (indexAsideNewsFeedFeedbackLinkHeight) - 85) + "px";
+
+
+
 /*
+
+var indexTrendingContainerHeight = $('.lead-story-left-column').innerHeight();
+var indexAsideOpinionContainerHeight = $('.content-area-opinion').height();
+var indexAsidePromoAreaContainerHeight = $('.aside-promo-area-two-column').height();
+var indexAsideNewsFeedTitleContainerHeight = $('.content-area-news-feed-title').outerHeight();
+
+var indexAsideNewsFeedFeedbackLinkHeight = $('.newsfeed-editors-choice-feedback-link').outerHeight();
+var indexAsideInHouseAdHeight = $('.in-house-ad-area').outerHeight();
+$('.content-area-news-feed-inner-container').css('height', ((indexTrendingContainerHeight) - (indexAsideOpinionContainerHeight) - (indexAsidePromoAreaContainerHeight) - (indexAsideNewsFeedTitleContainerHeight) - (indexAsideNewsFeedFeedbackLinkHeight) - (indexAsideInHouseAdHeight) - 85));
 
 */

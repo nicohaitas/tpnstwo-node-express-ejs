@@ -216,14 +216,14 @@
                         Podcasts
                     </div>
                     <%_ var podcastArticleCounter = 0; _%>
-                    <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
-                        <%_ eachPodcastArticle = data.articles[i]; _%>
+                    <%_ for (var i = 0 ; i < data.podcasts.length; i++) { _%>
+                        <%_ eachPodcastArticle = data.podcasts[i]; _%>
                         <%_ var thisPodcastArticle = eachPodcastArticle.categoryslug; _%>
                         <%_ if ( thisPodcastArticle === "the-daily" ) { _%>
                             <%_ if (podcastArticleCounter < 1) { _%>
                                 <podcast id="article-<%- eachPodcastArticle.articleid %>">
                                     <div class="article-category-subcategory-container textup">
-                                        <a href="" title="">The Daily</a>
+                                        <a href="/<%- eachPodcastArticle.categoryslug %>" title=""><%- eachPodcastArticle.category %></a>
                                     </div>
                                     <div class="article-category-main-container">
                                         <div class="article-category-container">
@@ -797,42 +797,69 @@
                 Editor&#39;s Choice
             </div>
             <div class="content-area-news-feed-inner-container">
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-12T15:28:06+02:00"></time>
+                <%_ for (var i = 0 ; i < data.editorschoicebyweek.length; i++) { _%>
+                    <%_ eachEditorsChoiceByWeekArticle = data.editorschoicebyweek[i]; _%>
+                    <%_ var thisEditorsChoiceByWeekArticle = eachEditorsChoiceByWeekArticle.editorschoicebyday; _%>
+                    <div class="newsfeed-editors-choice-by-day-filter">
+                        <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
+                            <time class="<%- thisEditorsChoiceByWeekArticle %>" datetime="<%- thisEditorsChoiceByWeekArticle %>"></time>
+                        </div>
+                        <%_ for (var j = 0 ; j < data.articles.length; j++) { _%>
+                            <%_ var eachEditorsChoiceByWeekArticleParent = data.articles[j]; _%>
+                            <%_ var eachEditorsChoiceByWeekArticleParentId = eachEditorsChoiceByWeekArticleParent.articleid; _%>
+                            <%_ for (var k = 0 ; k < eachEditorsChoiceByWeekArticle.editorschoicebydayid.length; k++) { _%>
+                                <%_ var eachEditorsChoiceByWeekArticleRange = eachEditorsChoiceByWeekArticle.editorschoicebydayid[k]; _%>
+                                <%_ if ( eachEditorsChoiceByWeekArticleParentId === eachEditorsChoiceByWeekArticleRange ) { _%>
+                                    <article>
+                                        <div class="article-category-main-container">
+                                            <div class="article-category-container">
+                                                <a>
+                                                    <div class="article-billboard">
+                                                        <%_ if ( eachEditorsChoiceByWeekArticleParent.billboardimage350 ) { _%>
+                                                        <div class="article-image <%- eachEditorsChoiceByWeekArticleParent.imageorientation %> <%- eachEditorsChoiceByWeekArticleParent.imagefullwidth %>">
+                                                            <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachEditorsChoiceByWeekArticleParent.billboardimage350 %>');">
+                                                                <img src="<%- eachEditorsChoiceByWeekArticleParent.billboardimage350 %>" alt="Image for <%- eachEditorsChoiceByWeekArticleParent.kicker %> article" />
+                                                            </div>
+                                                        </div>
+                                                        <%_ } _%>
+                                                        <p><%- eachEditorsChoiceByWeekArticleParent.billboard %></p>
+                                                        <%_ if ( eachEditorsChoiceByWeekArticleParent.editorschoicenotes ) { _%>
+                                                        <div class="article-editorsnotes">
+														    <p><%- eachEditorsChoiceByWeekArticleParent.editorschoicenotes %></p>
+                                                        </div>
+                                                        <%_ } _%>
+													</div>
+                                                </a>
+                                            </div>
+                                            <div class="article-additional-info">
+                                                <small class="article-published-date-time">
+													<time class="timeago" datetime="<%- eachEditorsChoiceByWeekArticleParent.publisheddatetime %>"></time>
+												</small>
+                                            </div>
+                                            <div class="article-controller-container">
+                                                <div class="article-controller-pin-article">
+                                                    <a title=""><i class="icon icon-tack"></i></a>
+                                                </div>
+                                                <div class="article-controller-share-article">
+                                                    <a class="article-controller-share-button" title="">
+                                                        <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                        <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                    </a>
+                                                    <div class="article-controller-share-social">
+                                                        <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                        <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                        <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                        <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                <%_ } _%>
+                            <%_ } _%>
+                        <%_ } _%>
                     </div>
-                    <article></article>
-                </div>
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-11T13:28:06+02:00"></time>
-                    </div>
-                    <article></article>
-                </div>
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-10T13:28:06+02:00"></time>
-                    </div>
-                    <article></article>
-                </div>
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-09T15:28:06+02:00"></time>
-                    </div>
-                    <article></article>
-                </div>
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-08T13:28:06+02:00"></time>
-                    </div>
-                    <article></article>
-                </div>
-                <div class="newsfeed-editors-choice-by-day-filter">
-                    <div class="newsfeed-editors-choice-by-day-date article-published-date-time textc">
-                        <time datetime="2017-07-07T13:28:06+02:00"></time>
-                    </div>
-                    <article></article>
-                </div>
+                <%_ } _%>
             </div>
             <div class="newsfeed-editors-choice-feedback-link">
                 <a title="Editorial Feature Feedback form">Send Feedback</a>

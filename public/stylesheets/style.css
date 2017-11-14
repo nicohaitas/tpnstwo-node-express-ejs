@@ -1488,6 +1488,8 @@ body.video-microsite .content-newspaper-logo {
 .search-results-active #content-area-search-results, .search-results-active .content-area-no-search-results {
 	position:relative; z-index:1000;
 }
+/* #content-area-search-results .article-additional-info, */
+/*
 #content-area-search-results .article-kicker, 
 #content-area-search-results .article-subhead, 
 #content-area-search-results .article-softlead, 
@@ -1495,10 +1497,10 @@ body.video-microsite .content-newspaper-logo {
 #content-area-search-results .article-billboard, 
 #content-area-search-results .article-editorsnotes, 
 #content-area-search-results .article-category-related-container, 
-/* #content-area-search-results .article-additional-info, */
 #content-area-search-results article:hover .article-controller-container {
 	display:none;
 }
+*/
 #content-area-search-results {
 	position:relative; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; display:flex; -webkit-flex-flow:wrap row; flex-flow:wrap row; flex-basis:fill; -webkit-align-content:flex-start; align-content:flex-start; padding:0; margin:0; overflow:hidden; overflow-y:auto;
 }
@@ -1701,6 +1703,7 @@ body.video-microsite .content-newspaper-logo {
 .content-area-no-search-results-inner .content-area-category-title {
 	margin-top:100px;
 }
+/*
 .content-area-no-search-results .lead-story-left-column .article-category-container .article-kicker, 
 .content-area-no-search-results .lead-story-left-column .article-category-container .article-subhead, 
 .content-area-no-search-results .lead-story-left-column .article-category-container .article-softlead, 
@@ -1715,6 +1718,7 @@ body.video-microsite .content-newspaper-logo {
 .content-area-no-search-results .lead-story-left-column article:nth-of-type(2) .article-category-container .article-image {
 	display:none;
 }
+*/
 .content-area-no-search-results .lead-story-left-column article:nth-of-type(2) .article-category-container .article-nutshell {
 	display:block; position:relative; z-index:1000; padding-top:10px;
 }
@@ -2013,9 +2017,10 @@ article:hover .article-editorsnotes {
 	display:block;
 }
 /* What to show for a page is controlled by the admin settings dashboard for the index page related articles and is also dependant on admin rights to if they can make changes to the settings */
-.content-area-lead-story .article-category-related-container .article-category-container .article-headline, 
 /* .content-area-lead-story .article-category-related-container .article-category-container .article-kicker, 
 .content-area-lead-story .article-category-related-container .article-category-container .article-subhead, */
+/*
+.content-area-lead-story .article-category-related-container .article-category-container .article-headline, 
 .content-area-lead-story .article-category-related-container .article-category-container .article-softlead, 
 .content-area-lead-story .article-category-related-container .article-category-container .article-hardlead, 
 .content-area-lead-story .article-category-related-container .article-category-container .article-nutshell, 
@@ -2025,6 +2030,7 @@ article:hover .article-editorsnotes {
 .content-area-lead-story .article-category-related-container .article-additional-info .article-category-identifier-container {
 	display:none;
 }
+*/
 .content-area-lead-story .article-category-related-container .article-category-container .article-image, 
 .content-area-opinion-cell article .article-image/* , 
 .content-area-news-feed-inner-container article .article-image*/ {
@@ -2511,6 +2517,7 @@ h3 { font-size:1.714em; }
 /* Topics Container
 ------------------------------------------------------------------------ */
 /* This area is NOT controlled by the Admin Area */
+/*
 .content-area-latest-articles-top-promo-inner-area-split .article-category-container .article-kicker,
 .content-area-latest-articles-top-promo-inner-area-split .article-category-container .article-softlead, 
 .content-area-latest-articles-top-promo-inner-area-split .article-category-container .article-hardlead, 
@@ -2522,6 +2529,7 @@ h3 { font-size:1.714em; }
 .content-area-latest-articles-top-promo-inner-area-split .article-category-related-container {
 	display:none;
 }
+*/
 .content-area-latest-articles-top-promo-inner-area {
 	display:table; width:100%; padding:0; margin:0;
 }
@@ -2620,10 +2628,11 @@ h3 { font-size:1.714em; }
 	padding-left:10px;
 }
 /* What to show for a page is controlled by the admin settings dashboard for the index page Happening Now Business News area and is also dependant on admin rights to if they can make changes to the settings */
-.business-world-markets-news .article-category-main-container .article-headline, 
 /* .business-world-markets-news .article-category-main-container .article-kicker,  */
-.business-world-markets-news .article-category-main-container .article-subhead, 
 /* .business-world-markets-news .article-category-main-container .article-softlead,  */
+/*
+.business-world-markets-news .article-category-main-container .article-headline, 
+.business-world-markets-news .article-category-main-container .article-subhead, 
 .business-world-markets-news .article-category-main-container .article-hardlead, 
 .business-world-markets-news .article-category-main-container .article-nutshell, 
 .business-world-markets-news .article-category-main-container .article-billboard, 
@@ -2633,6 +2642,7 @@ h3 { font-size:1.714em; }
 .business-world-markets-news .article-category-related-container ul li {
 	display:none;
 }
+*/
 .business-world-markets-news .article-category-main-container {
 	display:block; position:relative; padding:20px;
 }
@@ -2657,10 +2667,11 @@ h3 { font-size:1.714em; }
 .business-world-markets-news .article-category-main-container > .article-additional-info small:nth-of-type(2n+2) {
     text-align:right;
 }
-.business-world-markets-news .article-category-related-container .article-headline, 
 /* .business-world-markets-news .article-category-related-container .article-kicker,  */
-.business-world-markets-news .article-category-related-container .article-subhead, 
 /* .business-world-markets-news .article-category-related-container .article-softlead,  */
+/*
+.business-world-markets-news .article-category-related-container .article-headline, 
+.business-world-markets-news .article-category-related-container .article-subhead, 
 .business-world-markets-news .article-category-related-container .article-hardlead, 
 .business-world-markets-news .article-category-related-container .article-nutshell, 
 .business-world-markets-news .article-category-related-container .article-billboard, 
@@ -2668,6 +2679,7 @@ h3 { font-size:1.714em; }
 .business-world-markets-news .article-category-related-container .article-additional-info {
 	display:none;
 }
+*/
 .business-world-markets-news .article-category-related-container {
 	width:100%; padding:0px 10px; -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; overflow:visible;
 }
@@ -2744,6 +2756,7 @@ h3 { font-size:1.714em; }
 	position:relative; 
 }
 /* This area is NOT controlled by the Admin Area */
+/*
 .content-area-elsewhere-inner-container .article-category-main-container .article-headline, 
 .content-area-elsewhere-inner-container .article-category-main-container .article-subhead, 
 .content-area-elsewhere-inner-container .article-category-main-container .article-hardlead, 
@@ -2752,9 +2765,10 @@ h3 { font-size:1.714em; }
 .content-area-elsewhere-inner-container .article-category-main-container .article-editorsnotes, 
 .content-area-elsewhere-inner-container .article-category-main-container > .article-additional-info .article-published-date-time, 
 .content-area-elsewhere-inner-container .article-category-main-container > .article-additional-info .article-comments-total-container,
-.content-area-elsewhere-inner-container .article-category-related-container /*ul li*/ {
+.content-area-elsewhere-inner-container .article-category-related-container {
 	display:none;
 }
+*/
 .content-area-elsewhere-inner-container .article-category-main-container .article-kicker {
     font-size:1.268em; margin-top:10px;
 }
@@ -2819,6 +2833,7 @@ h3 { font-size:1.714em; }
 	font-size:150%;
 }
 /* This area is NOT controlled by the Admin Area */
+/*
 .content-area-elsewhere-other-inner-container-horizontal-split > article .article-headline, 
 .content-area-elsewhere-other-inner-container-horizontal-split > article .article-softlead, 
 .content-area-elsewhere-other-inner-container-horizontal-split > article .article-hardlead, 
@@ -2830,6 +2845,7 @@ h3 { font-size:1.714em; }
 .content-area-elsewhere-other-inner-news .article-category-related-container {
 	display:none;
 }
+*/
 .content-area-elsewhere-other-inner-container-horizontal-split > article, .content-area-elsewhere-other-inner-image-controller a {
 	position:relative; padding:10px;
 }
@@ -2849,6 +2865,7 @@ h3 { font-size:1.714em; }
 	font-size:0.875em; font-family:OpenSans-Regular, "Trebuchet MS", Arial, Helvetica, sans-serif; margin-top:10px;
 }
 /* This area is NOT controlled by the Admin Area */
+/*
 .content-area-elsewhere-other-inner-news .article-category-main-container .article-image,
 .content-area-elsewhere-other-inner-news .article-category-main-container .article-headline, 
 .content-area-elsewhere-other-inner-news .article-category-main-container .article-subhead, 
@@ -2862,6 +2879,7 @@ h3 { font-size:1.714em; }
 .content-area-elsewhere-other-inner-news .article-category-related-container {
 	display:none;
 }
+*/
 .content-area-elsewhere-other-inner-news li {
     list-style-type:disc; margin:0px 18px 0px 28px;
 }
@@ -3131,6 +3149,7 @@ h3 { font-size:1.714em; }
 /* News Feed Editors Choice by Day
 ------------------------------------------------------------------------ */
 /* This area is NOT controlled by the Admin Area */
+/*
 .newsfeed-editors-choice-by-day-filter .article-category-main-container > .article-category-container a > .article-image, 
 .newsfeed-editors-choice-by-day-filter .article-category-main-container > .article-category-container .article-headline, 
 .newsfeed-editors-choice-by-day-filter .article-category-main-container > .article-category-container .article-kicker,
@@ -3156,14 +3175,19 @@ h3 { font-size:1.714em; }
 #editorschoice-sports .article-category-main-container > .article-additional-info .article-category-identifier-container, 
 #editorschoice-sports .article-category-main-container > .article-additional-info .article-published-date-time > span, 
 #editorschoice-sports .article-category-main-container > .article-additional-info .article-authors-container, 
-#editorschoice-sports .article-category-main-container > .article-additional-info .article-comments-total-container, 
-#editorschoice-sports .article-category-main-container:hover .article-additional-info,
-#editorschoice-sports .article-category-related-container {
+#editorschoice-sports .article-category-main-container > .article-additional-info .article-comments-total-container {
 	display:none;
 }
 .newsfeed-editors-choice-by-day-filter:nth-child(1) article:nth-of-type(2) .article-category-main-container > .article-category-container .article-editorsnotes,
 #editorschoice-sports article:nth-of-type(2) .article-category-main-container > .article-category-container .article-editorsnotes {
 	display:block;
+}
+*/
+.newsfeed-editors-choice-by-day-filter .article-category-main-container:hover .article-additional-info,
+.newsfeed-editors-choice-by-day-filter .article-category-related-container,
+#editorschoice-sports .article-category-main-container:hover .article-additional-info,
+#editorschoice-sports .article-category-related-container {
+	display:none;
 }
 .content-area-news-feed {
 	padding:0; margin:0;
@@ -3348,8 +3372,9 @@ category aside .article-category-main-container:hover .article-controller-contai
 }
 /* What to show for a page is controlled by the admin settings dashboard for the index page aside slider articles and is also dependant on admin rights to if they can make changes to the settings */
 /* #latest-sports .article-headline, */
-#latest-sports .article-kicker, 
 /* #latest-sports .article-subhead, */
+/*
+#latest-sports .article-kicker, 
 #latest-sports .article-softlead, 
 #latest-sports .article-softlead, 
 #latest-sports .article-hardlead, 
@@ -3361,6 +3386,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 #latest-sports .article-category-related-container {
 	display:none;
 }
+*/
 #latest-sports article .article-image {
     display:inline-block; vertical-align:middle; margin-right:5px;
 }
@@ -3407,10 +3433,11 @@ category aside .article-category-main-container:hover .article-controller-contai
 	padding:15px 0px 5px;
 }
 /* This area is NOT controlled by the Admin Area */
-#trending-sports .article-headline, 
 /* #trending-sports .article-kicker, */
-#trending-sports .article-subhead, 
 /* #trending-sports .article-softlead, */
+/*
+#trending-sports .article-headline, 
+#trending-sports .article-subhead, 
 #trending-sports .article-hardlead, 
 #trending-sports .article-nutshell,
 #trending-sports .article-billboard, 
@@ -3422,6 +3449,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 #trending-sports .article-additional-info .article-comments-total-container {
 	display:none;
 }
+*/
 #trending-sports .content-area-trending-incrementer {
 	display:table-cell; vertical-align:middle; min-width:30px; text-align:center; font-size:1.714em; padding:0px 20px 0px 0px;
 }
@@ -3477,20 +3505,22 @@ category aside .article-category-main-container:hover .article-controller-contai
 }
 /* This area is NOT controlled by the Admin Area */
 /* .category-lead-story > article .article-headline, */
+/* .category-lead-story > .article-softlead, */
+/* .category-lead-story > article .article-additional-info .article-category-identifier-container, 
+.category-lead-story > article .article-additional-info .article-authors-container, */
+/*
 .category-lead-story > article .article-kicker, 
 .category-lead-story > article .article-subhead, 
-/* .category-lead-story > .article-softlead, */
 .category-lead-story > article .article-hardlead, 
 .category-lead-story > article .article-nutshell,
 .category-lead-story > article .article-billboard, 
 .category-lead-story > article .article-editorsnotes, 
 .category-lead-story > article .article-category-related-container,
-/* .category-lead-story > article .article-additional-info .article-category-identifier-container, 
-.category-lead-story > article .article-additional-info .article-authors-container, */
 .category-lead-story > article .article-additional-info .article-published-date-time, 
 .category-lead-story > article .article-additional-info .article-comments-total-container {
 	display:none;
 }
+*/
 .category-lead-story {
 	float:left;
 	width:34%;
@@ -3523,6 +3553,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 }
 /* This area is NOT controlled by the Admin Area */
 /* .category-lead-story-opinion-inner .article-headline, */
+/*
 .category-lead-story-opinion-inner .article-kicker, 
 .category-lead-story-opinion-inner .article-subhead, 
 .category-lead-story-opinion-inner .article-softlead, 
@@ -3535,6 +3566,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 .category-lead-story-opinion-inner .article-category-main-container:hover .article-controller-container {
 	display:none;
 }
+*/
 .category-lead-story-opinion-inner {
 	position:relative; display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; display:flex; -webkit-flex-flow:wrap row; flex-flow:wrap row; flex-basis:fill; -webkit-align-content:flex-start; align-content:flex-start; height:auto; padding:0px; margin:0;
 }
@@ -3566,9 +3598,10 @@ category aside .article-category-main-container:hover .article-controller-contai
 }
 /* This area is NOT controlled by the Admin Area */
 /* .category-latest-area > article .article-headline, */
+/* .category-latest-area > article .article-softlead, */
+/*
 .category-latest-area > article .article-kicker, 
 .category-latest-area > article .article-subhead, 
-/* .category-latest-area > article .article-softlead, */
 .category-latest-area > article .article-hardlead, 
 .category-latest-area > article .article-nutshell,
 .category-latest-area > article .article-billboard, 
@@ -3580,6 +3613,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 .category-latest-area > article:nth-of-type(n + 6) .article-additional-info {
 	display:none;
 }
+*/
 .category-latest-area > article:first-of-type .article-headline, .category-latest-area > article:nth-of-type(n + 6) .article-headline {
 	margin-top:10px;
 }
@@ -3591,6 +3625,7 @@ category aside .article-category-main-container:hover .article-controller-contai
     display:block; position:relative; width:100%; margin:0;
 }
 /* This area is NOT controlled by the Admin Area */
+/*
 .category-latest-area > article .article-category-related-container .article-image,
 .category-latest-area > article .article-category-related-container .article-kicker, 
 .category-latest-area > article .article-category-related-container .article-subhead, 
@@ -3604,6 +3639,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 .category-latest-area .article-category-related-container li article:hover .article-controller-container {
 	display:none;
 }
+*/
 .category-latest-area > article .article-category-related-container li {
     list-style-type:disc; margin:0px 0px 0px 18px;
 }
@@ -3675,9 +3711,10 @@ category aside .article-category-main-container:hover .article-controller-contai
 }
 /* This area is NOT controlled by the Admin Area */
 /* .category-area-news .article-headline, */
+/* .category-area-news .article-softlead, */
+/*
 .category-area-news .article-kicker, 
 .category-area-news .article-subhead, 
-/* .category-area-news .article-softlead, */
 .category-area-news .article-hardlead, 
 .category-area-news .article-nutshell,
 .category-area-news .article-billboard, 
@@ -3686,6 +3723,7 @@ category aside .article-category-main-container:hover .article-controller-contai
 .category-area-news .article-comments-total-container {
 	display:none;
 }
+*/
 .category-area-news .article-image {
 	float:right; width:200px; margin:0px 0px 20px 20px;
 }
