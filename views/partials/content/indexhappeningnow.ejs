@@ -215,7 +215,48 @@
                     <div class="content-area-category-title textb textup">
                         Podcasts
                     </div>
-                    <podcast></podcast>
+                    <%_ var podcastArticleCounter = 0; _%>
+                    <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                        <%_ eachPodcastArticle = data.articles[i]; _%>
+                        <%_ var thisPodcastArticle = eachPodcastArticle.categoryslug; _%>
+                        <%_ if ( thisPodcastArticle === "the-daily" ) { _%>
+                            <%_ if (podcastArticleCounter < 1) { _%>
+                                <podcast id="article-<%- eachPodcastArticle.articleid %>">
+                                    <div class="article-category-subcategory-container textup">
+                                        <a href="" title="">The Daily</a>
+                                    </div>
+                                    <div class="article-category-main-container">
+                                        <div class="article-category-container">
+                                            <a>
+                                                <h1 class="article-headline"><%- eachPodcastArticle.headline %></h1>
+                                                <div class="article-nutshell"><%- eachPodcastArticle.nutshell %></div>
+                                            </a>
+                                        </div>
+                                        <div class="audio-wrapper">
+                                            <audio preload="none" controls>
+                                                <source src="<%- eachPodcastArticle.podcastmp3 %>" type="audio/mp3" />
+                                            </audio>
+                                        </div>
+                                        <div class="article-additional-info">
+                                            <small class="article-category-subscribe-item">
+                                                Subscribe for <span class="texteb">FREE</span> below:
+                                            </small>
+                                            <small class="article-category-subscribe-item">
+                                                <a href="<%- eachPodcastArticle.applepodcast %>" target="_blank">Apple Podcasts</a>
+                                            </small>
+                                            <small class="article-category-subscribe-item">
+                                                <a href="<%- eachPodcastArticle.googleplaymusic %>" target="_blank">Google Play Music</a>
+                                            </small>
+                                            <small class="article-category-subscribe-item">
+                                                <a href="<%- eachPodcastArticle.radiopublic %>" target="_blank">Radio Public</a>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </podcast>
+                                <%_ podcastArticleCounter ++; _%>
+                            <%_ } _%>
+                        <%_ } _%>
+                    <%_ } _%>
                 </div>
                 <div class="content-area-latest-articles-top-promo-area-split">
                     <div class="content-area-category-title textr textb textup">

@@ -2442,6 +2442,43 @@ h3 { font-size:1.714em; }
 .audio-wrapper {
 	margin-bottom:10px;
 }
+.audio-wrapper .plyr__controls {
+	height: 40px; background:#289DFD; color:#FFFFFF; padding: 0px 10px; border: none;
+}
+.audio-wrapper .plyr__controls button svg {
+	width:16px; fill:inherit;
+}
+.audio-wrapper .plyr--audio .plyr__progress--buffer, .audio-wrapper .plyr--audio .plyr__volume--display {
+	background:rgba(255,255,255, 0.5); color:rgba(255,255,255, 0.5);
+}
+.audio-wrapper .plyr__progress--played, .audio-wrapper .plyr__volume--display {
+	color:#FFFFFF;
+}
+.audio-wrapper .plyr input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance:none; height:12px; width:12px; box-shadow:0 1px 1px #289DFD, 0 0 0 1px #289DFD; cursor:pointer; margin-top:-2px;
+}
+.audio-wrapper .plyr input[type="range"]::-moz-range-thumb {
+	height: 12px; width: 12px; box-shadow: 0 1px 1px #289DFD, 0 0 0 1px #289DFD;
+}
+.audio-wrapper input[type=range]::-ms-thumb {
+	height: 12px; width: 12px; box-shadow: 0 1px 1px #289DFD, 0 0 0 1px #289DFD; cursor: pointer; margin-top:4px;
+}
+.audio-wrapper .plyr--audio .plyr__controls button.tab-focus:focus, .audio-wrapper .plyr--audio .plyr__controls button {
+	background:transparent; fill:#b5d9fe;
+}
+.audio-wrapper .plyr--audio .plyr__controls button.tab-focus:focus, .audio-wrapper .plyr--audio .plyr__controls button:hover {
+	background:transparent; fill:#FFFFFF;
+}
+.audio-wrapper .audio-download {
+	position: relative; display: inline-block; -ms-flex-negative: 0; flex-shrink: 0; vertical-align: middle; border-radius: 3px; -webkit-transition: background .3s ease,color .3s ease,opacity .3s ease; transition: background .3s ease,color .3s ease,opacity .3s ease; padding: 7px; margin-left: 10px; border: 0; cursor: pointer; overflow: visible;
+}
+.audio-wrapper .audio-download a i {
+    color:#b5d9fe; font-size: 20px;
+}
+.audio-wrapper .audio-download a:hover i {
+    color:#FFFFFF;
+}
+/*
 .audio-wrapper .mejs__container {
 	background:transparent; font-family:inherit;
 }
@@ -2469,6 +2506,7 @@ h3 { font-size:1.714em; }
 .audio-wrapper .audio-download a {
 	display:block; position:absolute; width:20px; height:20px; background:transparent; font-size:0; line-height:0; text-decoration:none; cursor:pointer; padding:0; margin:10px 6px; overflow:hidden;
 }
+*/
 
 /* Topics Container
 ------------------------------------------------------------------------ */
