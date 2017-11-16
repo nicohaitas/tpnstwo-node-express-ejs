@@ -49,9 +49,6 @@ function handleResponse(response) {
         document.getElementById('World').style.display = "block";
 	}
 }
-var script = document.createElement('script');
-script.src = "http://freegeoip.net/json/?callback=handleResponse";
-document.body.insertBefore(script, document.body.firstChild);
 
 // Todays Date
 // ------------------------------------------------------------------------
@@ -1126,14 +1123,5 @@ document.querySelector('.content-area-news-feed-inner-container').style.height =
 
 
 /*
-
-var indexTrendingContainerHeight = $('.lead-story-left-column').innerHeight();
-var indexAsideOpinionContainerHeight = $('.content-area-opinion').height();
-var indexAsidePromoAreaContainerHeight = $('.aside-promo-area-two-column').height();
-var indexAsideNewsFeedTitleContainerHeight = $('.content-area-news-feed-title').outerHeight();
-
-var indexAsideNewsFeedFeedbackLinkHeight = $('.newsfeed-editors-choice-feedback-link').outerHeight();
-var indexAsideInHouseAdHeight = $('.in-house-ad-area').outerHeight();
-$('.content-area-news-feed-inner-container').css('height', ((indexTrendingContainerHeight) - (indexAsideOpinionContainerHeight) - (indexAsidePromoAreaContainerHeight) - (indexAsideNewsFeedTitleContainerHeight) - (indexAsideNewsFeedFeedbackLinkHeight) - (indexAsideInHouseAdHeight) - 85));
 
 */
