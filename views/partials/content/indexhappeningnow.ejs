@@ -30,13 +30,13 @@
                                     <a href="<%- eachArticle.categoryslug %>"><span class="category-identifier"><%- eachArticle.categoryslug %></span></a>
                                     <%_ } _%>
                                     <%_ if ( eachArticle.subcategoryslug ) { _%>
-                                        <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>"><span class="subcategory-identifier"><%- eachArticle.subcategoryslug %></span></a>
+                                        - <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>"><span class="subcategory-identifier"><%- eachArticle.subcategoryslug %></span></a>
                                     <%_ } _%>
                                     <%_ if ( eachArticle.subcategoryslug && eachArticle.subcategoryfirstchildslug ) { _%>
-                                        <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>/<%- eachArticle.subcategoryfirstchildslug %>"><span class="subcategory-first-child-identifier"><%- eachArticle.subcategoryfirstchildslug %></span></a>
+                                        - <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>/<%- eachArticle.subcategoryfirstchildslug %>"><span class="subcategory-first-child-identifier"><%- eachArticle.subcategoryfirstchildslug %></span></a>
                                     <%_ } _%>
                                     <%_ if ( eachArticle.subcategoryslug && eachArticle.subcategoryfirstchildslug && eachArticle.subcategorysecondchildslug ) { _%>
-                                        <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>/<%- eachArticle.subcategoryfirstchildslug %>/<%- eachArticle.subcategorysecondchildslug %>"><span class="subcategory-second-child-identifier"><%- eachArticle.subcategorysecondchildslug %></span></a>
+                                        - <a href="<%- eachArticle.categoryslug %>/<%- eachArticle.subcategoryslug %>/<%- eachArticle.subcategoryfirstchildslug %>/<%- eachArticle.subcategorysecondchildslug %>"><span class="subcategory-second-child-identifier"><%- eachArticle.subcategorysecondchildslug %></span></a>
                                     <%_ } _%>
                                 </small>
                                 <small class="article-authors-container">
@@ -345,7 +345,126 @@
                         <article></article>
                     </div>
                     <div class="business-world-markets-news">
-                        <article></article>
+                        <%_ var marketsArticleCounter = 0; _%>
+                        <%_ for (var i = 0 ; i < data.articles.length; i++) { _%>
+                            <%_ eachMarketsArticle = data.articles[i]; _%>
+                            <%_ var thisMarketsArticle = eachMarketsArticle.subcategoryslug; _%>
+                            <%_ if (thisMarketsArticle === "markets") { _%>
+                                <%_ if (marketsArticleCounter < 1) { _%>
+                                    <article>
+                                        <div class="article-category-main-container">
+                                            <div class="article-category-container">
+                                                <a>
+                                                    <%_ if ( eachMarketsArticle.softleadimage350 ) { _%>
+                                                    <div class="article-image <%- eachMarketsArticle.imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachMarketsArticle.softleadimage350 %>');">
+                                                            <img src="<%- eachMarketsArticle.softleadimage350 %>" alt="Image for <%- eachMarketsArticle.kicker %> article" />
+                                                        </div>
+                                                    </div>
+                                                    <%_ } else if ( eachMarketsArticle.kickerimage350 ) { _%>
+                                                    <div class="article-image <%- eachMarketsArticle.imageorientation %>">
+                                                        <div class="new-article-image compat-object-fit" style="background-image: url('<%- eachMarketsArticle.kickerimage350 %>');">
+                                                            <img src="<%- eachMarketsArticle.kickerimage350 %>" alt="Image for <%- eachMarketsArticle.kicker %> article" />
+                                                        </div>
+                                                    </div>
+                                                    <%_ } _%>
+                                                    <h2 class="article-kicker"><%- eachMarketsArticle.headline %></h2>
+                                                    <div class="article-softlead">
+                                                        <p><%- eachMarketsArticle.softlead %></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="article-additional-info">
+                                                <small class="article-category-identifier-container">
+                                                    Featured in: 
+                                                    <%_ if ( eachMarketsArticle.categoryslug ) { _%>
+                                                    <a href="<%- eachMarketsArticle.categoryslug %>"><span class="category-identifier"><%- eachMarketsArticle.categoryslug %></span></a>
+                                                    <%_ } _%>
+                                                    <%_ if ( eachMarketsArticle.subcategoryslug ) { _%>
+                                                        - <a href="<%- eachMarketsArticle.categoryslug %>/<%- eachMarketsArticle.subcategoryslug %>"><span class="subcategory-identifier"><%- eachMarketsArticle.subcategoryslug %></span></a>
+                                                    <%_ } _%>
+                                                    <%_ if ( eachMarketsArticle.subcategoryslug && eachMarketsArticle.subcategoryfirstchildslug ) { _%>
+                                                        - <a href="<%- eachMarketsArticle.categoryslug %>/<%- eachMarketsArticle.subcategoryslug %>/<%- eachMarketsArticle.subcategoryfirstchildslug %>"><span class="subcategory-first-child-identifier"><%- eachMarketsArticle.subcategoryfirstchildslug %></span></a>
+                                                    <%_ } _%>
+                                                    <%_ if ( eachMarketsArticle.subcategoryslug && eachMarketsArticle.subcategoryfirstchildslug && eachMarketsArticle.subcategorysecondchildslug ) { _%>
+                                                        - <a href="<%- eachMarketsArticle.categoryslug %>/<%- eachMarketsArticle.subcategoryslug %>/<%- eachMarketsArticle.subcategoryfirstchildslug %>/<%- eachMarketsArticle.subcategorysecondchildslug %>"><span class="subcategory-second-child-identifier"><%- eachMarketsArticle.subcategorysecondchildslug %></span></a>
+                                                    <%_ } _%>
+                                                </small>
+                                                <small class="article-authors-container">
+                                                    By: 
+                                                    <%_ if ( eachMarketsArticle.reporter1 ) { _%>
+                                                        <a href=""><span class="article-author"><%- eachMarketsArticle.reporter1 %></span></a>
+                                                    <%_ } _%>
+                                                    <%_ if ( eachMarketsArticle.reporter1 && eachMarketsArticle.reporter2 ) { _%>
+                                                        and <a href=""><span class="article-author"><%- eachMarketsArticle.reporter2 %></span></a>
+                                                    <%_ } _%>
+                                                </small>
+                                            </div>
+                                            <div class="article-controller-container">
+                                                <div class="article-controller-pin-article">
+                                                    <a title=""><i class="icon icon-tack"></i></a>
+                                                </div>
+                                                <div class="article-controller-share-article">
+                                                    <a class="article-controller-share-button" title="">
+                                                        <span class="article-controller-share-button-open"><i class="icon icon-share"></i></span>
+                                                        <span class="article-controller-share-button-close"><i class="icon icon-close"></i></span>
+                                                    </a>
+                                                    <div class="article-controller-share-social">
+                                                        <a class="article-controller-share-facebook" title=""><i class="icon icon-facebook"></i></a>
+                                                        <a class="article-controller-share-twitter" title=""><i class="icon icon-twitter"></i></a>
+                                                        <a class="article-controller-share-linkedin" title=""><i class="icon icon-linkedin"></i></a>
+                                                        <a class="article-controller-share-google-plus" title=""><i class="icon icon-google-plus"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="article-category-related-container">
+                                            <ul>
+                                                <%_ var relatedMarketsArticleCounter = 0; _%>
+                                                <%_ for (var j = 0 ; j < data.articles.length; j++) { _%>
+                                                    <%_ var relatedMarketsArticleParent = data.articles[j]; _%>
+                                                    <%_ var relatedMarketsArticleParentId = relatedMarketsArticleParent.articleid; _%>
+                                                    <%_ for (var k = 0 ; k < eachMarketsArticle.relatedarticleid.length; k++) { _%>
+                                                        <%_ var relatedMarketsArticleRange = eachMarketsArticle.relatedarticleid[k]; _%>
+                                                        <%_ if ( relatedMarketsArticleParentId === relatedMarketsArticleRange ) { _%>
+                                                            <%_ if (relatedMarketsArticleCounter < 2) { _%>
+                                                                <li>
+                                                                    <article>
+                                                                        <div class="article-category-container">
+                                                                            <a>
+                                                                                <%_ if ( relatedMarketsArticleParent.softleadimage350 ) { _%>
+                                                                                <div class="article-image <%- relatedMarketsArticleParent.imageorientation %>">
+                                                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- relatedMarketsArticleParent.softleadimage350 %>');">
+                                                                                        <img src="<%- relatedMarketsArticleParent.softleadimage350 %>" alt="Image for <%- relatedMarketsArticleParent.kicker %> article" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <%_ } else if ( relatedMarketsArticleParent.kickerimage350 ) { _%>
+                                                                                <div class="article-image <%- relatedMarketsArticleParent.imageorientation %>">
+                                                                                    <div class="new-article-image compat-object-fit" style="background-image: url('<%- relatedMarketsArticleParent.kickerimage350 %>');">
+                                                                                        <img src="<%- relatedMarketsArticleParent.kickerimage350 %>" alt="Image for <%- relatedMarketsArticleParent.kicker %> article" />
+                                                                                    </div>
+                                                                                </div>
+                                                                                <%_ } _%>
+                                                                                <h2 class="article-kicker"><%- relatedMarketsArticleParent.headline %></h2>
+                                                                                <div class="article-softlead">
+                                                                                    <p><%- relatedMarketsArticleParent.softlead %></p>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    </article>
+                                                                </li>
+                                                                <%_ relatedMarketsArticleCounter ++; _%>
+                                                            <%_ } _%>
+                                                        <%_ } _%>
+                                                    <%_ } _%>
+                                                <%_ } _%>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                    <%_ marketsArticleCounter ++; _%>
+                                <%_ } _%>
+                            <%_ } _%>
+                        <%_ } _%>
                     </div>
                 </div>
             </div>
