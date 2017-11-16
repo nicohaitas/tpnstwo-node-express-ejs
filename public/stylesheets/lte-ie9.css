@@ -1,6 +1,35 @@
-/* CSS Document */
+/*   
+Theme Name: TPNS Two
+Description: All news, latest news and news from the most revealing news site TPNS Two.
+Author: Nico Haitas
+Author URI: http://www.tpns.com/
+Version: 1.0
+*/
 
-body {
-	background:yellow;
-}
-
+.page-wrap { display:none; }
+body { display:block; }
+* { margin:0 0 0 0; padding:0 0 0 0; }
+body { height:100%; margin:0; padding:60px 15px; text-align:center; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-weight:normal; }
+body.newspaper-category { background:#2b3643; }
+div.dialog { background:#364150; width:860px; margin:0 auto; -webkit-border-radius:8px; -moz-border-radius: 8px; border-radius:8px; -webkit-box-shadow:0 0 1px #435060; -moz-box-shadow:0 0 1px #435060; box-shadow:0 0 1px #435060; border:1px solid #435060; }
+body:first-of-type div.dialog { border: none; }
+div.header { margin-top:-60px; padding-top:200px; background:transparent url(../images/browser-notice.png) no-repeat scroll center top; }
+div.innercol { padding:20px 40px 20px 40px; }
+div.footer { margin-top:50px; }
+h1, h2, h3, h4, h5 { margin:0; }
+h1 { font-weight:normal; font-size:24px; color:#96A6AD; line-height:28px; letter-spacing:1px; margin-bottom:10px; }
+h1 a img { border:0px solid #c6cfda; }
+h2 { font-weight:normal; font-size:16px; line-height:21px; color:#96A6AD; max-width:600px; margin:0 auto; }
+h5 { font-weight:normal; color:#666; }
+p { font-size:14px; line-height:21px; color:#666; }
+a, a:link, a:visited { text-decoration:none; color:#25b0e5; }
+a:hover, a:visited:hover { text-decoration:underline; }
+ul.downloads { list-style:none; margin:40px auto 20px auto; padding:0; overflow:hidden; }
+ul.downloads li { float:left; text-align:center; width:25%; }
+ul.downloads div { border-left:1px solid #25b0e5; padding:0; }
+ul.downloads div.first { border-left:none; }
+ul.downloads h4 { margin:0 0 2px 0; }
+ul.downloads h4 a { padding-top:120px; display:block; background:transparent url(../images/browser-icons-sprite.gif) no-repeat top center; }
+ul.downloads h4#download_firefox a { background-position:center -204px; }
+ul.downloads h4#download_chrome a { background-position:center -408px; }
+ul.downloads h4#download_safari a { background-position:center -612px; }

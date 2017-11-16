@@ -18,5 +18,9 @@
       <% include partials/template/indexjsdefaults.ejs %>
       <% include partials/template/jsdefaults.ejs %>
     </div>
+    <!-- A freindly upgrade browser override screen for those using IE9 or less -->
+    <!--[if IE]>
+      <% include partials/template/lte-ie9.ejs %>
+	  <![endif]-->
   </body>
 </html>
