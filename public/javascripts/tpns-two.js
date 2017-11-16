@@ -73,6 +73,9 @@ if ( document.querySelector('.newspaper-category') ) {
 document.querySelector('.current-year').innerHTML = curr_year;
 
 // Date from JSON
+// Convert Article Date/Time from machine readable ISO 8601 format to a 
+// human readable format...
+// i.e.: from 2017-10-09T13:26:06+02:00 to 9th October 2017
 // ------------------------------------------------------------------------
 var allContentDateTime = document.querySelectorAll('.article-published-date-time time');
 for(var i = 0; i < allContentDateTime.length; i++) {
@@ -1161,9 +1164,9 @@ for ( var i = 0, eachAudioPlayersDownloadBtn = allAudioPlayersDownloadBtns.lengt
 
 // Happening Now Aside Editors Choice Height Controller
 // ------------------------------------------------------------------------
-var indexTrendingContainerHeight = document.querySelector('.lead-story-left-column').clientHeight;
-var indexAsideOpinionContainerHeight = document.querySelector('.content-area-opinion').clientHeight;
-var indexAsidePromoAreaContainerHeight = document.querySelector('.aside-promo-area-two-column').clientHeight;
+var indexTrendingContainerHeight = document.querySelector('.lead-story-left-column').offsetHeight;
+var indexAsideOpinionContainerHeight = document.querySelector('.content-area-opinion').offsetHeight;
+var indexAsidePromoAreaContainerHeight = document.querySelector('.aside-promo-area-two-column').offsetHeight;
 var indexAsideNewsFeedTitleContainerHeight = document.querySelector('.content-area-news-feed-title').clientHeight;
 var indexAsideNewsFeedFeedbackLinkHeight = document.querySelector('.newsfeed-editors-choice-feedback-link').clientHeight;
 // After adding the Ad's remember to remove it's height from the Editor's Choice Area here
