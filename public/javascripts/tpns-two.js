@@ -187,6 +187,79 @@ function containerSectionsClosed() {
     document.querySelector('.container-sections').classList.add('container-sections-closed');
 }
 
+// Close Pinned Articles Content
+// ------------------------------------------------------------------------
+function pinnedArticlesClose() {
+    var pinnedArticlesClose = document.getElementsByClassName('pinned-articles-content pinned-articles-content-open');
+    while ( pinnedArticlesClose.length > 0 ) {
+        pinnedArticlesClose[0].classList.remove('pinned-articles-content-open');
+    }
+}
+
+// Close Pinned Articles Container
+// ------------------------------------------------------------------------
+function pinnedArticlesContainerClose() {
+    var pinnedArticlesContainerClose = document.getElementsByClassName('container-pinned-articles pinned-articles-open');
+    while ( pinnedArticlesContainerClose.length > 0 ) {
+        pinnedArticlesContainerClose[0].classList.remove('pinned-articles-open');
+    }
+}
+
+// Close Newspaper Sections
+// ------------------------------------------------------------------------
+function userNewspaperSectionsClose() {
+    var userNewspaperSectionsClose = document.getElementsByClassName('container-sections container-sections-closed');
+    while ( userNewspaperSectionsClose.length > 0 ) {
+        userNewspaperSectionsClose[0].classList.remove('container-sections-closed');
+    }
+}
+
+// Close the Subscribe Form
+// ------------------------------------------------------------------------
+function subscribeFormClose() {
+    var subscribeFormClose = document.getElementsByClassName('user-controller-subscribe-form user-controller-subscribe-form-active');
+    while ( subscribeFormClose.length > 0 ) {
+        subscribeFormClose[0].classList.remove('user-controller-subscribe-form-active');
+    }
+}
+
+// Close the Add/Remove Section Area
+// ------------------------------------------------------------------------
+function closeCategoryAddSection() {
+    var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
+    if ( closeCategoryAddSection.length > 0 ) {
+        closeCategoryAddSection[0].classList.remove('add-section-open');
+    }
+}
+
+// Close the Error Message Container
+// ------------------------------------------------------------------------
+function containerSectionErrorOpen() {
+    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+    while ( containerSectionErrorOpen.length > 0 ) {
+        containerSectionErrorOpen[0].classList.remove('active');
+    }
+}
+
+// Setup the Pinned Articles before any interaction from the user
+// ------------------------------------------------------------------------
+function totalPinnedArticlesBefore() {
+    var totalPinnedArticlesBefore = document.querySelectorAll('.pinned-articles-content ul li').length;
+    // console.log(totalPinnedArticlesBefore);
+    document.querySelector('.container-pinned-total').innerHTML = totalPinnedArticlesBefore;
+    if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
+        document.querySelector('.container-pinned-total').style.display = "none";
+        document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
+    } else {
+        document.querySelector('.container-pinned-total').style.display = "block";
+        var removeNoPinnedArticles = document.getElementsByClassName('container-pinned-articles container-no-pinned-articles');
+        while ( removeNoPinnedArticles.length > 0 ) {
+            removeNoPinnedArticles[0].classList.remove('container-no-pinned-articles');
+        }
+    }
+}
+totalPinnedArticlesBefore();
+
 // Setup the Sections Navigation
 // ------------------------------------------------------------------------
 document.querySelector('.category-links > li[name="happening-now"]').setAttribute("class", "disabled");
@@ -305,10 +378,7 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 addSectionOpen[0].classList.remove('add-section-open');
             }
 
-            var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-            while ( containerSectionErrorOpen.length > 0 ) {
-                containerSectionErrorOpen[0].classList.remove('active');
-            }
+            containerSectionErrorOpen();
 
             // if stored locally and exists
             if (this.checked) {
@@ -474,10 +544,9 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 var disableEachAddRemoveFilter = disableAddRemoveFilter[i];
                 disableEachAddRemoveFilter.classList.add('disabled');
             }
-            var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-            while ( containerSectionErrorOpen.length > 0 ) {
-                containerSectionErrorOpen[0].classList.remove('active');
-            }
+
+            containerSectionErrorOpen();
+
             var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
             while ( addSectionOpen.length > 0 ) {
                 addSectionOpen[0].classList.remove('add-section-open');
@@ -519,10 +588,8 @@ document.getElementById("categoryLinks").addEventListener("click",function(e) {
         var addRemoveSectionParentLi = addRemoveSectionLi.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
         var addRemoveSectionParentLiName = addRemoveSectionParentLi.getAttribute('name');
         
-        var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-        while ( containerSectionErrorOpen.length > 0 ) {
-            containerSectionErrorOpen[0].classList.remove('active');
-        }
+        containerSectionErrorOpen();
+
         // Move Navigation Item
         document.querySelector('.additional-sections-container').appendChild(addRemoveSectionParentLi);
         
@@ -588,10 +655,7 @@ document.getElementById("categoryLinks").addEventListener("click",function(e) {
 document.querySelector('.add-section-mark').onclick = function() {
     var thisOpenAddSectionButton = this.parentElement;
 
-    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-    while ( containerSectionErrorOpen.length > 0 ) {
-        containerSectionErrorOpen[0].classList.remove('active');
-    }
+    containerSectionErrorOpen();
 
     thisOpenAddSectionButton.classList.toggle('add-section-open');
 }
@@ -691,10 +755,9 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
 // Reset the one only category, filter to show all the visible categories
 // ------------------------------------------------------------------------
 document.querySelector('.category-one-only-reset').onclick = function() {
-    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-    while ( containerSectionErrorOpen.length > 0 ) {
-        containerSectionErrorOpen[0].classList.remove('active');
-    }
+
+    containerSectionErrorOpen();
+
     var addSectionOpen = document.getElementsByClassName('add-section add-section-open');
     while ( addSectionOpen.length > 0 ) {
         addSectionOpen[0].classList.remove('add-section-open');
@@ -750,10 +813,7 @@ for (var i = 0; i < allCategoryMarks.length; i++) {
     allCategoryMarks[i].onclick = function(e) {
         e.preventDefault();
         
-        var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
-        if ( closeCategoryAddSection.length > 0 ) {
-            closeCategoryAddSection[0].classList.remove('add-section-open');
-        }
+        closeCategoryAddSection();
 
         var thisCategoryMark = this;
         var thisCategoryMarksName = thisCategoryMark.getAttribute('name');
@@ -934,77 +994,30 @@ document.querySelector('.page-wrap-left').onmouseleave = function(e) {
     }
     counterForPermaHoverEvent ++;
 
-    var totalPinnedArticlesBefore = document.querySelectorAll('.pinned-articles-content ul li').length;
-    if ( totalPinnedArticlesBefore === 0 ) {
-        document.querySelector('.container-pinned-total').style.display = 'none';
-        document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
-    } else {
-        document.querySelector('.container-pinned-total').style.display = 'block';
-        document.querySelector('.container-pinned-articles').classList.remove('container-no-pinned-articles');
-    }
+    totalPinnedArticlesBefore();
 
     var searchButtonParentLeave = this;
     searchButtonParentLeave.classList.remove('permahover');
 
-    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
-    while ( containerSectionErrorOpen.length > 0 ) {
-        containerSectionErrorOpen[0].classList.remove('active');
-    }
-    
-    var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
-    if ( closeCategoryAddSection.length > 0 ) {
-        closeCategoryAddSection[0].classList.remove('add-section-open');
-    }
-
-    var pinnedArticlesContainerClose = document.getElementsByClassName('container-pinned-articles pinned-articles-open');
-    while ( pinnedArticlesContainerClose.length > 0 ) {
-        pinnedArticlesContainerClose[0].classList.remove('pinned-articles-open');
-    }
-
-    var userNewspaperSectionsClose = document.getElementsByClassName('container-sections container-sections-closed');
-    while ( userNewspaperSectionsClose.length > 0 ) {
-        userNewspaperSectionsClose[0].classList.remove('container-sections-closed');
-    }
-    
-    var pinnedArticlesClose = document.getElementsByClassName('pinned-articles-content pinned-articles-content-open');
-    while ( pinnedArticlesClose.length > 0 ) {
-        pinnedArticlesClose[0].classList.remove('pinned-articles-content-open');
-    }
-
+    containerSectionErrorOpen();
+    closeCategoryAddSection();
+    pinnedArticlesContainerClose();
+    userNewspaperSectionsClose();
+    pinnedArticlesClose();
     userControllerClose();
-    
-    var subscribeFormClose = document.getElementsByClassName('user-controller-subscribe-form user-controller-subscribe-form-active');
-    while ( subscribeFormClose.length > 0 ) {
-        subscribeFormClose[0].classList.remove('user-controller-subscribe-form-active');
-    }
-
+    subscribeFormClose();
     leftNavMarketingClose();
     document.querySelector('.user-logged-out-button-info-close').style.display = 'none';
     document.querySelector('.user-logged-out-button-info-back').style.display = 'none';
     document.querySelector('.user-logged-out-button-info-open').style.display = 'block';
 }
 
-
-
-/*
-
-*/
-
-
-
-
-
 // User Logged Out Click Event
 // ------------------------------------------------------------------------
 document.querySelector('.user-logged-out').onclick = function() {
-    var totalPinnedArticlesBefore = document.querySelectorAll('.pinned-articles-content ul li').length;
-    if ( totalPinnedArticlesBefore === 0 ) {
-        document.querySelector('.container-pinned-total').style.display = 'none';
-        document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
-    } else {
-        document.querySelector('.container-pinned-total').style.display = 'block';
-        document.querySelector('.container-pinned-articles').classList.remove('container-no-pinned-articles');
-    }
+
+    totalPinnedArticlesBefore();
+    
     if ( document.querySelector('.user-controller-login-form').classList.contains('user-controller-login-form-active') ) {
         var leftNavSectionErrorClose = document.getElementsByClassName('container-sections-error active');
         while ( leftNavSectionErrorClose.length > 0 ) {
@@ -1016,26 +1029,14 @@ document.querySelector('.user-logged-out').onclick = function() {
         }
         userControllerClose();
         leftNavMarketingClose();
-        var userNewspaperSectionsClose = document.getElementsByClassName('container-sections container-sections-closed');
-        while ( userNewspaperSectionsClose.length > 0 ) {
-            userNewspaperSectionsClose[0].classList.remove('container-sections-closed');
-        }
+        userNewspaperSectionsClose();
         document.querySelector('.user-logged-out-button-info-close').style.display = 'none';
         document.querySelector('.user-logged-out-button-info-back').style.display = 'none';
         document.querySelector('.user-logged-out-button-info-open').style.display = 'block';
     } else {
-        var subscribeFormClose = document.getElementsByClassName('user-controller-subscribe-form user-controller-subscribe-form-active');
-        while ( subscribeFormClose.length > 0 ) {
-            subscribeFormClose[0].classList.remove('user-controller-subscribe-form-active');
-        }
-        var pinnedArticlesContainerClose = document.getElementsByClassName('container-pinned-articles pinned-articles-open');
-        while ( pinnedArticlesContainerClose.length > 0 ) {
-            pinnedArticlesContainerClose[0].classList.remove('pinned-articles-open');
-        }
-        var pinnedArticlesClose = document.getElementsByClassName('pinned-articles-content pinned-articles-content-open');
-        while ( pinnedArticlesClose.length > 0 ) {
-            pinnedArticlesClose[0].classList.remove('pinned-articles-content-open');
-        }
+        subscribeFormClose();
+        pinnedArticlesContainerClose();
+        pinnedArticlesClose();
         document.querySelector('.user-logged-out-button-info-close').style.display = 'block';
         document.querySelector('.user-logged-out-button-info-back').style.display = 'none';
         document.querySelector('.user-logged-out-button-info-open').style.display = 'none';
@@ -1061,22 +1062,6 @@ document.querySelector('.user-controller-login-form .user-controller-form-input-
     var leftNavInnerHeight = document.querySelector('.page-wrap-left').clientHeight;
     if ( document.querySelector('.user-controller-subscribe-form').classList.contains('user-controller-subscribe-form-active') ) {
         document.querySelector('.user-controller-subscribe-form-active').style.height = (leftNavInnerHeight - 170) + "px";
-    }
-}
-
-// Pinned Articles setup
-// ------------------------------------------------------------------------
-var totalPinnedArticlesBefore = document.querySelector('.pinned-articles-content ul').children.length;
-// console.log(totalPinnedArticlesBefore);
-document.querySelector('.container-pinned-total').innerHTML = totalPinnedArticlesBefore;
-if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
-    document.querySelector('.container-pinned-total').style.display = "none";
-    document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
-} else {
-    document.querySelector('.container-pinned-total').style.display = "block";
-    var removeNoPinnedArticles = document.getElementsByClassName('container-pinned-articles container-no-pinned-articles');
-    while ( removeNoPinnedArticles.length > 0 ) {
-        removeNoPinnedArticles[0].classList.remove('container-no-pinned-articles');
     }
 }
 
@@ -1186,9 +1171,3 @@ var indexAsideNewsFeedFeedbackLinkHeight = document.querySelector('.newsfeed-edi
 //var indexAsideInHouseAdHeight = document.querySelector('.in-house-ad-area').clientHeight;
 //
 document.querySelector('.content-area-news-feed-inner-container').style.height = ((indexTrendingContainerHeight) - (indexAsideOpinionContainerHeight) - (indexAsidePromoAreaContainerHeight) - (indexAsideNewsFeedTitleContainerHeight) - (indexAsideNewsFeedFeedbackLinkHeight) - 85) + "px";
-
-
-
-/*
-
-*/
