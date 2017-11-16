@@ -926,6 +926,73 @@ document.querySelector('.page-wrap-left').onmouseover = function() {
     searchFormAutoClose();
     searchButtonParent.classList.add('permahover');
 }
+document.querySelector('.page-wrap-left').onmouseleave = function(e) {
+    // Perma Hover Event Controller
+    var counterForPermaHoverEvent = 0;
+    if(e.relatedTarget === null) {
+        return;
+    }
+    counterForPermaHoverEvent ++;
+
+    var totalPinnedArticlesBefore = document.querySelectorAll('.pinned-articles-content ul li').length;
+    if ( totalPinnedArticlesBefore === 0 ) {
+        document.querySelector('.container-pinned-total').style.display = 'none';
+        document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
+    } else {
+        document.querySelector('.container-pinned-total').style.display = 'block';
+        document.querySelector('.container-pinned-articles').classList.remove('container-no-pinned-articles');
+    }
+
+    var searchButtonParentLeave = this;
+    searchButtonParentLeave.classList.remove('permahover');
+
+    var containerSectionErrorOpen = document.getElementsByClassName('container-sections-error active');
+    while ( containerSectionErrorOpen.length > 0 ) {
+        containerSectionErrorOpen[0].classList.remove('active');
+    }
+    
+    var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
+    if ( closeCategoryAddSection.length > 0 ) {
+        closeCategoryAddSection[0].classList.remove('add-section-open');
+    }
+
+    var pinnedArticlesContainerClose = document.getElementsByClassName('container-pinned-articles pinned-articles-open');
+    while ( pinnedArticlesContainerClose.length > 0 ) {
+        pinnedArticlesContainerClose[0].classList.remove('pinned-articles-open');
+    }
+
+    var userNewspaperSectionsClose = document.getElementsByClassName('container-sections container-sections-closed');
+    while ( userNewspaperSectionsClose.length > 0 ) {
+        userNewspaperSectionsClose[0].classList.remove('container-sections-closed');
+    }
+    
+    var pinnedArticlesClose = document.getElementsByClassName('pinned-articles-content pinned-articles-content-open');
+    while ( pinnedArticlesClose.length > 0 ) {
+        pinnedArticlesClose[0].classList.remove('pinned-articles-content-open');
+    }
+
+    userControllerClose();
+    
+    var subscribeFormClose = document.getElementsByClassName('user-controller-subscribe-form user-controller-subscribe-form-active');
+    while ( subscribeFormClose.length > 0 ) {
+        subscribeFormClose[0].classList.remove('user-controller-subscribe-form-active');
+    }
+
+    leftNavMarketingClose();
+    document.querySelector('.user-logged-out-button-info-close').style.display = 'none';
+    document.querySelector('.user-logged-out-button-info-back').style.display = 'none';
+    document.querySelector('.user-logged-out-button-info-open').style.display = 'block';
+}
+
+
+
+/*
+
+*/
+
+
+
+
 
 // User Logged Out Click Event
 // ------------------------------------------------------------------------
