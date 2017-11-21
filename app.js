@@ -14,27 +14,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// security
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg"],
-    scriptSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg"],
-    styleSrc: ["'unsafe-inline'", "'self'"],
-    connectSrc: ["http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg"],
-    fontSrc: ["'self'"],
-    objectSrc: ["'self'", "*.youtube.com/", "*.vimeo.com/"],
-    mediaSrc: ["'self'", "*.youtube.com/", "*.vimeo.com/"],
-    childSrc: ["'none'"],
-    reportUri: '/report-violation'
-  }
-}));
-app.use(helmet.frameguard({ action: 'sameorigin' }));
-// Uncomment in production when using SSL
-//app.use(helmet.hsts());
-app.use(helmet.ieNoOpen());
-app.use(helmet.noCache());
-app.use(helmet.hidePoweredBy());
-
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -42,7 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// You need a JSON parser first.
+/* Helmet Security
+----------------------------------------------------------------------------- */
+// Body Parser must appear before Helmet
 app.use(bodyParser.json({
   type: ['json', 'application/csp-report']
 }))
@@ -54,6 +35,26 @@ app.post('/report-violation', function (req, res) {
   }
   res.status(204).end();
 })
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    scriptSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    styleSrc: ["'unsafe-inline'", "'self'"],
+    imgSrc: ["'self'", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", "data:"],
+    connectSrc: ["http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    fontSrc: ["'self'"],
+    objectSrc: ["'self'", "*.youtube.com/", "*.vimeo.com/", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    mediaSrc: ["'self'", "http://sportfm.live24.gr/sportfm7712", "*.youtube.com/", "*.vimeo.com/"],
+    childSrc: ["'none'"],
+    reportUri: '/report-violation'
+  }
+}));
+app.use(helmet.frameguard({ action: 'sameorigin' }));
+// Uncomment in production when using SSL
+//app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noCache());
+app.use(helmet.hidePoweredBy());
 
 /* JSON NOTES:
 ----------------------------------------------------------------------------- */
