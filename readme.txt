@@ -1,37 +1,36 @@
-﻿github:
-    Quick setup — if you’ve done this kind of thing before
-        https...
-        > https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
-        ssh...
-        > git@github.com:nicohaitas/tpnstwo-node-express-ejs.git
+﻿# Advanced JS Showcase
 
-    …or create a new repository on the command line
-        > echo "# tpnstwo-node-express-ejs" >> README.md
-        > git init
-        > git add README.md
-        > git commit -m "first commit"
-        > git remote add origin https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
-        > git push -u origin master
+## Applicaion currently makes use of the following...
+* Node
+* Express
+* EJS
+* ES5+ JS
+* NPM for the private packages
+* Bower for the public packages
+* ESLint
+* Helmet for securing the application against XSS attacks
 
-    …or push an existing repository from the command line
-        > git remote add origin https://github.com/nicohaitas/tpnstwo-node-express-ejs.git
-        > git push -u origin master
+## When complete this will be a fully functioning newspaper, currently showcasing the use of...
+### Environment
+* Traversal of complex multidimensional array
+* JS Patterns with polyfix's for backward and crossbrowser compatibility
+* ZERO memory usage by the application
+* no use of jQuery
 
-setup environment...
-    > download and install node.js from https://nodejs.org/en/
-    > npm install -g express
-    > npm install -g express-generator
-    > npm install -g bower
-    > express -e tpnstwo
+### Interface
+* Discreet Geolocation to show newsletter subscription forms according to user location, with fallback for users who hide their location
+* Complex Navigation System Type 1 (top left hand corner of th screen)
+* Complex Navigation System Type 2 (left sidebar) - featuring the first ever fully SEO and Accessibility friendly hover form, scroll to functionality, Creative use of the JS Observer Pattern to indicate when a newspaper section is currently visible, Add/Remove/Mute/Focus functionality for the newspaper sections allowing the user to customise their newspaper. More to come...
 
-NOTE: The Node NPM Folder on the server is PRIVATE and cannot be used for public purposes, as your file paths will return 404 (not found). The bower.json file is for PUBLIC use, add public packages to its dependencies by...
-    > bower install new-package-name --save
+## using and running the App
 
-change directory to project directory:
-    > cd /d E:\Nico Websites\News Site\Node Express EJS\tpnstwo
+### setup environment...
+* download and install node.js from https://nodejs.org/en/
+* npm install -g bower
 
-install dependencies:
-    > cd tpnstwo && npm install
+### install dependencies
+* cd tpnstwo && npm install
 
-run the app:
-    > SET DEBUG=tpnstwo:* & npm start
+### run the app
+* SET DEBUG=tpnstwo:* & npm start
+* Application will be available in http://localhost:3000

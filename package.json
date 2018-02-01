@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-      "start": "nodemon start.js"
+    "start": "nodemon start.js"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
@@ -15,6 +15,7 @@
     "ejs": "~2.5.7",
     "express": "~4.15.5",
     "helmet": "^3.9.0",
+    "jshint": "^2.9.5",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
   }

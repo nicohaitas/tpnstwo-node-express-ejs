@@ -39,7 +39,7 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
     scriptSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
-    styleSrc: ["'unsafe-inline'", "'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
     imgSrc: ["'self'", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", "data:"],
     connectSrc: ["http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
     fontSrc: ["'self'"],
