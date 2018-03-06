@@ -485,8 +485,6 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     observer.observe(eachIndexArticleSection);
                 }
             } else {
-                
-
                 removeEl();
                 // re-initialize navigation Intersection Observer
                 var allIndexArticleSectionsSecondary = document.querySelectorAll('.page-wrap-right section');
