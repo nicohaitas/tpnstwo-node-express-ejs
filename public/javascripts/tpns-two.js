@@ -151,7 +151,7 @@ document.querySelector(".primaryCategories li:first-child a").href = '/';
 var disableOneOnlyCategoryFilter = document.getElementsByName('category-one-only-filter');
 for ( i = 0; i < disableOneOnlyCategoryFilter.length; i++ ) {
     var disableEachOneOnlyCategoryFilter = disableOneOnlyCategoryFilter[i];
-    if ( disableEachOneOnlyCategoryFilter.checked = true ) {
+    if ( disableEachOneOnlyCategoryFilter.checked === true ) {
         disableEachOneOnlyCategoryFilter.checked = false;
     }
 }
@@ -229,7 +229,7 @@ function subscribeFormClose() {
 // Close the Add/Remove Section Area
 // ------------------------------------------------------------------------
 function closeCategoryAddSection() {
-    var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open')
+    var closeCategoryAddSection = document.getElementsByClassName('add-section add-section-open');
     if ( closeCategoryAddSection.length > 0 ) {
         closeCategoryAddSection[0].classList.remove('add-section-open');
     }
@@ -250,7 +250,7 @@ function totalPinnedArticlesBefore() {
     var totalPinnedArticlesBefore = document.querySelectorAll('.pinned-articles-content ul li').length;
     // console.log(totalPinnedArticlesBefore);
     document.querySelector('.container-pinned-total').innerHTML = totalPinnedArticlesBefore;
-    if ( !totalPinnedArticlesBefore === null || totalPinnedArticlesBefore === 0) {
+    if ( totalPinnedArticlesBefore != null || totalPinnedArticlesBefore === 0) {
         document.querySelector('.container-pinned-total').style.display = "none";
         document.querySelector('.container-pinned-articles').classList.add('container-no-pinned-articles');
     } else {
@@ -274,13 +274,12 @@ var allIndexArticleSections = document.querySelectorAll('.page-wrap-right sectio
 observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
     for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
         var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
         if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
         } else {
-            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
             var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
             if ( RemoveCategoryMark !== null ) {
                 while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
@@ -327,6 +326,7 @@ for (var k = 0; k < AllArticleStoreSections.length; k++) {
 
 // Sections Navigation, user customization of the newspaper
 // ------------------------------------------------------------------------
+// detach current Section, convert to array of objects with key value pairs and add to local storage
 var eachIndexArticleCategoryLink = document.querySelectorAll('.category-links > li');
 for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
     var thisIndexArticleCategoryLink = eachIndexArticleCategoryLink[i];
@@ -344,14 +344,14 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                     showGoIconMouseOverParentsUntilLi.querySelector('.category-mark a').style.display = 'none';
                     showGoIconMouseOverParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').style.display = 'none';
                     showGoIconMouseOverParentsUntilLi.querySelector('.category-mark .icon-go').style.display = 'block';
-                }
+                };
                 showGoIcon[j].onmouseout = function() {
                     var showGoIconMouseLeave = this;
                     var showGoIconMouseLeaveParentsUntilLi = showGoIconMouseLeave.parentElement.parentElement;
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark a').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-radio-button-disabled').removeAttribute('style');
                     showGoIconMouseLeaveParentsUntilLi.querySelector('.category-mark .icon-go').removeAttribute('style');
-                }
+                };
             }
         }
     }
@@ -384,29 +384,42 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
             containerSectionErrorOpen();
 
             // if stored locally and exists
+            var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
+            var checkboxId = siblingRadioButton.getAttribute('name');
+            function removeEl() {
+                var sectionID = checkboxId;
+                storedSection = document.getElementById(checkboxId);
+                var storedSectionHTML = storedSection.outerHTML;
+                var sectionHTML = storedSectionHTML;
+                var sectionObject = {};
+                sectionObject.categorySlug = sectionID;
+                sectionObject.sectionContent = sectionHTML;
+                sections.push(sectionObject);
+                storedSection.remove();
+                // Uncomment the console log below to see the array in the browser console
+                //console.log("sections: %s", JSON.stringify(sections));
+            }
             if (this.checked) {
                 var sectionsContainer = document.querySelector('.page-wrap-right');
-                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
-                var checkboxId = siblingRadioButton.getAttribute('name');
 
-                var siblingCategoryMark = siblingRadioButton.getElementsByClassName('category-mark radio-active')
+                var siblingCategoryMark = siblingRadioButton.getElementsByClassName('category-mark radio-active');
                 if ( siblingCategoryMark.length > 0 ) {
                     siblingCategoryMark[0].classList.remove('radio-active');
                 }
 
-                var siblingCategoryAddRemoveSection = siblingRadioButton.getElementsByClassName('category-add-remove-section disabled')
+                var siblingCategoryAddRemoveSection = siblingRadioButton.getElementsByClassName('category-add-remove-section disabled');
                 if ( siblingCategoryAddRemoveSection.length > 0 ) {
                     siblingCategoryAddRemoveSection[0].classList.remove('disabled');
                 }
 
-                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
-                if ( siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').hasAttribute('disabled') ) {
-                    siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').removeAttribute('disabled');
+                var siblingRadioButtonSecondary = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
+                if ( siblingRadioButtonSecondary.querySelector('input[type="radio"][name="category-one-only-filter"]').hasAttribute('disabled') ) {
+                    siblingRadioButtonSecondary.querySelector('input[type="radio"][name="category-one-only-filter"]').removeAttribute('disabled');
                 }
 
-                var siblingCategoryAddRemoveSection = siblingRadioButton.getElementsByClassName('category-link-details category-filter-active')
-                if ( siblingCategoryAddRemoveSection.length > 0 ) {
-                    siblingCategoryAddRemoveSection[0].classList.remove('category-filter-active');
+                var siblingCategoryAddRemoveSectionSecondary = siblingRadioButton.getElementsByClassName('category-link-details category-filter-active');
+                if ( siblingCategoryAddRemoveSectionSecondary.length > 0 ) {
+                    siblingCategoryAddRemoveSectionSecondary[0].classList.remove('category-filter-active');
                 }
 
                 // check local storage for this and add again
@@ -425,8 +438,8 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 // Place Categories in original order
                 var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
                 var sectionsForSortingArray = [];
-                for (var i = 0; i < sectionsForSorting.length; ++i) {
-                    sectionsForSortingArray.push(sectionsForSorting[i]);
+                for (var j = 0; j < sectionsForSorting.length; ++j) {
+                    sectionsForSortingArray.push(sectionsForSorting[j]);
                 }
                 sectionsForSortingArray.sort(function(a, b) {
                     return +a.getAttribute("data-order") - +b.getAttribute("data-order");
@@ -439,13 +452,12 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
                     for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
                         var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                         if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                             var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
                             if ( RemoveCategoryMark !== null ) {
                                 while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
@@ -468,39 +480,25 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                         observer.takeRecords(id);
                     }
                 });
-                for (var i = 0; i < allIndexArticleSections.length; i++) {
-                    var eachIndexArticleSection = allIndexArticleSections[i];
+                for (var k = 0; k < allIndexArticleSections.length; k++) {
+                    var eachIndexArticleSection = allIndexArticleSections[k];
                     observer.observe(eachIndexArticleSection);
                 }
             } else {
-                var siblingRadioButton = categoryFilterCheckbox.parentElement.parentElement.parentElement.parentElement;
-                var checkboxId = siblingRadioButton.getAttribute('name');
-                // detach current Section, convert to array of objects with key value pairs and add to local storage
-                function removeEl() {
-                    var sectionID = checkboxId;
-                    storedSection = document.getElementById(checkboxId);
-                    var storedSectionHTML = storedSection.outerHTML;
-                    var sectionHTML = storedSectionHTML;
-                    var sectionObject = {};
-                    sectionObject["categorySlug"] = sectionID, sectionObject["sectionContent"] = sectionHTML;
-                    sections.push(sectionObject);
-                    storedSection.remove();
-                    // Uncomment the console log below to see the array in the browser console
-                    //console.log("sections: %s", JSON.stringify(sections));
-                }
+                
+
                 removeEl();
                 // re-initialize navigation Intersection Observer
-                var allIndexArticleSections = document.querySelectorAll('.page-wrap-right section');
+                var allIndexArticleSectionsSecondary = document.querySelectorAll('.page-wrap-right section');
                 observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
                     for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
                         var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                        var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                         if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
                             document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                         } else {
-                            var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                             var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
                             if ( RemoveCategoryMark !== null ) {
                                 while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
@@ -523,16 +521,16 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                         observer.takeRecords(id);
                     }
                 });
-                for (var i = 0; i < allIndexArticleSections.length; i++) {
-                    var eachIndexArticleSection = allIndexArticleSections[i];
-                    observer.observe(eachIndexArticleSection);
+                for (var l = 0; l < allIndexArticleSectionsSecondary.length; l++) {
+                    var eachIndexArticleSectionSecondary = allIndexArticleSectionsSecondary[l];
+                    observer.observe(eachIndexArticleSectionSecondary);
                 }
                 siblingRadioButton.querySelector('.category-mark').classList.add('radio-active');
                 siblingRadioButton.querySelector('.category-add-remove-section').classList.add('disabled');
                 siblingRadioButton.querySelector('input[type="radio"][name="category-one-only-filter"]').setAttribute('disabled', 'true');
                 siblingRadioButton.querySelector('.category-link-details').classList.add('category-filter-active');
             }
-        }
+        };
     }
     
     var categoryRadioButton = document.querySelectorAll("input[type='radio'][name='category-one-only-filter']");
@@ -575,7 +573,7 @@ for (var i = 0; i < eachIndexArticleCategoryLink.length; i++) {
                 document.querySelector('.add-section').classList.add('radio-active');
                 thisCategoryRadioButtonParents.querySelector('.category-mark').classList.remove('radio-active');
             }
-        }
+        };
     }
 }
 
@@ -617,13 +615,12 @@ document.getElementById("categoryLinks").addEventListener("click",function(e) {
         observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
             for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
                 var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                 if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                 } else {
-                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                     var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
                     if ( RemoveCategoryMark !== null ) {
                         while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
@@ -646,8 +643,8 @@ document.getElementById("categoryLinks").addEventListener("click",function(e) {
                 observer.takeRecords(id);
             }
         });
-        for (var i = 0; i < allIndexArticleSections.length; i++) {
-            var eachIndexArticleSection = allIndexArticleSections[i];
+        for (var j = 0; j < allIndexArticleSections.length; j++) {
+            var eachIndexArticleSection = allIndexArticleSections[j];
             observer.observe(eachIndexArticleSection);
         }
         
@@ -661,7 +658,7 @@ document.querySelector('.add-section-mark').onclick = function() {
     containerSectionErrorOpen();
 
     thisOpenAddSectionButton.classList.toggle('add-section-open');
-}
+};
 
 // Remove Article from Article Store and place into page-wrap-right while
 // updating the event listener on each move click event
@@ -698,20 +695,18 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
         document.querySelector('.page-wrap-right').appendChild(targetForStoredSection);
 
         // Place Article Sections in original order
-        var sectionsForSorting = document.querySelectorAll('.page-wrap-right section');
-        var sectionsForSortingArray = [];
-        for (var i = 0; i < sectionsForSorting.length; ++i) {
-            sectionsForSortingArray.push(sectionsForSorting[i]);
+        var sectionsForSortingSecondary = document.querySelectorAll('.page-wrap-right section');
+        var sectionsForSortingArraySecondary = [];
+        for (var j = 0; j < sectionsForSortingSecondary.length; ++j) {
+            sectionsForSortingArraySecondary.push(sectionsForSortingSecondary[j]);
         }
-        sectionsForSortingArray.sort(function(a, b) {
+        sectionsForSortingArraySecondary.sort(function(a, b) {
             return +a.getAttribute("data-order") - +b.getAttribute("data-order");
         });
-        sectionsForSortingArray.forEach(function(el) {
+        sectionsForSortingArraySecondary.forEach(function(el) {
             document.querySelector('.page-wrap-right').appendChild(el);
         });
 
-        var moveAddSectionToEnd = document.querySelector('.add-section');
-        var moveAddSectionParent = document.querySelector('.category-links');
         moveAddSectionParent.appendChild(moveAddSectionToEnd);
 
         // re-initialize navigation Intersection Observer
@@ -719,13 +714,12 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
         observer = new IntersectionObserver( function(eachIndexArticleSectionEntries) {
             for (var i = 0; i < eachIndexArticleSectionEntries.length; i++) {
                 var eachIndexArticleSectionEntry = eachIndexArticleSectionEntries[i];
+                var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                 if (eachIndexArticleSectionEntry.intersectionRatio > 0) {
-                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a').classList.add('currently-visible');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-link-details').classList.add('currently-visible');
                     document.querySelector('.category-links > li[name="'+ id +'"] > .category-controllers > .category-one-only span').classList.add('currently-visible');
                 } else {
-                    var id = eachIndexArticleSectionEntry.target.getAttribute('id');
                     var RemoveCategoryMark = document.querySelector('.category-links > li[name="'+ id +'"] > .category-mark a');
                     if ( RemoveCategoryMark !== null ) {
                         while ( RemoveCategoryMark.classList.contains('currently-visible') ) {
@@ -748,8 +742,8 @@ document.getElementById("additionalSectionsContainer").addEventListener("click",
                 observer.takeRecords(id);
             }
         });
-        for (var i = 0; i < allIndexArticleSections.length; i++) {
-            var eachIndexArticleSection = allIndexArticleSections[i];
+        for (var k = 0; k < allIndexArticleSections.length; k++) {
+            var eachIndexArticleSection = allIndexArticleSections[k];
             observer.observe(eachIndexArticleSection);
         }
     }
@@ -807,7 +801,7 @@ document.querySelector('.category-one-only-reset').onclick = function() {
         resetCategoryOneOnlyMark[0].classList.remove('currently-visible');
     }
     window.scrollTo(0, 0);
-}
+};
 
 // Sections Navigation, on click scroll to a section
 // ------------------------------------------------------------------------
@@ -825,7 +819,7 @@ for (var i = 0; i < allCategoryMarks.length; i++) {
             block: "start",
             behavior: "smooth"
         });
-    }
+    };
 }
 
 // Manually Open and Close the Main Navigation Area
@@ -841,7 +835,7 @@ document.querySelector('.mainnav-button a').onclick = function() {
         myButton.classList.add("mainnav-button-active");
         myButton.nextElementSibling.classList.add("mainnav-sections-active");
     }
-}
+};
 
 // Auto close the Main Navigation Area
 // ------------------------------------------------------------------------
@@ -851,9 +845,9 @@ function traverseChildren(elem) {
     q.push(elem);
     while (q.length>0)
     {
-        var elem = q.pop();
-        children.push(elem);
-        pushAll(elem.children);
+        var element = q.pop();
+        children.push(element);
+        pushAll(element.children);
     }
     function pushAll(elemArray){
         for(var i=0;i<elemArray.length;i++)
@@ -906,7 +900,7 @@ for ( var i = 0, mainNavItem = allMainNavItems.length; i < mainNavItem; i++ ) {
             mainNavSubcategoryItemManageActive[0].classList.remove('mainnav-sections-subcategory-item-active');
         }
         if(mainNavSubcategoryItemManageActive.length === 0){
-            var mainNavSubcategoryItemFirstActive = document.querySelectorAll('.mainnav-sections-middle section[name='+ mainNavSectionId +'] .mainnav-sections-subcategory li')
+            var mainNavSubcategoryItemFirstActive = document.querySelectorAll('.mainnav-sections-middle section[name='+ mainNavSectionId +'] .mainnav-sections-subcategory li');
             for (j = 0; j < mainNavSubcategoryItemFirstActive.length; j++) {
                 mainNavSubcategoryItemFirstActive[0].classList.add('mainnav-sections-subcategory-item-active');
             }
@@ -926,7 +920,7 @@ for ( var i = 0, mainNavItem = allMainNavItems.length; i < mainNavItem; i++ ) {
                 }
             }
         }
-    }
+    };
 }
 
 // On hover of each Sub-category show its contents
@@ -941,7 +935,7 @@ for ( var k = 0, mainNavSubCategoryItem = allMainNavSubCategoryItems.length; k <
             mainNavSubcategoryItemManageCurrent[0].classList.remove('mainnav-sections-subcategory-item-active');
         }
         if(mainNavSubcategoryItemManageCurrent.length === 0){
-            var mainNavSubcategoryItemFirstCurrent = document.querySelectorAll('.mainnav-sections-subcategory-item[name='+ mainNavSubCategorySectionId +']')
+            var mainNavSubcategoryItemFirstCurrent = document.querySelectorAll('.mainnav-sections-subcategory-item[name='+ mainNavSubCategorySectionId +']');
             for (l = 0; l < mainNavSubcategoryItemFirstCurrent.length; l++) {
                 mainNavSubcategoryItemFirstCurrent[0].classList.add('mainnav-sections-subcategory-item-active');
             }
@@ -951,12 +945,12 @@ for ( var k = 0, mainNavSubCategoryItem = allMainNavSubCategoryItems.length; k <
             mainNavSubcategoryItemManageActiveItem[0].classList.remove('mainnav-sections-subcategory-related-articles-active');
         }
         if(mainNavSubcategoryItemManageActiveItem.length === 0){
-            var mainNavSubcategoryArticleFirstCurrent = document.querySelectorAll('.mainnav-sections-subcategory-related-articles[name='+ mainNavSubCategorySectionId +']')
+            var mainNavSubcategoryArticleFirstCurrent = document.querySelectorAll('.mainnav-sections-subcategory-related-articles[name='+ mainNavSubCategorySectionId +']');
             for (m = 0; m < mainNavSubcategoryArticleFirstCurrent.length; m++) {
                 mainNavSubcategoryArticleFirstCurrent[0].classList.add('mainnav-sections-subcategory-related-articles-active');
             }
         }
-    }
+    };
 }
 
 // Manually Open and Close the Search Area
@@ -977,7 +971,7 @@ document.querySelector('.container-search a').onclick = function() {
         searchButtonParent.classList.add('searchform-active');
         document.querySelector('.searchform-textbox').focus();
     }
-}
+};
 
 // Create a permahover event to overide the default CSS:hover behaviour 
 // which removes the form hover event when a user hovers on a form element 
@@ -988,7 +982,8 @@ document.querySelector('.page-wrap-left').onmouseover = function() {
     var searchButtonParent = this;
     searchFormAutoClose();
     searchButtonParent.classList.add('permahover');
-}
+};
+
 document.querySelector('.page-wrap-left').onmouseleave = function(e) {
     // Perma Hover Event Controller
     var counterForPermaHoverEvent = 0;
@@ -1013,7 +1008,7 @@ document.querySelector('.page-wrap-left').onmouseleave = function(e) {
     document.querySelector('.user-logged-out-button-info-close').style.display = 'none';
     document.querySelector('.user-logged-out-button-info-back').style.display = 'none';
     document.querySelector('.user-logged-out-button-info-open').style.display = 'block';
-}
+};
 
 // User Logged Out Click Event
 // ------------------------------------------------------------------------
@@ -1051,7 +1046,7 @@ document.querySelector('.user-logged-out').onclick = function() {
         document.querySelector('.page-wrap-left').classList.add('page-wrap-left-marketing');
         containerSectionsClosed();
     }
-}
+};
 
 // Subscribe button
 // ------------------------------------------------------------------------
@@ -1066,7 +1061,7 @@ document.querySelector('.user-controller-login-form .user-controller-form-input-
     if ( document.querySelector('.user-controller-subscribe-form').classList.contains('user-controller-subscribe-form-active') ) {
         document.querySelector('.user-controller-subscribe-form-active').style.height = (leftNavInnerHeight - 170) + "px";
     }
-}
+};
 
 // Yahoo Weather API
 // ------------------------------------------------------------------------
@@ -1075,14 +1070,8 @@ reallySimpleWeather.weather({
     woeid: '',
     unit: 'c',
     success: function(weather) {
-        html = '<div class="weather-temp">\
-                    <i class="weather-' + weather.code + '"></i>\
-                    <span class="weather-temp-number textb">' + weather.temp + '&deg;' + weather.units.temp + '</span>\
-                </div>';
-        html += '<div class="weather-details">\
-                    <h4>' + weather.city + ', ' + weather.region + '</h4>\
-                    <p class="weather-details-current">' + weather.currently + '</p>\
-                </div>';
+        html = '<div class="weather-temp"><i class="weather-' + weather.code + '"></i><span class="weather-temp-number textb">' + weather.temp + '&deg;' + weather.units.temp + '</span></div>';
+        html += '<div class="weather-details"><h4>' + weather.city + ', ' + weather.region + '</h4><p class="weather-details-current">' + weather.currently + '</p></div>';
         document.getElementById('weather').innerHTML = html;
     },
     error: function(error) {
