@@ -37,11 +37,11 @@ app.post('/report-violation', function (req, res) {
 })
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    defaultSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
-    scriptSrc: ["'self'", "http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    defaultSrc: ["'self'", "http://freegeoip.net/json/", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    scriptSrc: ["'self'", "http://freegeoip.net/json/", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
     styleSrc: ["'self'", "'unsafe-inline'"],
     imgSrc: ["'self'", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", "data:"],
-    connectSrc: ["http://freegeoip.net/json/?callback=handleResponse", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
+    connectSrc: ["http://freegeoip.net/json/", "https://query.yahooapis.com/v1/public/yql", "https://cdn.plyr.io/2.0.16/plyr.svg", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
     fontSrc: ["'self'"],
     objectSrc: ["'self'", "*.youtube.com/", "*.vimeo.com/", "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js"],
     mediaSrc: ["'self'", "http://sportfm.live24.gr/sportfm7712", "*.youtube.com/", "*.vimeo.com/"],
