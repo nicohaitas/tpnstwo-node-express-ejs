@@ -180,6 +180,7 @@ a:link { -webkit-tap-highlight-color:#289DFD; }
 .icon-newsletter:before { content:"\57"; }
 .icon-transcript-closed:before { content:"\58"; }
 .icon-transcript-open:before { content:"\59"; }
+.icon-delete:before { content: "\5a"; }
 
 /* Weather Font */
 @font-face {
@@ -1149,6 +1150,12 @@ a:hover .hover-go {
 }
 .page-wrap-left .pinned-articles-content li {
 	width:354px; margin-left:28px;
+}
+.page-wrap-left .pinned-articles-content li article, .page-wrap-left .pinned-articles-content li .remove-pinned-article {
+	display: table-cell; vertical-align: middle;
+}
+.page-wrap-left .pinned-articles-content li .remove-pinned-article a:hover {
+	color:#d9534f;
 }
 .page-wrap-left .pinned-articles-content li a {
 	display:block; color:#b3b3b4; padding:10px 0px; margin:0;

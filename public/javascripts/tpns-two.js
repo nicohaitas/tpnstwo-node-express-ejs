@@ -1059,7 +1059,6 @@ for (var i = 0; i < allPinsInsideArticles.length; i++) {
 }
 function pinsInsideArticles() {
     var thisPinInsideArticle = this;
-    thisPinInsideArticle.classList.add('article-controller-article-pinned');
     document.querySelector('.container-pinned-total').style.display = 'block';
     thisPinInsideArticle.classList.add('article-controller-article-pinned');
     document.querySelector('.container-pinned-articles').classList.remove('container-no-pinned-articles');
@@ -1067,9 +1066,13 @@ function pinsInsideArticles() {
         var pinnedArticlesContentParent = document.querySelector('.pinned-articles-content ul');
         var pinnedArticlesContentChild = document.createElement("li");
         var pinnedArticlesContentChildArticle = document.createElement("article");
+        var unpinArticle = document.createElement("div");
+        unpinArticle.classList.add('remove-pinned-article');
         pinnedArticlesContentChild.classList.add('new-pinned-item');
         pinnedArticlesContentParent.insertBefore(pinnedArticlesContentChild, pinnedArticlesContentParent.firstChild);
         document.querySelector('.new-pinned-item').appendChild(pinnedArticlesContentChildArticle);
+        document.querySelector('.new-pinned-item').appendChild(unpinArticle);
+        document.querySelector('.remove-pinned-article').innerHTML = '<h4><a title="Click to remove this pin"><i class="icon icon-delete"></i></a></h4>';
     }
     pinnedArticlesCreateContentLi();
     var thisPinInsideArticleParentArticleType1 = thisPinInsideArticle.parentElement.parentElement;
@@ -1078,12 +1081,14 @@ function pinsInsideArticles() {
         var getPinnedArticles = thisPinInsideArticle.parentElement.parentElement.parentElement;
         var setPinnedArticles = document.querySelector('.new-pinned-item article');
         setPinnedArticles.innerHTML = getPinnedArticles.innerHTML;
+        setPinnedArticles.className = getPinnedArticles.id;
     } else if ( thisPinInsideArticleParentArticleType2.classList.contains('article-category-related-container') ) {
         var pinnedArticlesContentRelatedChild = document.querySelector('.new-pinned-item article');
         pinnedArticlesContentRelatedChild.innerHTML = '<div class="article-category-main-container"></div>';
         var getPinnedRelatedArticles = thisPinInsideArticle.parentElement.parentElement;
         var setPinnedRelatedArticles = document.querySelector('.new-pinned-item .article-category-main-container');
         setPinnedRelatedArticles.innerHTML = getPinnedRelatedArticles.innerHTML;
+        setPinnedRelatedArticles.parentElement.className = getPinnedRelatedArticles.id;
     }
     var newPinnedItemRelated = document.querySelector('.new-pinned-item .article-category-related-container');
     if ( newPinnedItemRelated != null ) {
@@ -1117,16 +1122,6 @@ function pinsInsideArticles() {
     if ( newPinnedItemSubcategoryNutshell != null ) {
         newPinnedItemSubcategoryNutshell.parentNode.removeChild(newPinnedItemSubcategoryNutshell);
     }
-    /*
-    var newPinnedItemSubcategoryKicker = document.querySelector('.new-pinned-item .article-category-container a .article-kicker');
-    if ( newPinnedItemSubcategoryKicker != null ) {
-        newPinnedItemSubcategoryKicker.parentNode.removeChild(newPinnedItemSubcategoryKicker);
-    }
-    var newPinnedItemSubcategoryBillboard = document.querySelector('.new-pinned-item .article-category-container a .article-billboard');
-    if ( newPinnedItemSubcategoryBillboard != null ) {
-        newPinnedItemSubcategoryBillboard.parentNode.removeChild(newPinnedItemSubcategoryBillboard);
-    }
-    */
     var newPinnedItemSubcategoryEditorsNotes = document.querySelector('.new-pinned-item .article-category-container a .article-editorsnotes');
     if ( newPinnedItemSubcategoryEditorsNotes != null ) {
         newPinnedItemSubcategoryEditorsNotes.parentNode.removeChild(newPinnedItemSubcategoryEditorsNotes);
@@ -1144,29 +1139,50 @@ function pinsInsideArticles() {
     function pinnedArticleInternalElementOrder() {
         var pinnedArticlesContentParent = document.querySelector('.new-pinned-item article .article-category-main-container .article-category-container a');
         var pinnedArticlesContentImageOrder = document.querySelector('.new-pinned-item article .article-category-main-container .article-category-container a .article-image');
+        var pinnedArticlesContentTextRestrictLength = 84;
         if ( pinnedArticlesContentImageOrder != null ) {
             var pinnedArticlesContentHeadlineOrder = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h1");
             var pinnedArticlesContentKickerOrder = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h2");
             if ( pinnedArticlesContentHeadlineOrder != null ) {
                 pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentHeadlineOrder);
-            } else if ( pinnedArticlesContentKickerOrder != null ) {
-                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentKickerOrder);
-            }
-            var pinnedArticlesContentBillboardTextRestrict = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p");
-            if ( pinnedArticlesContentBillboardTextRestrict != null ) {
-                var len = 95;
-                var shrinkables = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p');
-                if (shrinkables.length > 0) {
-                    for (var i = 0; i < shrinkables.length; i++){
-                        var fullText = shrinkables[i].innerHTML;
-                        if(fullText.length > len){
-                            var trunc = fullText.substring(0, len).replace(/\w+$/, '');
-                            remainder = fullText.substring(len, fullText.length);
-                            shrinkables[i].innerHTML = trunc + '...';
+                var pinnedArticlesContentHeadlineTextRestricted = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a h1');
+                if (pinnedArticlesContentHeadlineTextRestricted.length > 0) {
+                    for (var j = 0; j < pinnedArticlesContentHeadlineTextRestricted.length; j++){
+                        var pinnedArticlesContentHeadlineTextBeforeRestriction = pinnedArticlesContentHeadlineTextRestricted[j].innerHTML;
+                        if(pinnedArticlesContentHeadlineTextBeforeRestriction.length > pinnedArticlesContentTextRestrictLength){
+                            var truncHeadline = pinnedArticlesContentHeadlineTextBeforeRestriction.substring(0, pinnedArticlesContentTextRestrictLength).replace(/\w+$/, '');
+                            remainder = pinnedArticlesContentHeadlineTextBeforeRestriction.substring(pinnedArticlesContentTextRestrictLength, pinnedArticlesContentHeadlineTextBeforeRestriction.length);
+                            pinnedArticlesContentHeadlineTextRestricted[j].innerHTML = truncHeadline + '...';
                         }
                     }
                 }
-                
+            } else if ( pinnedArticlesContentKickerOrder != null ) {
+                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentKickerOrder);
+                var pinnedArticlesContentKickerTextRestricted = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a h2');
+                if (pinnedArticlesContentKickerTextRestricted.length > 0) {
+                    for (var l = 0; l < pinnedArticlesContentKickerTextRestricted.length; l++){
+                        var pinnedArticlesContentKickerTextBeforeRestriction = pinnedArticlesContentKickerTextRestricted[l].innerHTML;
+                        if(pinnedArticlesContentKickerTextBeforeRestriction.length > pinnedArticlesContentTextRestrictLength){
+                            var truncKicker = pinnedArticlesContentKickerTextBeforeRestriction.substring(0, pinnedArticlesContentTextRestrictLength).replace(/\w+$/, '');
+                            remainder = pinnedArticlesContentKickerTextBeforeRestriction.substring(pinnedArticlesContentTextRestrictLength, pinnedArticlesContentKickerTextBeforeRestriction.length);
+                            pinnedArticlesContentKickerTextRestricted[l].innerHTML = truncKicker + '...';
+                        }
+                    }
+                }
+            }
+            var pinnedArticlesContentBillboardTextRestrict = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p");
+            if ( pinnedArticlesContentBillboardTextRestrict != null ) {
+                var pinnedArticlesContentBillboardTextRestricted = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p');
+                if (pinnedArticlesContentBillboardTextRestricted.length > 0) {
+                    for (var k = 0; k < pinnedArticlesContentBillboardTextRestricted.length; k++){
+                        var pinnedArticlesContentBillboardTextBeforeRestriction = pinnedArticlesContentBillboardTextRestricted[k].innerHTML;
+                        if(pinnedArticlesContentBillboardTextBeforeRestriction.length > pinnedArticlesContentTextRestrictLength){
+                            var truncBillboard = pinnedArticlesContentBillboardTextBeforeRestriction.substring(0, pinnedArticlesContentTextRestrictLength).replace(/\w+$/, '');
+                            remainder = pinnedArticlesContentBillboardTextBeforeRestriction.substring(pinnedArticlesContentTextRestrictLength, pinnedArticlesContentBillboardTextBeforeRestriction.length);
+                            pinnedArticlesContentBillboardTextRestricted[k].innerHTML = truncBillboard + '...';
+                        }
+                    }
+                }
             }
         } else {
             var pinnedArticlesContentPlaceholderImageToInsert;
@@ -1180,9 +1196,52 @@ function pinsInsideArticles() {
             pinnedArticlesContentPlaceholderImageContainer = pinnedArticlesContentParent;
             pinnedArticlesContentPlaceholderImageContainer.appendChild( pinnedArticlesContentPlaceholderImageToInsert );
             var pinnedArticlesContentPlaceholderImageOrder = document.querySelector('.new-pinned-item article .article-category-main-container .article-category-container a .pinned-articles-content-img-placeholder');
-            var pinnedArticlesContentPlaceholderImageTitleOrder = pinnedArticlesContentPlaceholderImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h1");
-            pinnedArticlesContentParent.insertBefore(pinnedArticlesContentPlaceholderImageOrder, pinnedArticlesContentPlaceholderImageTitleOrder);
+            var pinnedArticlesContentPlaceholderImageHeadlineOrder = pinnedArticlesContentPlaceholderImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h1");
+            var pinnedArticlesContentPlaceholderImageKickerOrder = pinnedArticlesContentPlaceholderImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h2");
+            if ( pinnedArticlesContentPlaceholderImageHeadlineOrder != null ) {
+                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentPlaceholderImageOrder, pinnedArticlesContentPlaceholderImageHeadlineOrder);
+                var pinnedArticlesContentPlaceholderImageHeadlineTextRestricted = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a h1');
+                if (pinnedArticlesContentPlaceholderImageHeadlineTextRestricted.length > 0) {
+                    for (var m = 0; m < pinnedArticlesContentPlaceholderImageHeadlineTextRestricted.length; m++){
+                        var pinnedArticlesContentPlaceholderImageHeadlineTextBeforeRestriction = pinnedArticlesContentPlaceholderImageHeadlineTextRestricted[m].innerHTML;
+                        if(pinnedArticlesContentPlaceholderImageHeadlineTextBeforeRestriction.length > pinnedArticlesContentTextRestrictLength){
+                            var truncPlaceholderImageHeadline = pinnedArticlesContentPlaceholderImageHeadlineTextBeforeRestriction.substring(0, pinnedArticlesContentTextRestrictLength).replace(/\w+$/, '');
+                            remainder = pinnedArticlesContentPlaceholderImageHeadlineTextBeforeRestriction.substring(pinnedArticlesContentTextRestrictLength, pinnedArticlesContentPlaceholderImageHeadlineTextBeforeRestriction.length);
+                            pinnedArticlesContentPlaceholderImageHeadlineTextRestricted[m].innerHTML = truncPlaceholderImageHeadline + '...';
+                        }
+                    }
+                }
+            } else if ( pinnedArticlesContentPlaceholderImageKickerOrder != null ) {
+                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentPlaceholderImageOrder, pinnedArticlesContentPlaceholderImageKickerOrder);
+                var pinnedArticlesContentPlaceholderImageKickerTextRestricted = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a h2');
+                if (pinnedArticlesContentPlaceholderImageKickerTextRestricted.length > 0) {
+                    for (var n = 0; n < pinnedArticlesContentPlaceholderImageKickerTextRestricted.length; n++){
+                        var pinnedArticlesContentPlaceholderImageKickerTextBeforeRestriction = pinnedArticlesContentPlaceholderImageKickerTextRestricted[n].innerHTML;
+                        if(pinnedArticlesContentPlaceholderImageKickerTextBeforeRestriction.length > pinnedArticlesContentTextRestrictLength){
+                            var truncPlaceholderImageKicker = pinnedArticlesContentPlaceholderImageKickerTextBeforeRestriction.substring(0, pinnedArticlesContentTextRestrictLength).replace(/\w+$/, '');
+                            remainder = pinnedArticlesContentPlaceholderImageKickerTextBeforeRestriction.substring(pinnedArticlesContentTextRestrictLength, pinnedArticlesContentPlaceholderImageKickerTextBeforeRestriction.length);
+                            pinnedArticlesContentPlaceholderImageKickerTextRestricted[n].innerHTML = truncPlaceholderImageKicker + '...';
+                        }
+                    }
+                }
+            }
         }
+        // Pinned Item Delete Button
+        // ------------------------------------------------------------------------
+        document.querySelector('.remove-pinned-article a').onclick = function() {
+            thisDeletePinButton = this;
+            thisDeletePinButtonRouteLi = thisDeletePinButton.parentElement.parentElement.parentElement;
+            var thisDeletePinArticleId = thisDeletePinButtonRouteLi.querySelector('article').className;
+            var thisDeletePinOriginalArticle = document.getElementById(thisDeletePinArticleId);
+            var thisDeletePinOriginalParentArticle = thisDeletePinOriginalArticle.querySelector('article > .article-category-main-container .article-controller-pin-article');
+            var thisDeletePinOriginalRelatedArticle = thisDeletePinOriginalArticle.querySelector('.article-category-related-container article .article-controller-pin-article');
+            if ( thisDeletePinOriginalParentArticle != null ) {
+                thisDeletePinOriginalParentArticle.classList.remove('article-controller-article-pinned-button-hidden');
+            } else if ( thisDeletePinOriginalRelatedArticle != null ) {
+                thisDeletePinOriginalRelatedArticle.classList.remove('article-controller-article-pinned-button-hidden');
+            }
+            thisDeletePinButtonRouteLi.outerHTML = "";
+        };
     }
     pinnedArticleInternalElementOrder();
     var autoCloseSocialButtons = thisPinInsideArticle.parentElement.querySelector('.article-controller-share-social');
@@ -1201,55 +1260,8 @@ function pinsInsideArticles() {
         thisPinInsideArticle.classList.add('article-controller-article-pinned-button-hidden');
     }
 }
-/*
-function changetext() {
-    var i;
-    var content = document.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p").innerHTML;
-    for (i = 0; i < content.length; i++) {
-        
-        if (content.slice(i, i + 4) === "copy") {
-            content = content.slice(0, i) + "text" + content.slice(i + 4); 
-        }
-        
-       if ( content.length > 100 ) {
-        content.slice(0, 100);
-       }
-       
-       content.innerHTML = content;
-    }
-}
-*/
-/*
-    if ($('.new-pinned-item vhs')) {
-        
-        var videoArticle = $('.new-pinned-item vhs');
-        var imgURL = videoArticle.find('video').attr('poster');
-        var videoTitle = videoArticle.find('h1').text();
-        
-        videoArticle.wrap('<article></article>');
 
-        $('.new-pinned-item vhs .article-category-container a').prepend('<img src="' + imgURL + '" alt="' + videoTitle + '">');
-        $('.new-pinned-item vhs .article-category-container a').find('img').wrap( "<div class='article-image'></div>" ).wrap( "<div class='new-article-image'></div>");
-        
-        var videoArticleImageUrlConvertion = videoArticle.find('img').prop('src');
-
-        if (videoArticleImageUrlConvertion) {
-            
-            $('.new-pinned-item vhs .new-article-image').css('backgroundImage', 'url(' + videoArticleImageUrlConvertion + ')').addClass('compat-object-fit').children('img').hide();
-            $('.new-pinned-item vhs .new-article-image').parent().addClass($(this).find('img').attr('class'));
-        }
-        
-        $('.new-pinned-item vhs .article-category-main-container').removeClass('mini-video-player').addClass('pinned-video-player');
-        $('.new-pinned-item vhs .video-wrapper').remove();
-        videoArticle.children().unwrap();
-        videoArticle = null;
-        imgURL = null;
-        videoTitle = null;
-        videoArticleImageUrlConvertion = null;
-    }
-*/
-
-// Pinned Items Show button
+// Pinned Items Show / Hide Toggle Button
 // ------------------------------------------------------------------------
 document.querySelector('.container-pinned-articles-button').onclick = function() {
     thisTogglePinsNavArea = this;
@@ -1278,4 +1290,3 @@ document.querySelector('.container-pinned-articles-button').onclick = function()
         
     }
 };
-
