@@ -1101,10 +1101,6 @@ function pinsInsideArticles() {
     if ( newPinnedItemSubcategoryContainer != null ) {
         newPinnedItemSubcategoryContainer.parentNode.removeChild(newPinnedItemSubcategoryContainer);
     }
-    var newPinnedItemSubcategoryKicker = document.querySelector('.new-pinned-item .article-category-container a .article-kicker');
-    if ( newPinnedItemSubcategoryKicker != null ) {
-        newPinnedItemSubcategoryKicker.parentNode.removeChild(newPinnedItemSubcategoryKicker);
-    }
     var newPinnedItemSubcategorySubhead = document.querySelector('.new-pinned-item .article-category-container a .article-subhead');
     if ( newPinnedItemSubcategorySubhead != null ) {
         newPinnedItemSubcategorySubhead.parentNode.removeChild(newPinnedItemSubcategorySubhead);
@@ -1121,10 +1117,16 @@ function pinsInsideArticles() {
     if ( newPinnedItemSubcategoryNutshell != null ) {
         newPinnedItemSubcategoryNutshell.parentNode.removeChild(newPinnedItemSubcategoryNutshell);
     }
+    /*
+    var newPinnedItemSubcategoryKicker = document.querySelector('.new-pinned-item .article-category-container a .article-kicker');
+    if ( newPinnedItemSubcategoryKicker != null ) {
+        newPinnedItemSubcategoryKicker.parentNode.removeChild(newPinnedItemSubcategoryKicker);
+    }
     var newPinnedItemSubcategoryBillboard = document.querySelector('.new-pinned-item .article-category-container a .article-billboard');
     if ( newPinnedItemSubcategoryBillboard != null ) {
         newPinnedItemSubcategoryBillboard.parentNode.removeChild(newPinnedItemSubcategoryBillboard);
     }
+    */
     var newPinnedItemSubcategoryEditorsNotes = document.querySelector('.new-pinned-item .article-category-container a .article-editorsnotes');
     if ( newPinnedItemSubcategoryEditorsNotes != null ) {
         newPinnedItemSubcategoryEditorsNotes.parentNode.removeChild(newPinnedItemSubcategoryEditorsNotes);
@@ -1143,8 +1145,29 @@ function pinsInsideArticles() {
         var pinnedArticlesContentParent = document.querySelector('.new-pinned-item article .article-category-main-container .article-category-container a');
         var pinnedArticlesContentImageOrder = document.querySelector('.new-pinned-item article .article-category-main-container .article-category-container a .article-image');
         if ( pinnedArticlesContentImageOrder != null ) {
-            var pinnedArticlesContentTitleOrder = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h1");
-            pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentTitleOrder);
+            var pinnedArticlesContentHeadlineOrder = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h1");
+            var pinnedArticlesContentKickerOrder = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a h2");
+            if ( pinnedArticlesContentHeadlineOrder != null ) {
+                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentHeadlineOrder);
+            } else if ( pinnedArticlesContentKickerOrder != null ) {
+                pinnedArticlesContentParent.insertBefore(pinnedArticlesContentImageOrder, pinnedArticlesContentKickerOrder);
+            }
+            var pinnedArticlesContentBillboardTextRestrict = pinnedArticlesContentImageOrder.parentElement.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p");
+            if ( pinnedArticlesContentBillboardTextRestrict != null ) {
+                var len = 95;
+                var shrinkables = document.querySelectorAll('.new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p');
+                if (shrinkables.length > 0) {
+                    for (var i = 0; i < shrinkables.length; i++){
+                        var fullText = shrinkables[i].innerHTML;
+                        if(fullText.length > len){
+                            var trunc = fullText.substring(0, len).replace(/\w+$/, '');
+                            remainder = fullText.substring(len, fullText.length);
+                            shrinkables[i].innerHTML = trunc + '...';
+                        }
+                    }
+                }
+                
+            }
         } else {
             var pinnedArticlesContentPlaceholderImageToInsert;
             var pinnedArticlesContentPlaceholderImageContainer;
@@ -1178,6 +1201,24 @@ function pinsInsideArticles() {
         thisPinInsideArticle.classList.add('article-controller-article-pinned-button-hidden');
     }
 }
+/*
+function changetext() {
+    var i;
+    var content = document.querySelector(".new-pinned-item article .article-category-main-container .article-category-container a .article-billboard p").innerHTML;
+    for (i = 0; i < content.length; i++) {
+        
+        if (content.slice(i, i + 4) === "copy") {
+            content = content.slice(0, i) + "text" + content.slice(i + 4); 
+        }
+        
+       if ( content.length > 100 ) {
+        content.slice(0, 100);
+       }
+       
+       content.innerHTML = content;
+    }
+}
+*/
 /*
     if ($('.new-pinned-item vhs')) {
         
