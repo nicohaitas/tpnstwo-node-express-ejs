@@ -1081,14 +1081,14 @@ function pinsInsideArticles() {
         var getPinnedArticles = thisPinInsideArticle.parentElement.parentElement.parentElement;
         var setPinnedArticles = document.querySelector('.new-pinned-item article');
         setPinnedArticles.innerHTML = getPinnedArticles.innerHTML;
-        setPinnedArticles.className = getPinnedArticles.id;
+        setPinnedArticles.className = getPinnedArticles.className;
     } else if ( thisPinInsideArticleParentArticleType2.classList.contains('article-category-related-container') ) {
         var pinnedArticlesContentRelatedChild = document.querySelector('.new-pinned-item article');
         pinnedArticlesContentRelatedChild.innerHTML = '<div class="article-category-main-container"></div>';
         var getPinnedRelatedArticles = thisPinInsideArticle.parentElement.parentElement;
         var setPinnedRelatedArticles = document.querySelector('.new-pinned-item .article-category-main-container');
         setPinnedRelatedArticles.innerHTML = getPinnedRelatedArticles.innerHTML;
-        setPinnedRelatedArticles.parentElement.className = getPinnedRelatedArticles.id;
+        setPinnedRelatedArticles.parentElement.className = getPinnedRelatedArticles.className;
     }
     var newPinnedItemRelated = document.querySelector('.new-pinned-item .article-category-related-container');
     if ( newPinnedItemRelated != null ) {
@@ -1232,13 +1232,15 @@ function pinsInsideArticles() {
             thisDeletePinButton = this;
             thisDeletePinButtonRouteLi = thisDeletePinButton.parentElement.parentElement.parentElement;
             var thisDeletePinArticleId = thisDeletePinButtonRouteLi.querySelector('article').className;
-            var thisDeletePinOriginalArticle = document.getElementById(thisDeletePinArticleId);
-            var thisDeletePinOriginalParentArticle = thisDeletePinOriginalArticle.querySelector('article > .article-category-main-container .article-controller-pin-article');
-            var thisDeletePinOriginalRelatedArticle = thisDeletePinOriginalArticle.querySelector('.article-category-related-container article .article-controller-pin-article');
-            if ( thisDeletePinOriginalParentArticle != null ) {
-                thisDeletePinOriginalParentArticle.classList.remove('article-controller-article-pinned-button-hidden');
-            } else if ( thisDeletePinOriginalRelatedArticle != null ) {
-                thisDeletePinOriginalRelatedArticle.classList.remove('article-controller-article-pinned-button-hidden');
+            var thisDeletePinOriginalArticle = document.getElementsByClassName(thisDeletePinArticleId);
+            for (var i = 0; i < thisDeletePinOriginalArticle.length; i++){
+                var thisDeletePinOriginalParentArticle = thisDeletePinOriginalArticle[i].querySelector('article > .article-category-main-container .article-controller-pin-article');
+                var thisDeletePinOriginalRelatedArticle = thisDeletePinOriginalArticle[i].querySelector('.article-category-related-container article .article-controller-pin-article');
+                if ( thisDeletePinOriginalParentArticle != null ) {
+                    thisDeletePinOriginalParentArticle.classList.remove('article-controller-article-pinned-button-hidden');
+                } else if ( thisDeletePinOriginalRelatedArticle != null ) {
+                    thisDeletePinOriginalRelatedArticle.classList.remove('article-controller-article-pinned-button-hidden');
+                }
             }
             thisDeletePinButtonRouteLi.outerHTML = "";
         };

@@ -5,7 +5,7 @@
                 <%_ eachArticle = data.articles[i]; _%>
                 <%_ var thisArticle = eachArticle.leadarticle; _%>
                 <%_ if ( thisArticle === 1 ) { _%>
-                    <article id="article-<%- eachArticle.articleid %>">
+                    <article class="article-<%- eachArticle.articleid %>">
                         <div class="article-category-main-container">
                             <div class="article-category-container">
                                 <a>
@@ -76,7 +76,7 @@
                                         <%_ var relatedArticleRange = eachArticle.relatedarticleid[k]; _%>
                                         <%_ if ( relatedArticleParentId === relatedArticleRange ) { _%>
                                             <li>
-                                                <article id="article-<%- relatedArticleParent.articleid %>">
+                                                <article class="article-<%- relatedArticleParent.articleid %>">
                                                     <div class="article-category-container">
                                                         <a>
                                                             <%_ if ( relatedArticleParent.kickerimage350 ) { _%>
@@ -142,7 +142,7 @@
                 <%_ eachHappeningNowTrendingArticle = data.articles[i]; _%>
                 <%_ var thisHappeningNowTrendingArticle = eachHappeningNowTrendingArticle.happeningnowtrendingarticleid; _%>
                 <%_ if ( thisHappeningNowTrendingArticle !== 0 ) { _%>
-                    <article id="article-<%- eachHappeningNowTrendingArticle.articleid %>">
+                    <article class="article-<%- eachHappeningNowTrendingArticle.articleid %>">
                         <div class="article-category-main-container">
                             <%_ if ( eachHappeningNowTrendingArticle.kickerimage350 ) { _%>
                             <div class="article-category-container">
@@ -273,7 +273,7 @@
                             <%_ if ( thisInsiderArticle === "tpnstwo-magazine" ) { _%>
                                 <%_ if (insiderArticleCounter < 2) { _%>
                                     <div class="content-area-latest-articles-top-promo-inner-area-split">
-                                        <article id="article-<%- eachInsiderArticle.articleid %>">
+                                        <article class="article-<%- eachInsiderArticle.articleid %>">
                                             <div class="article-category-main-container">
                                                 <div class="article-category-container">
                                                     <a>
@@ -428,7 +428,7 @@
                             <%_ var thisMarketsArticle = eachMarketsArticle.subcategoryslug; _%>
                             <%_ if (thisMarketsArticle === "markets") { _%>
                                 <%_ if (marketsArticleCounter < 1) { _%>
-                                    <article id="article-<%- eachMarketsArticle.articleid %>">
+                                    <article class="article-<%- eachMarketsArticle.articleid %>">
                                         <div class="article-category-main-container">
                                             <div class="article-category-container">
                                                 <a>
@@ -506,7 +506,7 @@
                                                         <%_ if ( relatedMarketsArticleParentId === relatedMarketsArticleRange ) { _%>
                                                             <%_ if (relatedMarketsArticleCounter < 2) { _%>
                                                                 <li>
-                                                                    <article id="article-<%- relatedMarketsArticleParent.articleid %>">
+                                                                    <article class="article-<%- relatedMarketsArticleParent.articleid %>">
                                                                         <div class="article-category-container">
                                                                             <a>
                                                                                 <%_ if ( relatedMarketsArticleParent.softleadimage350 ) { _%>
@@ -746,7 +746,7 @@
                                 <%_ var leadArticleOpinionParentRange = allArticlesForOpinion.relatedopinionarticleid[k]; _%>
                                 <%_ if ( leadArticleOpinionParentId === leadArticleOpinionParentRange ) { _%>
                                     <%_ while (k++ < 1) { _%>
-                                        <article id="article-<%- leadArticleOpinionParent.articleid %>">
+                                        <article class="article-<%- leadArticleOpinionParent.articleid %>">
                                             <div class="article-category-main-container">
                                                 <%_ if ( leadArticleOpinionParent.softleadimage350 ) { _%>
                                                 <div class="article-category-container">
@@ -809,7 +809,7 @@
                                                                 <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
                                                                     <%_ if (leadArticleOpinionParentRangeCounter < 3) { _%>
                                                                         <li>
-                                                                            <article id="article-<%- relatedArticleOpinionParent.articleid %>">
+                                                                            <article class="article-<%- relatedArticleOpinionParent.articleid %>">
                                                                                 <div class="article-category-container">
                                                                                     <a>
                                                                                         <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
@@ -832,7 +832,7 @@
                                                                 <%_ if ( relatedArticleOpinionParentId === relatedArticleOpinionRange ) { _%>
                                                                     <%_ if (leadArticleOpinionParentRangeCounter < 5) { _%>
                                                                         <li>
-                                                                            <article id="article-<%- relatedArticleOpinionParent.articleid %>">
+                                                                            <article class="article-<%- relatedArticleOpinionParent.articleid %>">
                                                                                 <div class="article-category-container">
                                                                                     <a>
                                                                                         <h1 class="article-headline"><%- relatedArticleOpinionParent.kicker %></h1>
@@ -869,7 +869,7 @@
                                 <%_ var leadArticleOpinionParentRangeRight = allArticlesForOpinionRight.relatedopinionarticleid[n]; _%>
                                 <%_ if ( leadArticleOpinionParentIdRight === leadArticleOpinionParentRangeRight ) { _%>
                                     <%_ if (leadArticleOpinionParentRangeCounterRight < 2) { _%>
-                                        <article id="article-<%- leadArticleOpinionParentRight.articleid %>">
+                                        <article class="article-<%- leadArticleOpinionParentRight.articleid %>">
                                             <div class="article-category-main-container">
                                                 <%_ if ( leadArticleOpinionParentRight.kickerimage350 ) { _%>
                                                 <div class="article-category-container">
@@ -939,7 +939,7 @@
                     <%_ var thisInsiderArticle = eachInsiderArticle.micrositeslug; _%>
                     <%_ if ( thisInsiderArticle === "tpnstwo-insider" ) { _%>
                         <%_ if (insiderArticleCounter < 1) { _%>
-                            <article id="article-<%- eachInsiderArticle.articleid %>">
+                            <article class="article-<%- eachInsiderArticle.articleid %>">
                                 <div class="article-category-main-container">
                                     <div class="article-category-container">
                                         <a>
@@ -1007,7 +1007,7 @@
                             <%_ for (var k = 0 ; k < eachEditorsChoiceByWeekArticle.editorschoicebydayid.length; k++) { _%>
                                 <%_ var eachEditorsChoiceByWeekArticleRange = eachEditorsChoiceByWeekArticle.editorschoicebydayid[k]; _%>
                                 <%_ if ( eachEditorsChoiceByWeekArticleParentId === eachEditorsChoiceByWeekArticleRange ) { _%>
-                                    <article id="article-<%- eachEditorsChoiceByWeekArticleParent.articleid %>">
+                                    <article class="article-<%- eachEditorsChoiceByWeekArticleParent.articleid %>">
                                         <div class="article-category-main-container">
                                             <div class="article-category-container">
                                                 <a>

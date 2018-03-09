@@ -1843,9 +1843,11 @@ article:hover .article-editorsnotes {
 .article-controller-container a:hover {
 	background:#289DFD !important;
 }
+/*
 .article-controller-container a.article-controller-share-button {
 	font-size:130%; line-height:24px; margin-bottom:0px;
 }
+*/
 .article-controller-container .article-controller-share-button-close {
 	font-size:70%;
 }
