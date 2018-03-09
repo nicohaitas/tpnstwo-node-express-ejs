@@ -2133,7 +2133,7 @@ article:hover .article-editorsnotes {
 	position:relative; font-size:1.714em; line-height:120%; margin-top:10px; z-index:1000;
 }
 #happening-now .lead-story-left-column .article-category-main-container .article-controller-container {
-	margin:5px 5px 0px 0px; z-index:999;
+	margin:5px 5px 0px 0px; z-index:1000;
 }
 
 /* Index Page Trending Articles Incrementer */
@@ -3271,8 +3271,8 @@ h3 { font-size:1.714em; }
 category aside .article-category-main-container:hover .article-controller-container .article-controller-share-social.active {
 	top:0px; right:inherit; left:40px;
 }
-.newsfeed-editors-choice-by-day-filter .article-category-main-container:hover .article-controller-container .article-controller-share-social.article-pinned.active, 
-#editorschoice-sports .article-category-main-container:hover .article-controller-container .article-controller-share-social.article-pinned.active {
+.newsfeed-editors-choice-by-day-filter .article-category-main-container:hover .article-controller-container .article-controller-article-pinned-button-hidden + .article-controller-share-article > .article-controller-share-social.active, 
+#editorschoice-sports .article-category-main-container:hover .article-controller-container .article-controller-article-pinned-button-hidden + .article-controller-share-article > .article-controller-share-social.active {
 	top:10px;
 }
 .newsfeed-editors-choice-by-day-filter .article-category-main-container > .article-category-container .article-editorsnotes, 

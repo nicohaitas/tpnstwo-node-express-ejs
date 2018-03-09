@@ -1292,3 +1292,40 @@ document.querySelector('.container-pinned-articles-button').onclick = function()
         
     }
 };
+
+// Share Article Show / Hide Toggle Button (click)
+// ------------------------------------------------------------------------
+var allToggleShareButtons = document.querySelectorAll('.article-controller-share-button');
+for (var i = 0; i < allToggleShareButtons.length; i++) {
+    allToggleShareButtons[i].addEventListener('click', toggleShare);
+}
+function toggleShare() {
+    thisToggleShareArea = this;
+    if ( thisToggleShareArea.parentElement.querySelector('.article-controller-share-social').classList.contains('active') ) {
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-social').classList.remove('active');
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-button-open').style.display = "block";
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-button-close').style.display = "none";
+    } else {
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-social').classList.add('active');
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-button-open').style.display = "none";
+        thisToggleShareArea.parentElement.querySelector('.article-controller-share-button-close').style.display = "block";
+    }
+}
+
+// Share Article Show / Hide Toggle Button (mouseleave article with Share
+// Area Open)
+// ------------------------------------------------------------------------
+var allArticlesShareAreaOpen = document.querySelectorAll('.page-wrap-right article');
+for (var i = 0; i < allArticlesShareAreaOpen.length; i++) {
+        allArticlesShareAreaOpen[i].addEventListener('mouseleave', mouseLeaveShare);
+}
+function mouseLeaveShare() {
+    thisArticlesShareAreaOpen = this;
+    if ( thisArticlesShareAreaOpen.querySelector('.article-controller-share-social') != null ) {
+        if ( thisArticlesShareAreaOpen.querySelector('.article-controller-share-social').classList.contains('active') ) {
+            thisArticlesShareAreaOpen.querySelector('.article-controller-share-social').classList.remove('active');
+            thisArticlesShareAreaOpen.querySelector('.article-controller-share-button-open').style.display = "block";
+            thisArticlesShareAreaOpen.querySelector('.article-controller-share-button-close').style.display = "none";
+        }
+    }
+}
