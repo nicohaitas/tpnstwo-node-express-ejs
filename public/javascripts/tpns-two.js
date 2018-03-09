@@ -78,7 +78,7 @@ document.querySelector('.current-year').innerHTML = curr_year;
 // i.e.: from 2017-10-09T13:26:06+02:00 to 9th October 2017
 // ------------------------------------------------------------------------
 var allContentDateTime = document.querySelectorAll('.article-published-date-time time');
-for(var i = 0; i < allContentDateTime.length; i++) {
+for (var i = 0; i < allContentDateTime.length; i++) {
     var eachContentDateTime = allContentDateTime[i];
     var eachContentDateTimeFromAttribute = eachContentDateTime.getAttribute('datetime');
 	var dd = new Date(eachContentDateTimeFromAttribute);
@@ -305,7 +305,6 @@ function eachIntersectionObserver() {
     });
 }
 eachIntersectionObserver ();
-
 for (var i = 0; i < allIndexArticleSections.length; i++) {
     var eachIndexArticleSection = allIndexArticleSections[i];
     observer.observe(eachIndexArticleSection);
@@ -1289,7 +1288,6 @@ document.querySelector('.container-pinned-articles-button').onclick = function()
         document.querySelector('.pinned-articles-content').classList.add('pinned-articles-content-open');
         var pageWrapLeftInnerHeightControl = document.querySelector('.page-wrap-left').clientHeight;
         document.querySelector('.pinned-articles-content-open').style.height = (pageWrapLeftInnerHeightControl - 168) + "px";
-        
     }
 };
 
@@ -1317,7 +1315,7 @@ function toggleShare() {
 // ------------------------------------------------------------------------
 var allArticlesShareAreaOpen = document.querySelectorAll('.page-wrap-right article');
 for (var i = 0; i < allArticlesShareAreaOpen.length; i++) {
-        allArticlesShareAreaOpen[i].addEventListener('mouseleave', mouseLeaveShare);
+    allArticlesShareAreaOpen[i].addEventListener('mouseleave', mouseLeaveShare);
 }
 function mouseLeaveShare() {
     thisArticlesShareAreaOpen = this;

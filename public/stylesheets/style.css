@@ -2751,7 +2751,7 @@ h3 { font-size:1.714em; }
 	display:table; width:100%; padding:0; margin:0;
 }
 .content-area-elsewhere-inner-container > article {
-	display:table-cell; position:relative; width:33.33333333333333%; padding:20px;
+	display:table-cell; position:relative; width:33.33333333333333%; padding:20px; vertical-align: top;
 }
 .content-area-elsewhere-inner-container > article:hover {
 	background:#FFFFFF;
@@ -2866,7 +2866,7 @@ h3 { font-size:1.714em; }
     display:inline-block; width:calc(100% - 90px); vertical-align:middle; font-size:1em; line-height:120%;
 }
 .content-area-elsewhere-other-inner-container-horizontal-split > article .article-subhead {
-	font-size:0.875em; font-family:OpenSans-Regular, "Trebuchet MS", Arial, Helvetica, sans-serif; margin-top:10px;
+	font-size:0.875em; font-family:OpenSans-Regular, "Trebuchet MS", Arial, Helvetica, sans-serif; margin:10px 0px;
 }
 /* This area is NOT controlled by the Admin Area */
 /*
@@ -2928,7 +2928,7 @@ h3 { font-size:1.714em; }
 	display:block;
 }
 .content-area-elsewhere-other-inner-container-horizontal-split .article-category-main-container {
-	position:relative; overflow:hidden;
+	position:relative;
 }
 .content-area-elsewhere-other-inner-container-horizontal-split .article-category-main-container .article-controller-container {
 	z-index:1;
