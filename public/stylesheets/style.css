@@ -1854,7 +1854,7 @@ article:hover .article-editorsnotes {
 .article-controller-container .article-controller-share-social.active {
 	display:block; position:absolute; top:39px; right:34px; width:170px;
 }
-.article-controller-container .article-controller-share-social.article-pinned.active {
+.article-controller-container .article-controller-article-pinned-button-hidden + .article-controller-share-article > .article-controller-share-social.active {
 	top:0px;
 }
 .article-controller-container .article-controller-share-social.active a {
